@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   liberation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 11:30:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/15 14:44:15 by ghanquer         ###   ########.fr       */
+/*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
+/*   Updated: 2022/06/15 14:46:43 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-char	**get_map(int fd)
+void	free_char_char(char **str)
 {
-	char	**map;
-	int		i;
+	int	i;
 
-	map = malloc(sizeof(char *) * 11);
-	if (!map)
-		return (NULL);
-	map[10] = NULL;
 	i = 0;
-	while (i <= 10)
+	if (!str)
+		return ;
+	while (str[i])
 	{
-		map[i] = get_next_line(fd);
+		free(str[i]);
 		i++;
 	}
-	close(fd);
-	return (map);
+	free(str);
+}
+
+void	free_func(t_info *info)
+{
+	//	TODO
+	//	free_all
 }

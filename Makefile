@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/06/15 12:49:12 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/06/15 16:08:36 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ =			$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 OBJ_DIRS =		$(OBJ_DIR)
 
-CC = clang $(CFLAGS)
+CC = gcc $(CFLAGS)
 
 RM = rm -fr
 
