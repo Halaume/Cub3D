@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/06/14 14:59:53 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/06/15 12:49:12 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,10 @@ MLX = minilibx-linux/libmlx_Linux.a
 
 SRC_FT = cub3d_basic \
 		hook \
-		main 
+		main \
+		gnl \
+		gnl2 \
+		map
 
 all: $(NAME)
 
