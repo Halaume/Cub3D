@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/15 17:24:03 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/16 12:39:03 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_info {
 	void	*mlx;
 	void	*window;
 	t_data	img;
+	int		h;
+	int		l;
 	int		fd;
 	char	**map;
 	double	my_pos_x;

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/15 17:23:53 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/16 12:39:40 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_info(t_info *info, char **argv)
 {
+	info->h = 1080;
+	info->l = 120;
 	info->fd = 0;
 	info->mlx = NULL;
 	info->window = NULL;
