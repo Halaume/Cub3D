@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/06/15 16:08:36 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/06/16 15:01:38 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,15 @@ MLX = minilibx-linux/libmlx_Linux.a
 #HOW TO LIST .c 
 #	ls -l | awk '{print $9}' | grep -E ".c$"| sed "s/\.c/ \\\/g" | sed '$s/\\$//g'
 
-SRC_FT = cub3d_basic \
-		hook \
-		main \
-		gnl \
-		gnl2 \
-		map
+SRC_FT = affiche \
+	casting \
+	cub3d_basic \
+	gnl2 \
+	gnl \
+	hook \
+	liberation \
+	main \
+	map
 
 all: $(NAME)
 

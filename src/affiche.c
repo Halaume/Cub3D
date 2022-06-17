@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   liberation.c                                       :+:      :+:    :+:   */
+/*   affiche.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/17 14:26:01 by ghanquer         ###   ########.fr       */
+/*   Created: 2022/06/16 14:08:55 by ghanquer          #+#    #+#             */
+/*   Updated: 2022/06/17 16:41:54 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	free_char_char(char **str)
+void	put_col(t_info *info, int wall_height, int y)
 {
+	int	color_wall;
 	int	i;
 
-	i = 0;
-	if (!str)
-		return ;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-void	free_func(t_info *info)
-{
-	free_char_char(info->map);
-	//	TODO
-	//	free_all
+	color_wall = 0x00FF0000;
+	i = -1;
+	while (++i < (info->h / 2) - (wall_height / 2))
+		my_mlx_pixel_put(&info->img, y, i, info->color_sky);
+	while (++i < (info->h / 2) + (wall_height / 2) - 1)
+		my_mlx_pixel_put(&info->img, y, i, info->color_floor);
+	while (++i < info->h)
+		my_mlx_pixel_put(&info->img, y, i, color_wall);
 }

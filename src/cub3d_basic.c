@@ -6,25 +6,27 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/16 12:39:40 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/17 16:33:55 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	init_info(t_info *info, char **argv)
+void	init_info(t_info *info)
 {
 	info->h = 1080;
-	info->l = 120;
+	info->w = 1920;
 	info->fd = 0;
 	info->mlx = NULL;
 	info->window = NULL;
 	info->my_pos_x = 5;
 	info->my_pos_y = 5;
-	info->dir_x = 0;
-	info->dir_y = 0;
-	info->view_x = 0;
-	info->view_y = 0.66;
+//	info->dir_x = 0;
+//	info->dir_y = 0;
+//	info->view_x = 0;
+//	info->view_y = 0.66;
+	info->color_sky = 0x000000FF;
+	info->color_floor = 0x0000FF00;
 }
 
 void	tracing_again(t_info *info)

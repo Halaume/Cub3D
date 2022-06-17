@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/15 17:07:25 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:59:35 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (printf("Error\nNombre d'arguments invalide\n"), 1);
-	init_info(&info, argv);
+	init_info(&info);
 	info.fd = open(argv[1], O_RDONLY);
 	if (!info.fd)
 		return (printf("Error\nOuverture de map echouee\n"), 1);
