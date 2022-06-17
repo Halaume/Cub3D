@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/06/16 15:01:38 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/06/17 17:57:54 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ MLX = minilibx-linux/libmlx_Linux.a
 #	ls -l | awk '{print $9}' | grep -E ".c$"| sed "s/\.c/ \\\/g" | sed '$s/\\$//g'
 
 SRC_FT = affiche \
-	casting \
+	brice_casting \
 	cub3d_basic \
 	gnl2 \
 	gnl \

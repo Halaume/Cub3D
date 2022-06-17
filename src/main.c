@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/16 14:59:35 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:58:06 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 			&info.img.line_length, &info.img.endian);
 	//do_stuff
 	info.map = get_map(info.fd);
-	casting(&info);
+	brice_casting(&info);
 	//print
 	mlx_hook(info.window, 17, 0, closewin, &info);
 	mlx_hook(info.window, 2, 1L << 0, hook, &info);

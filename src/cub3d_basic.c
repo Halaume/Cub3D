@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/17 16:33:55 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:00:56 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	tracing_again(t_info *info)
 	info->img.addr = mlx_get_data_addr(info->img.img, \
 			&info->img.bits_per_pixel, &info->img.line_length, \
 			&info->img.endian);
-	casting(info);
+	brice_casting(info);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

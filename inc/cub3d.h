@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/17 16:38:25 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:59:31 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char	**get_map(int fd);
 //			Casting
 
 void	casting(t_info *info);
+void	brice_casting(t_info *info);
 
 //			Liberation
 
