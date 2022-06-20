@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/17 18:15:54 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:49:05 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	brice_casting(t_info *info)
 	//ecran de vue a dist = 1 / angle tot = 90deg
 //	perp_screen_x = info->my_pos_x + cos(90);
 //	perp_screen_y = info->my_pos_y - sin(90);
-	vect_x = cos(45 + (M_PI / 2));			//with const fov 90 -> -1
-	vect_y = -sin(45 + (M_PI / 2));			//with const fov 90 -> 0
+	vect_x = cos(info->player.angle + (M_PI / 2));			//with const fov 90 -> -1
+	vect_y = -sin(info->player.angle + (M_PI / 2));			//with const fov 90 -> 0
 //	pos_point_fov_left_x = perp_screen_x + vect_x;
 //	pos_point_fov_left_y = perp_screen_y + vect_y;
 //	pos_point_fov_right_x = perp_screen_x - vect_x;
@@ -47,8 +47,8 @@ void	brice_casting(t_info *info)
 	while (++i < info->w)
 	{
 		is_wall = 0;
-		ray_x = info->my_pos_x + (step * i);
-		ray_y = info->my_pos_y + (step * i);
+		ray_x = info->player.x + (step * i);
+		ray_y = info->player.y + (step * i);
 		while (is_wall == 0)
 		{
 			if (info->map[(int)ray_x][(int)ray_y] == '1')
@@ -59,7 +59,7 @@ void	brice_casting(t_info *info)
 				ray_y += vect_y;
 			}
 		}
-		wall_height = (info->h / 2) - ((info->w / 2)/(int)ray_y - info->my_pos_y) / 2;
+		wall_height = (info->h / 2) - ((info->w / 2)/(int)ray_y - info->player.y) / 2;
 		put_col(info, wall_height, i);
 	}
 }

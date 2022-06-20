@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/17 17:59:31 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:45:24 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,27 @@ typedef struct	s_data {
 	int		endian;
 }	t_data;
 
+typedef struct	s_player {
+	double	x;
+	double	y;
+	double	angle;
+
+}	t_player;
+
 typedef struct	s_info {
-	void	*mlx;
-	void	*window;
-	t_data	img;
-	int		h;
-	int		w;
-	int		fd;
-	char	**map;
-	double	my_pos_x;
-	double	my_pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	view_x;
-	double	view_y;
-	int		color_sky;
-	int		color_floor;
+	t_player	player;
+	void		*mlx;
+	void		*window;
+	t_data		img;
+	int			h;
+	int			w;
+	int			fd;
+	char		**map;
+	int			color_sky;
+	int			color_floor;
 }	t_info;
 
-typedef struct	s_casting {
+/*typedef struct	s_casting {
 	double	ray_pos_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
@@ -70,7 +72,7 @@ typedef struct	s_casting {
 	int		case_y;
 	int		side;
 	int		line_h;
-}	t_casting;
+}	t_casting;*/
 
 //			Basics
 

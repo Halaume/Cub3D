@@ -6,21 +6,30 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/17 18:00:56 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:48:50 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+t_player	new_init_player(void)
+{
+	t_player	player;
+
+	player.x = 5;
+	player.y = 5;
+	player.angle = 2 * M_PI;
+	return (player);
+}
+
 void	init_info(t_info *info)
 {
+	info->player = new_init_player();
 	info->h = 1080;
 	info->w = 1920;
 	info->fd = 0;
 	info->mlx = NULL;
 	info->window = NULL;
-	info->my_pos_x = 5;
-	info->my_pos_y = 5;
 //	info->dir_x = 0;
 //	info->dir_y = 0;
 //	info->view_x = 0;
