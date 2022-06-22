@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/21 17:37:03 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/22 17:28:17 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,23 @@ void	brice_casting(t_info *info)
 //	double	pos_point_fov_right_x;
 //	double	pos_point_fov_right_y;
 //	double	step;
-	double	ray_x;
-	double	ray_y;
+	double	ray[2];				//x,y
 	double	proj_screen[4];		//[0][1] == x,y gauche / [2][3] == x,y droite
 	int		wall_height;
 //	int		fov_width;
 	int		is_wall;
 	double	dir_v_x;
 	double	dir_v_y;
-	int		curr_x;
-	int		curr_y;
-//	int		prev_x;
-//	int		prev_y;
-//	int		delta[2];		//x,y
+	int		curr[2];		//encore aled
+	int		prev_x;
+	int		prev_y;
+	double	delta[2];		//x,y
 	double	distance0;
 	double	distance1;
 	double	wall_ratio;
+	double	tmp[2];		//ALED
+	int		autre;
+	int		side;
 
 	proj_dist = 1;
 //	fov_width = 2;		//const -> fov90 + dist 1
@@ -72,66 +73,94 @@ void	brice_casting(t_info *info)
 //	pos_point_fov_left_y = perp_screen_y + vect_y;
 //	pos_point_fov_right_x = perp_screen_x - vect_x;
 //	pos_point_fov_right_y = perp_screen_y - vect_y;
-	curr_x = info->player.x;
-	curr_y = info->player.y;
+	curr[0] = info->player.x;
+	curr[1] = info->player.y;
 	i = -1;
+	side = 0;
 	while (++i < info->w)
 	{
 		is_wall = 0;
-		ray_x = (proj_screen[0] + dir_v_x * i) - info->player.x;
-		ray_y = (proj_screen[1] + dir_v_y * i) - info->player.y;
-		curr_x = info->player.x;
-		if (ray_x < -0.0001 || ray_x > 0.0001)
+		ray[0] = (proj_screen[0] + dir_v_x * i) - info->player.x;
+		ray[1] = (proj_screen[1] + dir_v_y * i) - info->player.y;
+		curr[0] = info->player.x;
+		if (fabs(ray[0]) > 0.0001)
 		{
-			if (ray_x < -0.0001)
-				curr_x = floor(info->player.x) - 0.0001;
+			if (ray[0] < -0.0001)
+				curr[0] = floor(info->player.x) - 0.0001;
 			else
-				curr_x = ceil(info->player.x);
-//			delta[0] = fabs(ray_x - info->player.x) / fabs(ray_x);
+				curr[0] = ceil(info->player.x);
+			delta[0] = fabs(curr[0] - info->player.x) / fabs(ray[0]);
 		}
-		curr_y = info->player.y;
-		if (ray_y < -0.0001 || ray_y > 0.0001)
+		curr[1] = info->player.y;
+		if (fabs(ray[1]) > 0.0001)
 		{
-			if (ray_y < -0.0001)
-				curr_y = floor(info->player.y) - 0.0001;
+			if (ray[1] < -0.0001)
+				curr[1] = floor(info->player.y) - 0.0001;
 			else
-				curr_y = ceil(info->player.y);
-//			delta[1] = fabs(curr_y - info->player.y) / fabs(ray_y);
+				curr[1] = ceil(info->player.y);
+			delta[1] = fabs(curr[1] - info->player.y) / fabs(ray[1]);
 		}
 
-//		prev_x = info->player.x;
-//		prev_y = info->player.y;
 //		ray_x = info->player.x + (step * i);
 //		ray_y = info->player.y + (step * i);
+		prev_x = info->player.x;
+		prev_y = info->player.y;
 		while (is_wall == 0)
 		{
-			if (info->map[(int)curr_x][(int)curr_y] == '1')
-				is_wall = 1;
+			if (fabs(ray[0]) < 0.0001 || fabs(ray[1]) < 0.0001)
+			{
+				if (info->map[(int)curr[1]][(int)curr[0]] == '1')
+					is_wall = 1;
+				else
+				{
+					curr[0] += 1;
+					if (ray[0] < 0)
+						curr[0] -= 2;
+				}
+				if (ray[1] == 0)
+					ray[1] = 0.00001;
+				if (ray[0] == 0)
+					ray[0] = 0.00001;
+			}
 			else
 			{
-				curr_x += 1;
-				if (ray_x < 0)
-					curr_x -= 2;
+				printf("x = %d, y = %d\n", (int)curr[0], (int)curr[1]);
+				if (fabs(delta[0] - delta[1]) < 0.0001 || delta[0] < delta[1])
+					curr[1] = delta[0] * ray[1] + prev_y;
+				else
+					curr[0] = delta[1] * ray[0] + prev_x;
+				printf("x2 = %d, y2 = %d\n", (int)curr[0], (int)curr[1]);
+				if (info->map[(int)curr[1]][(int)curr[0]] == '1')
+					is_wall = 1;
+				else
+				{
+					prev_x = curr[0];
+					prev_y = curr[1];
+					//	TRYING BRICE'S GET NEXT EDGE
+					autre = side ^ 1;  //side = 0 ou 1 donc pour check les 2 XOR sur autre
+					if (ray[side] < 0)
+						tmp[side] = curr[side] - 1;
+					else
+						tmp[side] = curr[side] + 1;
+					delta[side] = fabs(tmp[side] - curr[side] / fabs(ray[side]));
+					//
+				}
 			}
-			if (ray_y == 0)
-				ray_y = 0.00001;
-			if (ray_x == 0)
-				ray_x = 0.00001;
 		}
 
 
-		if (fabs(curr_x - info->player.x) < 0.0001)
-			distance0 = fabs(curr_y - info->player.y);
-		else if (fabs(curr_y - info->player.y) < 0.0001)
-			distance0 = fabs(curr_x - info->player.x);
+		if (fabs(curr[0] - info->player.x) < 0.0001)
+			distance0 = fabs(curr[1] - info->player.y);
+		else if (fabs(curr[1] - info->player.y) < 0.0001)
+			distance0 = fabs(curr[0] - info->player.x);
 		else
-			distance0 = hypot(fabs(curr_x - info->player.x), fabs(curr_y - info->player.y));
-		if (fabs(ray_x) < 0.0001)
-			distance1 = fabs(ray_y);
-		else if (fabs(ray_y) < 0.0001)
-			distance1 = fabs(ray_x);
+			distance0 = hypot(fabs(curr[0] - info->player.x), fabs(curr[1] - info->player.y));
+		if (fabs(ray[0]) < 0.0001)
+			distance1 = fabs(ray[1]);
+		else if (fabs(ray[1]) < 0.0001)
+			distance1 = fabs(ray[0]);
 		else
-			distance1 = hypot(fabs(ray_x), fabs(ray_y));
+			distance1 = hypot(fabs(ray[0]), fabs(ray[1]));
 		wall_ratio = distance1 / distance0;
 		wall_height = (int)round(wall_ratio * ((double)info->w / 2));
 
