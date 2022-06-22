@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/20 12:45:24 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/22 12:06:09 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,25 @@ char	**get_map(int fd);
 void	casting(t_info *info);
 void	brice_casting(t_info *info);
 
-//			Liberation
+//			Player Mouvement
 
-void	free_func(t_info *info);
-void	free_char_char(char **str);
+
+void	mv_left(t_info *info);
+void	mv_right(t_info *info);
+void	mv_for(t_info *info);
+void	mv_back(t_info *info);
+void	turn_right(t_info *info);
+void	turn_left(t_info *info);
 
 //			Affichage
 
 void	put_col(t_info *info, int wh, int y);
+void	tracing_again(t_info *info);
+
+//			Liberation
+
+void	free_func(t_info *info);
+void	free_char_char(char **str);
 
 //			GNL
 

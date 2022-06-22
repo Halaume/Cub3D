@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/21 16:49:56 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:37:03 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,19 @@ void	brice_casting(t_info *info)
 
 
 		if (fabs(curr_x - info->player.x) < 0.0001)
-		distance0 = fabs(curr_y - info->player.y);
-	else if (fabs(curr_y - info->player.y) < 0.0001)
-		distance0 = fabs(curr_x - info->player.x);
-	else
-		distance0 = hypot(fabs(curr_x - info->player.x), \
-				fabs(curr_y - info->player.y));
-	if (fabs(ray_x) < 0.0001)
-		distance1 = fabs(ray_y);
-	else if (fabs(ray_y) < 0.0001)
-		distance1 = fabs(ray_x);
-	else
-		distance1 = hypot(fabs(ray_x), fabs(ray_y));
-	wall_ratio = distance1 / distance0;
-	wall_height = (int)round(wall_ratio * ((double)info->w / 2));
+			distance0 = fabs(curr_y - info->player.y);
+		else if (fabs(curr_y - info->player.y) < 0.0001)
+			distance0 = fabs(curr_x - info->player.x);
+		else
+			distance0 = hypot(fabs(curr_x - info->player.x), fabs(curr_y - info->player.y));
+		if (fabs(ray_x) < 0.0001)
+			distance1 = fabs(ray_y);
+		else if (fabs(ray_y) < 0.0001)
+			distance1 = fabs(ray_x);
+		else
+			distance1 = hypot(fabs(ray_x), fabs(ray_y));
+		wall_ratio = distance1 / distance0;
+		wall_height = (int)round(wall_ratio * ((double)info->w / 2));
 
 
 //		printf("ray_y = %f && info->player.y = %f\n", ray_y, info->player.y / 1);
