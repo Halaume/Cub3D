@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/22 17:28:17 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/23 11:15:59 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,15 @@ void	brice_casting(t_info *info)
 			{
 				printf("x = %d, y = %d\n", (int)curr[0], (int)curr[1]);
 				if (fabs(delta[0] - delta[1]) < 0.0001 || delta[0] < delta[1])
+				{
 					curr[1] = delta[0] * ray[1] + prev_y;
+					side = 0;
+				}
 				else
+				{
 					curr[0] = delta[1] * ray[0] + prev_x;
+					side = 1;
+				}
 				printf("x2 = %d, y2 = %d\n", (int)curr[0], (int)curr[1]);
 				if (info->map[(int)curr[1]][(int)curr[0]] == '1')
 					is_wall = 1;
@@ -143,6 +149,16 @@ void	brice_casting(t_info *info)
 					else
 						tmp[side] = curr[side] + 1;
 					delta[side] = fabs(tmp[side] - curr[side] / fabs(ray[side]));
+					if (ray[autre] < 0)
+						tmp[autre] = floor(curr[autre] - 0.0001);
+					else
+						tmp[autre] = ceil(curr[autre]);
+					delta[autre] = fabs(tmp[autre] - curr[autre]) / fabs(ray[autre]);
+					if (fabs(delta[autre]) < 0.0001)
+						tmp[autre] += 0.0001;
+					delta[autre] = fabs(tmp[autre] - curr[autre]) / fabs(ray[autre]);
+					curr[0] = tmp[0];
+					curr[1] = tmp[1];
 					//
 				}
 			}
