@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/23 11:15:59 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:33:35 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	brice_casting(t_info *info)
 		prev_y = info->player.y;
 		while (is_wall == 0)
 		{
+			printf("angle = %f\n", info->player.angle);
 			if (fabs(ray[0]) < 0.0001 || fabs(ray[1]) < 0.0001)
 			{
 				if (info->map[(int)curr[1]][(int)curr[0]] == '1')
@@ -124,7 +125,6 @@ void	brice_casting(t_info *info)
 			}
 			else
 			{
-				printf("x = %d, y = %d\n", (int)curr[0], (int)curr[1]);
 				if (fabs(delta[0] - delta[1]) < 0.0001 || delta[0] < delta[1])
 				{
 					curr[1] = delta[0] * ray[1] + prev_y;
@@ -135,7 +135,6 @@ void	brice_casting(t_info *info)
 					curr[0] = delta[1] * ray[0] + prev_x;
 					side = 1;
 				}
-				printf("x2 = %d, y2 = %d\n", (int)curr[0], (int)curr[1]);
 				if (info->map[(int)curr[1]][(int)curr[0]] == '1')
 					is_wall = 1;
 				else
@@ -143,12 +142,12 @@ void	brice_casting(t_info *info)
 					prev_x = curr[0];
 					prev_y = curr[1];
 					//	TRYING BRICE'S GET NEXT EDGE
-					autre = side ^ 1;  //side = 0 ou 1 donc pour check les 2 XOR sur autre
+					autre = side ^ 1;//side = 0 ou 1 donc pour check les 2 XOR sur autre
 					if (ray[side] < 0)
 						tmp[side] = curr[side] - 1;
 					else
 						tmp[side] = curr[side] + 1;
-					delta[side] = fabs(tmp[side] - curr[side] / fabs(ray[side]));
+					delta[side] = fabs(tmp[side] - curr[side]) / fabs(ray[side]);
 					if (ray[autre] < 0)
 						tmp[autre] = floor(curr[autre] - 0.0001);
 					else

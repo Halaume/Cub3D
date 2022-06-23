@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/21 17:37:16 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/23 16:00:30 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_player	new_init_player(void)
 
 	player.x = 5;
 	player.y = 5;
-	player.angle = 2 * M_PI;
+	player.angle = M_PI / 2;
 	return (player);
 }
 

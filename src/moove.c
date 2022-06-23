@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:43:10 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/22 12:04:43 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/23 16:14:03 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,13 +244,13 @@ void	mv_for(t_info *info)
 void	turn_right(t_info *info)
 {
 	info->player.angle -= ((5 * M_PI) / 180);
-	if (info->player.angle == 0)
-		info->player.angle = 2 * M_PI;
+	if (info->player.angle == 2 * M_PI)
+		info->player.angle = 0;
 }
 
 void	turn_left(t_info *info)
 {
 	info->player.angle += ((5 * M_PI) / 180);
-	if (info->player.angle == 0)
-		info->player.angle = 2 * M_PI;
+	if (info->player.angle == 2 * M_PI)
+		info->player.angle = 0;
 }
