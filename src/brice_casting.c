@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/24 15:39:47 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/24 16:56:08 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,17 @@ void	brice_casting(t_info *info)
 	//ecran de vue a dist = 1 / angle tot = 90deg
 
 	//Future struct cast a remplacer
-	//	double	perp_screen_x;
-	//	double	perp_screen_y;
-	//	double	vect_x;
-	//	double	vect_y;
-	//	double	pos_point_fov_left_x;
-	//	double	pos_point_fov_left_y;
-	//	double	pos_point_fov_right_x;
-	//	double	pos_point_fov_right_y;
 //	double	step;
 	double	ray[2];				//x,y
 	double	proj_screen[4];		//[0][1] == x,y gauche / [2][3] == x,y droite
-	int		wall_height;
+	double		wall_height;
 	//	int		fov_width;
 	int		is_wall;
 	double	dir_v_x;
 	double	dir_v_y;
 	double	curr[2];		//encore aled
-	int		prev_x;
-	int		prev_y;
+	double	prev_x;
+	double	prev_y;
 	int		start_px;
 	int		end_px;
 //	char	*dist;
@@ -47,7 +39,7 @@ void	brice_casting(t_info *info)
 	double	distance1;
 	double	wall_ratio;
 	double	tmp[2];		//ALED
-	double	percent;
+//	double	percent;
 	int		autre;
 	int		side;
 
@@ -171,7 +163,7 @@ void	brice_casting(t_info *info)
 				}
 			}
 		}
-		printf("Curr[0] = %.4f, curr[1] = %.4f\n", curr[0], curr[1]);
+		printf("Curr[0](x) = %.4f, curr[1](y) = %.4f\n", curr[0], curr[1]);
 
 		if (fabs(curr[0] - info->player.x) < 0.0001)
 			distance0 = fabs(curr[1] - info->player.y);
@@ -190,28 +182,28 @@ void	brice_casting(t_info *info)
 
 
 		//Draw_Strip
-		if (is_wall == 1)
-		{
-			percent = (curr[0] - floor(curr[0])) / 1;
+//		if (is_wall == 1)
+//		{
+//			percent = (curr[0] - floor(curr[0])) / 1;
 			//texture = no;
-			if (ray[1] > 0)
-			{
+//			if (ray[1] > 0)
+//			{
 				//texture = so;
-				percent = 1 - percent;
-			}
-		}
-		else
-		{
-			//texture = ea;
-			percent = (curr[1] - floor(curr[1])) / 1;
-			if (ray[0] < 0)
-			{
+//				percent = 1 - percent;
+//			}
+//		}
+//		else
+//		{
+//			//texture = ea;
+//			percent = (curr[1] - floor(curr[1])) / 1;
+//			if (ray[0] < 0)
+//			{
 				//texture = we;
-				percent = 1 - percent;
-			}
-		}
-		if (percent >= 1)
-			percent = 0.9999;
+//				percent = 1 - percent;
+//			}
+//		}
+//		if (percent >= 1)
+//			percent = 0.9999;
 //		percent = floor(percent * (double)texture.width);
 		start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)wall_height / 2));
 		end_px = start_px + wall_height - 1;
