@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/23 17:33:35 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/24 15:39:47 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,46 @@ void	brice_casting(t_info *info)
 {
 	int	i;
 	int	proj_dist;
-//ecran de vue a dist = 1 / angle tot = 90deg
+	//ecran de vue a dist = 1 / angle tot = 90deg
 
 	//Future struct cast a remplacer
-//	double	perp_screen_x;
-//	double	perp_screen_y;
-//	double	vect_x;
-//	double	vect_y;
-//	double	pos_point_fov_left_x;
-//	double	pos_point_fov_left_y;
-//	double	pos_point_fov_right_x;
-//	double	pos_point_fov_right_y;
+	//	double	perp_screen_x;
+	//	double	perp_screen_y;
+	//	double	vect_x;
+	//	double	vect_y;
+	//	double	pos_point_fov_left_x;
+	//	double	pos_point_fov_left_y;
+	//	double	pos_point_fov_right_x;
+	//	double	pos_point_fov_right_y;
 //	double	step;
 	double	ray[2];				//x,y
 	double	proj_screen[4];		//[0][1] == x,y gauche / [2][3] == x,y droite
 	int		wall_height;
-//	int		fov_width;
+	//	int		fov_width;
 	int		is_wall;
 	double	dir_v_x;
 	double	dir_v_y;
-	int		curr[2];		//encore aled
+	double	curr[2];		//encore aled
 	int		prev_x;
 	int		prev_y;
+	int		start_px;
+	int		end_px;
+//	char	*dist;
+//	char	*origin;
 	double	delta[2];		//x,y
 	double	distance0;
 	double	distance1;
 	double	wall_ratio;
 	double	tmp[2];		//ALED
+	double	percent;
 	int		autre;
 	int		side;
 
 	proj_dist = 1;
-//	fov_width = 2;		//const -> fov90 + dist 1
-//	step = (double)fov_width / (double)info->w;				//In my case 2/1920
-//	perp_screen_x = info->my_pos_x + cos(info->player.angle);
-//	perp_screen_y = info->my_pos_y - sin(info->player.angle);
+	//	fov_width = 2;		//const -> fov90 + dist 1
+	//	step = (double)fov_width / (double)info->w;				//In my case 2/1920
+	//	perp_screen_x = info->my_pos_x + cos(info->player.angle);
+	//	perp_screen_y = info->my_pos_y - sin(info->player.angle);
 
 	if (fabs(info->player.angle + M_PI / 2) < 0.0001)
 		info->player.angle = 3 * M_PI * 2;
@@ -67,19 +72,13 @@ void	brice_casting(t_info *info)
 
 	dir_v_x = (proj_screen[2] - proj_screen[0]) / (double)(info->w - 1);
 	dir_v_y = (proj_screen[3] - proj_screen[1]) / (double)(info->w - 1);
-//	vect_x = cos(info->player.angle + (M_PI / 2));			//with const fov 90 -> -1
-//	vect_y = -sin(info->player.angle + (M_PI / 2));			//with const fov 90 -> 0
-//	pos_point_fov_left_x = perp_screen_x + vect_x;
-//	pos_point_fov_left_y = perp_screen_y + vect_y;
-//	pos_point_fov_right_x = perp_screen_x - vect_x;
-//	pos_point_fov_right_y = perp_screen_y - vect_y;
-	curr[0] = info->player.x;
-	curr[1] = info->player.y;
+
+
+
 	i = -1;
 	side = 0;
 	while (++i < info->w)
 	{
-		is_wall = 0;
 		ray[0] = (proj_screen[0] + dir_v_x * i) - info->player.x;
 		ray[1] = (proj_screen[1] + dir_v_y * i) - info->player.y;
 		curr[0] = info->player.x;
@@ -101,27 +100,35 @@ void	brice_casting(t_info *info)
 			delta[1] = fabs(curr[1] - info->player.y) / fabs(ray[1]);
 		}
 
-//		ray_x = info->player.x + (step * i);
-//		ray_y = info->player.y + (step * i);
 		prev_x = info->player.x;
 		prev_y = info->player.y;
+		is_wall = 0;
 		while (is_wall == 0)
 		{
-			printf("angle = %f\n", info->player.angle);
 			if (fabs(ray[0]) < 0.0001 || fabs(ray[1]) < 0.0001)
 			{
-				if (info->map[(int)curr[1]][(int)curr[0]] == '1')
-					is_wall = 1;
+				if (fabs(ray[0]) < 0.0001)
+				{
+					if (info->map[(int)curr[1]][(int)curr[0]] == '1')
+						is_wall = 1;
+					else
+					{
+						curr[1] += 1;
+						if (ray[1] < 0)
+							curr[1] -= 2;
+					}
+				}
 				else
 				{
-					curr[0] += 1;
-					if (ray[0] < 0)
-						curr[0] -= 2;
+					if (info->map[(int)curr[1]][(int)curr[0]] == '1')
+						is_wall = 2;
+					else
+					{
+						curr[0] += 1;
+						if (ray[0] < 0)
+							curr[0] -= 2;
+					}
 				}
-				if (ray[1] == 0)
-					ray[1] = 0.00001;
-				if (ray[0] == 0)
-					ray[0] = 0.00001;
 			}
 			else
 			{
@@ -129,15 +136,17 @@ void	brice_casting(t_info *info)
 				{
 					curr[1] = delta[0] * ray[1] + prev_y;
 					side = 0;
+					if (info->map[(int)curr[1]][(int)curr[0]] == '1')
+						is_wall = 2;
 				}
 				else
 				{
 					curr[0] = delta[1] * ray[0] + prev_x;
 					side = 1;
+					if (info->map[(int)curr[1]][(int)curr[0]] == '1')
+						is_wall = 1;
 				}
-				if (info->map[(int)curr[1]][(int)curr[0]] == '1')
-					is_wall = 1;
-				else
+				if (is_wall == 0)
 				{
 					prev_x = curr[0];
 					prev_y = curr[1];
@@ -162,7 +171,7 @@ void	brice_casting(t_info *info)
 				}
 			}
 		}
-
+		printf("Curr[0] = %.4f, curr[1] = %.4f\n", curr[0], curr[1]);
 
 		if (fabs(curr[0] - info->player.x) < 0.0001)
 			distance0 = fabs(curr[1] - info->player.y);
@@ -180,12 +189,74 @@ void	brice_casting(t_info *info)
 		wall_height = (int)round(wall_ratio * ((double)info->w / 2));
 
 
-//		printf("ray_y = %f && info->player.y = %f\n", ray_y, info->player.y / 1);
-//		wall_height = (int)round((fabs(ray_y) / fabs(ray_x)) * ((double)info->w / 2));
-//		printf("Wall_height = %d\n", wall_height);
-//		wall_height = (int)((info->h / 2) - ((info->w / 2)/ray_y) - info->player.y / 2);
-//		printf("%d\n", wall_height);
-		put_col(info, wall_height, i);
+		//Draw_Strip
+		if (is_wall == 1)
+		{
+			percent = (curr[0] - floor(curr[0])) / 1;
+			//texture = no;
+			if (ray[1] > 0)
+			{
+				//texture = so;
+				percent = 1 - percent;
+			}
+		}
+		else
+		{
+			//texture = ea;
+			percent = (curr[1] - floor(curr[1])) / 1;
+			if (ray[0] < 0)
+			{
+				//texture = we;
+				percent = 1 - percent;
+			}
+		}
+		if (percent >= 1)
+			percent = 0.9999;
+//		percent = floor(percent * (double)texture.width);
+		start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)wall_height / 2));
+		end_px = start_px + wall_height - 1;
+		put_col(info, start_px, end_px, i);
 	}
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
 }
+
+
+
+
+
+
+
+
+
+
+
+//		dist = info->img.addr + i * (info->img.bits_per_pixel / 8);
+//		origin = /*texture.texture.addr + */(int)percent/* * (texture.texture.bits_per_pixel / 8)*/;
+//		step = ((double)1 / (double)wall_height)/* * (double)(texture.height)*/;
+//		int	it;
+//		double	current;
+	//	int		percent_y;
+//		it = 0;
+//		while (it < info->h && it < start_px)
+//		{
+//			*(unsigned int *)dist = info->color_sky;
+//			dist += info->img.line_length;
+//			it++;
+//		}
+//		current = (double)(it - start_px) * step;
+//		while (it < info->h &&it <= end_px)
+//		{
+	//		percent_y = (int)current;
+//			if (percent_y == texture.height)
+//				percent_y = texture.height - 1;
+		//	*(unsigned int *)dist = info->img->addr + /**(unsigned int *)(origin + */(int)percent_y * info->img->line_lenght/* * texture.texture.line_lenght)*/;
+//			dist += info->img.line_length;
+//			current += step;
+//			it++;
+//		}
+//		while (it < info->h)
+//		{
+//			*(unsigned int *)dist = info->color_floor;
+//			dist += info->img.line_length;
+//			it++;
+//		}
