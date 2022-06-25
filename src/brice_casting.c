@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/24 16:56:08 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:11:52 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	brice_casting(t_info *info)
 	double	distance1;
 	double	wall_ratio;
 	double	tmp[2];		//ALED
-//	double	percent;
+	double	percent;
 	int		autre;
 	int		side;
 
@@ -163,7 +163,6 @@ void	brice_casting(t_info *info)
 				}
 			}
 		}
-		printf("Curr[0](x) = %.4f, curr[1](y) = %.4f\n", curr[0], curr[1]);
 
 		if (fabs(curr[0] - info->player.x) < 0.0001)
 			distance0 = fabs(curr[1] - info->player.y);
@@ -182,44 +181,35 @@ void	brice_casting(t_info *info)
 
 
 		//Draw_Strip
-//		if (is_wall == 1)
-//		{
-//			percent = (curr[0] - floor(curr[0])) / 1;
+		if (is_wall == 1)
+		{
+			percent = (curr[0] - floor(curr[0])) / 1;
 			//texture = no;
-//			if (ray[1] > 0)
-//			{
+			if (ray[1] > 0)
+			{
 				//texture = so;
-//				percent = 1 - percent;
-//			}
-//		}
-//		else
-//		{
-//			//texture = ea;
-//			percent = (curr[1] - floor(curr[1])) / 1;
-//			if (ray[0] < 0)
-//			{
+				percent = 1 - percent;
+			}
+		}
+		else
+		{
+			//texture = ea;
+			percent = (curr[1] - floor(curr[1])) / 1;
+			if (ray[0] < 0)
+			{
 				//texture = we;
-//				percent = 1 - percent;
-//			}
-//		}
-//		if (percent >= 1)
-//			percent = 0.9999;
-//		percent = floor(percent * (double)texture.width);
+				percent = 1 - percent;
+			}
+		}
+		if (percent >= 1)
+			percent = 0.9999;
+		percent = floor(percent * (double)128); // texture_width
 		start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)wall_height / 2));
 		end_px = start_px + wall_height - 1;
-		put_col(info, start_px, end_px, i);
+		put_col(info, start_px, end_px, i, percent, wall_height);
 	}
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
 }
-
-
-
-
-
-
-
-
-
 
 
 //		dist = info->img.addr + i * (info->img.bits_per_pixel / 8);
