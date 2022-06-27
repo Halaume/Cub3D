@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 10:31:05 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:05:55 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,17 @@ typedef struct	s_player {
 
 }	t_player;
 
+typedef struct	s_hooking {
+	int	forward;
+	int	forward2;
+	int	backward;
+	int	backward2;
+	int	left;
+	int	right;
+	int	cam_left;
+	int	cam_right;
+}	t_hooking;
+
 typedef struct	s_info {
 	t_player	player;
 	void		*mlx;
@@ -50,6 +61,8 @@ typedef struct	s_info {
 	char		**map;
 	int			color_sky;
 	int			color_floor;
+	int			nb_line;
+	int			nb_col;
 }	t_info;
 
 /*typedef struct	s_casting {
@@ -80,7 +93,12 @@ int		ft_strlen(char *str);
 void	init_info(t_info *info);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		closewin(t_info *info);
+
+//			Hooking
+
 int		hook(int keycode, t_info *info);
+int		hook_release(int keycode, t_info *info);
+void	looping_hook();
 
 //			Map
 

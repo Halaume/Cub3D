@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 11:08:43 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:42:41 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ void	brice_casting(t_info *info)
 	//ecran de vue a dist = 1 / angle tot = 90deg
 
 	//Future struct cast a remplacer
-//	double	step;
 	double	ray[2];				//x,y
 	double	proj_screen[4];		//[0][1] == x,y gauche / [2][3] == x,y droite
 	double		wall_height;
-	//	int		fov_width;
 	int		is_wall;
 	double	dir_v_x;
 	double	dir_v_y;
@@ -44,10 +42,6 @@ void	brice_casting(t_info *info)
 	int		side;
 
 	proj_dist = 1;
-	//	fov_width = 2;		//const -> fov90 + dist 1
-	//	step = (double)fov_width / (double)info->w;				//In my case 2/1920
-	//	perp_screen_x = info->my_pos_x + cos(info->player.angle);
-	//	perp_screen_y = info->my_pos_y - sin(info->player.angle);
 
 	if (fabs(info->player.angle + M_PI / 2) < 0.0001)
 		info->player.angle = 3 * M_PI * 2;
@@ -162,6 +156,8 @@ void	brice_casting(t_info *info)
 					//
 				}
 			}
+			if (is_wall != 0)
+				printf("Touching wall at : %f | %f / (int)%d | (int)%d\n", curr[0], curr[1], (int)curr[0], (int)curr[1]);
 		}
 
 		if (fabs(curr[0] - info->player.x) < 0.0001)
@@ -204,8 +200,14 @@ void	brice_casting(t_info *info)
 		if (percent >= 1)
 			percent = 0.9999;
 		percent = floor(percent * (double)128); // texture_width
-		start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)wall_height / 2));
-		end_px = start_px + wall_height - 1;
+		if (wall_height < 0)
+			start_px = 1;
+		else
+			start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)wall_height / 2));
+		if (wall_height >= info->h)
+			end_px = info->h;
+		else
+			end_px = start_px + wall_height - 1;
 		put_col(info, start_px, end_px, i, percent, wall_height);
 	}
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
@@ -217,7 +219,7 @@ void	brice_casting(t_info *info)
 //		step = ((double)1 / (double)wall_height)/* * (double)(texture.height)*/;
 //		int	it;
 //		double	current;
-	//	int		percent_y;
+//		int		percent_y;
 //		it = 0;
 //		while (it < info->h && it < start_px)
 //		{
@@ -228,10 +230,10 @@ void	brice_casting(t_info *info)
 //		current = (double)(it - start_px) * step;
 //		while (it < info->h &&it <= end_px)
 //		{
-	//		percent_y = (int)current;
+//			percent_y = (int)current;
 //			if (percent_y == texture.height)
 //				percent_y = texture.height - 1;
-		//	*(unsigned int *)dist = info->img->addr + /**(unsigned int *)(origin + */(int)percent_y * info->img->line_lenght/* * texture.texture.line_lenght)*/;
+//			*(unsigned int *)dist = info->img->addr + /**(unsigned int *)(origin + */(int)percent_y * info->img->line_lenght/* * texture.texture.line_lenght)*/;
 //			dist += info->img.line_length;
 //			current += step;
 //			it++;

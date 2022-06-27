@@ -6,14 +6,16 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:43:10 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 12:50:17 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:44:56 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	is_wall(t_info *info, double x, double y)
+int	is_wall(t_info *info, double y, double x)
 {
+	if (y > info->nb_line || x > info->nb_col || x < 0 || y < 0)
+		return (1);
 	if (info->map[(int)y][(int)x] == 1)
 		return (1);
 	return (0);

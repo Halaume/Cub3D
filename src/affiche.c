@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:08:55 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 10:57:55 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:38:09 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	put_col(t_info *info, int start_px, int end_px, int y, double percent, doub
 	double current = (double)y - start_px * step;
 	int	percent_y = (int)current;
 	i = 0;
+	printf("start pixel = %d\n", start_px);
 	while (i < start_px)
 	{
 		*(unsigned int *)dist = info->color_sky;

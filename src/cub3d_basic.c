@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 10:44:47 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:45:19 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ void	init_info(t_info *info)
 	info->fd = 0;
 	info->mlx = NULL;
 	info->window = NULL;
-//	info->dir_x = 0;
-//	info->dir_y = 0;
-//	info->view_x = 0;
-//	info->view_y = 0.66;
 	info->color_sky = 0x000000FF;
 	info->color_floor = 0x0000FF00;
+	info->nb_line = 9;
+	info->nb_col = 9;
 }
 
 void	tracing_again(t_info *info)

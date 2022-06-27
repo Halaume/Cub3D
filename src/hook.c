@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/22 12:05:45 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:04:33 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	hook(int keycode, t_info *info)
 {
 	printf("Keycode : %d\n", keycode);
-	if (keycode == 65307)
+/*	if (keycode == 65307)
 		closewin(info);
 	if (keycode == 65361)
 		turn_left(info);
@@ -33,6 +33,10 @@ int	hook(int keycode, t_info *info)
 		mv_for(info);
 	if (keycode == 115)
 		mv_back(info);
-	tracing_again(info);
+	tracing_again(info);*/
 	return (0);
+}
+
+int	hook_release(int keycode, t_info *info)
+{
 }
