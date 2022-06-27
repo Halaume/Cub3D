@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 16:05:07 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:24:39 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	info.map = get_map(info.fd);
 	brice_casting(&info);
 	//print
+	mlx_do_key_autorepeatoff(info.mlx);
 	mlx_hook(info.window, 17, 0, closewin, &info);
 	mlx_hook(info.window, 2, 1L << 0, hook, &info);
 	mlx_hook(info.window, 2, 1L << 1, hook_release, &info);
