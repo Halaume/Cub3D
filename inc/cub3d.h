@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/25 15:09:29 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:31:05 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	turn_left(t_info *info);
 
 //			Affichage
 
-void	put_col(t_info *info, int wh, int oui, int y, int maybe, double non);
+void	put_col(t_info *info, int wh, int oui, int y, double aled, double style);
 void	tracing_again(t_info *info);
 
 //			Liberation
