@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 15:42:41 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:01:11 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,8 @@ void	brice_casting(t_info *info)
 					//
 				}
 			}
-			if (is_wall != 0)
-				printf("Touching wall at : %f | %f / (int)%d | (int)%d\n", curr[0], curr[1], (int)curr[0], (int)curr[1]);
+//			if (is_wall != 0)
+//				printf("Touching wall at : %f | %f / (int)%d | (int)%d\n", curr[0], curr[1], (int)curr[0], (int)curr[1]);
 		}
 
 		if (fabs(curr[0] - info->player.x) < 0.0001)

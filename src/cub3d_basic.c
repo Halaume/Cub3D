@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 18:30:08 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:58:12 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ t_player	new_init_player(void)
 	return (player);
 }
 
-t_hooking	init_hook(t_hooking my_hook)
+t_hooking	init_hook(void)
 {
+	t_hooking	my_hook;
+
 	my_hook.forward = 0;
 	my_hook.forward2 = 0;
 	my_hook.backward = 0;
@@ -37,9 +39,6 @@ t_hooking	init_hook(t_hooking my_hook)
 
 void	init_info(t_info *info)
 {
-	t_hooking	new_hook;
-
-	new_hook = init_hook(new_hook);
 	info->player = new_init_player();
 	info->h = 1080;
 	info->w = 1920;
@@ -50,7 +49,7 @@ void	init_info(t_info *info)
 	info->color_floor = 0x0000FF00;
 	info->nb_line = 9;
 	info->nb_col = 9;
-	info->hook = &new_hook;
+	info->hook = init_hook();
 }
 
 void	tracing_again(t_info *info)
@@ -79,8 +78,8 @@ int	closewin(t_info *info)
 {
 	mlx_destroy_image(info->mlx, info->img.img);
 	mlx_destroy_window(info->mlx, info->window);
+	mlx_do_key_autorepeaton(info->mlx);
 	mlx_destroy_display(info->mlx);
-	mlx_do_key_autorepeatoff(info->mlx);
 	free(info->mlx);
 	free_func(info);
 	exit (0);

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 18:24:39 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:23:31 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(int argc, char **argv)
 	mlx_do_key_autorepeatoff(info.mlx);
 	mlx_hook(info.window, 17, 0, closewin, &info);
 	mlx_hook(info.window, 2, 1L << 0, hook, &info);
-	mlx_hook(info.window, 2, 1L << 1, hook_release, &info);
-	mlx_loop_hook(info.window, looping_hook, &info);
+	mlx_hook(info.window, 3, 1L << 1, hook_release, &info);
+	mlx_loop_hook(info.mlx, looping_hook, &info);
 	mlx_loop(info.mlx);
 	return (0);
 }

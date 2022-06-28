@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/27 18:23:19 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:58:33 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct	s_hooking {
 
 typedef struct	s_info {
 	t_player	player;
-	t_hooking	*hook;
+	t_hooking	hook;
 	void		*mlx;
 	void		*window;
 	t_data		img;
