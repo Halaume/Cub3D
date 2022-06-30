@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/30 13:49:45 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:01:07 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,13 +199,13 @@ void	brice_casting(t_info *info)
 		}
 		if (percent >= 1)
 			percent = 0.9999;
-		percent = floor(percent * info->texture.width);
+		percent = floor(percent * (double)info->texture.width);
 		if (wall_height < 0)
 			start_px = 1;
 		else
 			start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)wall_height / 2));
 		if (wall_height >= info->h)
-			end_px = info->h;
+			end_px = info->h - 1;
 		else
 			end_px = start_px + wall_height - 1;
 		put_col(info, start_px, end_px, i, percent, wall_height);

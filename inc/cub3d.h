@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/30 13:49:11 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:53:16 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,14 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+}	t_data;
+
+typedef struct	s_texture {
+	t_data	img;
+	char	*path;
 	int		height;
 	int		width;
-}	t_data;
+}	t_texture;
 
 typedef struct	s_player {
 	double	x;
@@ -56,9 +61,8 @@ typedef struct	s_info {
 	t_player	player;
 	t_hooking	hook;
 	t_data		img;
-	t_data		texture;
+	t_texture	texture;
 	char		**map;
-	char		*texture_path;
 	void		*mlx;
 	void		*window;
 	int			h;
@@ -125,7 +129,7 @@ void	turn_left(t_info *info);
 
 //			Texture
 
-t_data	get_texture(t_info *info);
+t_texture	get_texture(t_info *info);
 
 //			Affichage
 

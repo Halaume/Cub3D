@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:08:55 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/30 13:51:59 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:02:29 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ void	put_col(t_info *info, int start_px, int end_px, int y, double percent, doub
 	(void)percent;
 	double	step;
 	char *dist = info->img.addr + y * (info->img.bits_per_pixel / 8);
-	char *origin = info->texture.addr + (int)percent * (info->texture.bits_per_pixel / 8);
+	char *origin = info->texture.img.addr + (int)percent * (info->texture.img.bits_per_pixel / 8);
 	step = ((double)1 / (double)wall_height) * (double)(info->texture.height);
 
 //	color_wall = 0x00FF0000;
-	double current = (double)y - start_px * step;
-	int	percent_y = (int)current;
 	i = 0;
 //	printf("start pixel = %d\n", start_px);
 	while (i < start_px)
@@ -35,12 +33,14 @@ void	put_col(t_info *info, int start_px, int end_px, int y, double percent, doub
 //		my_mlx_pixel_put(&info->img, y, i, info->color_sky);
 		i++;
 	}
+	double current = (double)(i - start_px) * step;
+	int	percent_y = (int)current;
 	while (i < end_px && i < info->h)
 	{
 		percent_y = (int)current;
 		if (percent_y == info->texture.height) //texture.height
 			percent_y = info->texture.height - 1; //texture.height
-		*(unsigned int *)dist = *(unsigned int *)(origin + (int)percent_y * info->texture.line_length); //texture.line_length
+		*(unsigned int *)dist = *(unsigned int *)(origin + (int)percent_y * info->texture.img.line_length); //texture.line_length
 		dist += info->img.line_length;
 		current += step;
 		i++;
