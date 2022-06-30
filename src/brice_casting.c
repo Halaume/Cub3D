@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/30 17:01:07 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:41:30 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	brice_casting(t_info *info)
 
 	dir_v_x = (proj_screen[2] - proj_screen[0]) / (double)(info->w - 1);
 	dir_v_y = (proj_screen[3] - proj_screen[1]) / (double)(info->w - 1);
-
-
 
 	i = -1;
 	side = 0;
@@ -137,7 +135,7 @@ void	brice_casting(t_info *info)
 					prev_x = curr[0];
 					prev_y = curr[1];
 					//	TRYING BRICE'S GET NEXT EDGE
-					autre = side ^ 1;//side = 0 ou 1 donc pour check les 2 XOR sur autre
+					autre = side ^ 1;
 					if (ray[side] < 0)
 						tmp[side] = curr[side] - 1;
 					else
@@ -205,7 +203,7 @@ void	brice_casting(t_info *info)
 		else
 			start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)wall_height / 2));
 		if (wall_height >= info->h)
-			end_px = info->h - 1;
+			end_px = info->h;
 		else
 			end_px = start_px + wall_height - 1;
 		put_col(info, start_px, end_px, i, percent, wall_height);
