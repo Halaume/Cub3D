@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/28 11:58:33 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:49:11 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
 }	t_data;
 
 typedef struct	s_player {
@@ -53,13 +55,15 @@ typedef struct	s_hooking {
 typedef struct	s_info {
 	t_player	player;
 	t_hooking	hook;
+	t_data		img;
+	t_data		texture;
+	char		**map;
+	char		*texture_path;
 	void		*mlx;
 	void		*window;
-	t_data		img;
 	int			h;
 	int			w;
 	int			fd;
-	char		**map;
 	int			color_sky;
 	int			color_floor;
 	int			nb_line;
@@ -112,13 +116,16 @@ void	brice_casting(t_info *info);
 
 //			Player Mouvement
 
-
 void	mv_left(t_info *info);
 void	mv_right(t_info *info);
 void	mv_for(t_info *info);
 void	mv_back(t_info *info);
 void	turn_right(t_info *info);
 void	turn_left(t_info *info);
+
+//			Texture
+
+t_data	get_texture(t_info *info);
 
 //			Affichage
 

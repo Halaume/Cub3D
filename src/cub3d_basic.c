@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/28 11:58:12 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:48:40 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_info(t_info *info)
 	info->nb_line = 9;
 	info->nb_col = 9;
 	info->hook = init_hook();
+	info->texture = get_texture(info);
 }
 
 void	tracing_again(t_info *info)

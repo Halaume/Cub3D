@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/06/22 10:53:13 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/06/30 13:45:26 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRC_FT = affiche \
 	liberation \
 	main \
 	map \
-	moove
+	moove \
+	texture
 
 all: $(NAME)
 

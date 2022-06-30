@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/28 12:01:11 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:49:45 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ void	brice_casting(t_info *info)
 		}
 		if (percent >= 1)
 			percent = 0.9999;
-		percent = floor(percent * (double)128); // texture_width
+		percent = floor(percent * info->texture.width);
 		if (wall_height < 0)
 			start_px = 1;
 		else
