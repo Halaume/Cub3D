@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/01 17:40:45 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:53:47 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,7 @@ void	brice_casting(t_info *info)
 					//	TRYING BRICE'S GET NEXT EDGE
 					autre = side ^ 1;
 					if (ray[side] < 0)
-					{
-						printf("side = %d\n", side);
-						printf("ray[side] = %f\n", ray[side]);
 						tmp[side] = curr[side] - 1;
-					}
 					else
 						tmp[side] = curr[side] + 1;
 					delta[side] = fabs(tmp[side] - curr[side]) / fabs(ray[side]);
