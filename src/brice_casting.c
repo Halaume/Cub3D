@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/04 11:53:47 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:19:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	brice_casting(t_info *info)
 						tmp[side] = curr[side] + 1;
 					delta[side] = fabs(tmp[side] - curr[side]) / fabs(ray[side]);
 					if (ray[autre] < 0)
-						tmp[autre] = floor(curr[autre] - 0.0001);
+						tmp[autre] = floor(curr[autre])- 0.0001;
 					else
 						tmp[autre] = ceil(curr[autre]);
 					delta[autre] = fabs(tmp[autre] - curr[autre]) / fabs(ray[autre]);
@@ -210,35 +210,3 @@ void	brice_casting(t_info *info)
 	}
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
 }
-
-
-//		dist = info->img.addr + i * (info->img.bits_per_pixel / 8);
-//		origin = /*texture.texture.addr + */(int)percent/* * (texture.texture.bits_per_pixel / 8)*/;
-//		step = ((double)1 / (double)wall_height)/* * (double)(texture.height)*/;
-//		int	it;
-//		double	current;
-//		int		percent_y;
-//		it = 0;
-//		while (it < info->h && it < start_px)
-//		{
-//			*(unsigned int *)dist = info->color_sky;
-//			dist += info->img.line_length;
-//			it++;
-//		}
-//		current = (double)(it - start_px) * step;
-//		while (it < info->h &&it <= end_px)
-//		{
-//			percent_y = (int)current;
-//			if (percent_y == texture.height)
-//				percent_y = texture.height - 1;
-//			*(unsigned int *)dist = info->img->addr + /**(unsigned int *)(origin + */(int)percent_y * info->img->line_lenght/* * texture.texture.line_lenght)*/;
-//			dist += info->img.line_length;
-//			current += step;
-//			it++;
-//		}
-//		while (it < info->h)
-//		{
-//			*(unsigned int *)dist = info->color_floor;
-//			dist += info->img.line_length;
-//			it++;
-//		}
