@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/30 15:53:16 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:22:51 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ typedef struct	s_info {
 	t_player	player;
 	t_hooking	hook;
 	t_data		img;
-	t_texture	texture;
+	t_texture	texture_n;
+	t_texture	texture_s;
+	t_texture	texture_e;
+	t_texture	texture_w;
 	char		**map;
 	void		*mlx;
 	void		*window;
@@ -74,27 +77,29 @@ typedef struct	s_info {
 	int			nb_col;
 }	t_info;
 
-/*typedef struct	s_casting {
-	double	ray_pos_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	int		is_wall;
-	int		go_x;
-	int		go_y;
-	double	next_x;
-	double	next_y;
-	double	delta_dir_x;
-	double	delta_dir_y;
-	double	wall_start;
-	double	wall_end;
-	double	perp_dist;
-	int		case_x;
-	int		case_y;
-	int		side;
-	int		line_h;
-}	t_casting;*/
+typedef struct	s_casting {
+	t_texture	texture;
+	double		delta[2];
+	double		ray[2];
+	double		curr[2];
+	double		proj_screen[4];
+	double		wall_height;
+	double		dir_v_x;
+	double		dir_v_y;
+	double		prev_x;
+	double		prev_y;
+	double		distance0;
+	double		distance1;
+	double		wall_ratio;
+	double		percent;
+	int			proj_dist;
+	int			is_wall;
+	int			start_px;
+	int			end_px;
+	int			side;
+	char		*dist;
+	char		*origin;
+}	t_casting;
 
 //			Basics
 
@@ -115,7 +120,6 @@ char	**get_map(int fd);
 
 //			Casting
 
-void	casting(t_info *info);
 void	brice_casting(t_info *info);
 
 //			Player Mouvement
@@ -129,11 +133,11 @@ void	turn_left(t_info *info);
 
 //			Texture
 
-t_texture	get_texture(t_info *info);
+int		get_texture(t_info *info);
 
 //			Affichage
 
-void	put_col(t_info *info, int wh, int oui, int y, double aled, double style);
+void	put_col(t_info *info, t_casting *casting, int y);
 void	tracing_again(t_info *info);
 
 //			Liberation

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/30 16:48:52 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:07:00 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	main(int argc, char **argv)
 	info.img.img = mlx_new_image(info.mlx, 1920, 1080);
 	info.img.addr = mlx_get_data_addr(info.img.img, &info.img.bits_per_pixel, \
 			&info.img.line_length, &info.img.endian);
-	info.texture = get_texture(&info);
+	if (get_texture(&info) == 1)
+		free_func(&info);
 	//do_stuff
 	info.map = get_map(info.fd);
 	brice_casting(&info);

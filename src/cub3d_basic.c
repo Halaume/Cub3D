@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/30 16:48:08 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:57:24 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	init_info(t_info *info)
 	info->nb_line = 9;
 	info->nb_col = 9;
 	info->hook = init_hook();
+	info->texture_n.img.img = NULL;
+	info->texture_s.img.img = NULL;
+	info->texture_e.img.img = NULL;
+	info->texture_w.img.img = NULL;
+	info->texture_n.path = NULL;
+	info->texture_s.path = NULL;
+	info->texture_e.path = NULL;
+	info->texture_w.path = NULL;
 }
 
 void	tracing_again(t_info *info)
@@ -79,9 +87,9 @@ int	closewin(t_info *info)
 	mlx_destroy_image(info->mlx, info->img.img);
 	mlx_destroy_window(info->mlx, info->window);
 	mlx_do_key_autorepeaton(info->mlx);
+	free_func(info);
 	mlx_destroy_display(info->mlx);
 	free(info->mlx);
-	free_func(info);
 	exit (0);
 	return (1);
 }

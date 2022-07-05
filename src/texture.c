@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:10:49 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/04 12:11:28 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:44:54 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,31 @@ char	*get_texture_path(void)
 	return (ft_strdup("textures/wall.xpm"));
 }
 
-t_texture	get_texture(t_info *info)
+int	get_texture(t_info *info)
 {
-	t_texture	my_texture;
+	//TODO	Get good texture path after parsing
 
-	my_texture.path = get_texture_path();
-	my_texture.img.img = mlx_xpm_file_to_image(info->mlx, my_texture.path,\
-			&my_texture.width, &my_texture.height);
-	if (!my_texture.img.img)
-		return (printf("Impossible d'ouvrir la texture\n"), my_texture);
-	my_texture.img.addr = mlx_get_data_addr(my_texture.img.img, &my_texture.img.bits_per_pixel, &my_texture.img.line_length, &my_texture.img.endian);
-	return (my_texture);
+	info->texture_n.path = ft_strdup("textures/wall_n.xpm");
+	info->texture_s.path = ft_strdup("textures/wall_s.xpm");
+	info->texture_e.path = ft_strdup("textures/wall_e.xpm");
+	info->texture_w.path = ft_strdup("textures/wall_w.xpm");
+	info->texture_n.img.img = mlx_xpm_file_to_image(info->mlx, \
+			info->texture_n.path, &info->texture_n.width, \
+			&info->texture_n.height);
+	info->texture_s.img.img = mlx_xpm_file_to_image(info->mlx, \
+			info->texture_s.path, &info->texture_s.width, \
+			&info->texture_s.height);
+	info->texture_e.img.img = mlx_xpm_file_to_image(info->mlx, \
+			info->texture_e.path, &info->texture_e.width, \
+			&info->texture_e.height);
+	info->texture_w.img.img = mlx_xpm_file_to_image(info->mlx, \
+			info->texture_w.path, &info->texture_w.width, \
+			&info->texture_w.height);
+	if (!info->texture_n.img.img || !info->texture_s.img.img || !info->texture_e.img.img || !info->texture_w.img.img)
+		return (printf("Impossible d'ouvrir une texture\n"), 1);
+	info->texture_n.img.addr = mlx_get_data_addr(info->texture_n.img.img, &info->texture_n.img.bits_per_pixel, &info->texture_n.img.line_length, &info->texture_n.img.endian);
+	info->texture_s.img.addr = mlx_get_data_addr(info->texture_s.img.img, &info->texture_s.img.bits_per_pixel, &info->texture_s.img.line_length, &info->texture_s.img.endian);
+	info->texture_e.img.addr = mlx_get_data_addr(info->texture_e.img.img, &info->texture_e.img.bits_per_pixel, &info->texture_e.img.line_length, &info->texture_e.img.endian);
+	info->texture_w.img.addr = mlx_get_data_addr(info->texture_w.img.img, &info->texture_w.img.bits_per_pixel, &info->texture_w.img.line_length, &info->texture_w.img.endian);
+	return (0);
 }

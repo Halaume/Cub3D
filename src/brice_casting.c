@@ -6,207 +6,204 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/04 18:19:04 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:23:52 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+void	get_proj_screen(t_info *info, t_casting *cast)
+{
+	cast->proj_screen[0] = info->player.angle + (M_PI / 4);
+	cast->proj_screen[1] = (-sin(cast->proj_screen[0])) * \
+						((double)cast->proj_dist / cos(M_PI / 4)) + \
+						info->player.y;
+	cast->proj_screen[0] = (cos(cast->proj_screen[0])) * \
+						((double)cast->proj_dist / cos(M_PI / 4)) + \
+						info->player.x;
+	cast->proj_screen[2] = info->player.angle - (M_PI / 4);
+	cast->proj_screen[3] = (-sin(cast->proj_screen[2])) * \
+						((double)cast->proj_dist / cos(M_PI / 4)) + \
+						info->player.y;
+	cast->proj_screen[2] = (cos(cast->proj_screen[2])) * \
+						((double)cast->proj_dist / cos(M_PI / 4)) + \
+						info->player.x;
+}
+
+void	next_curr(t_casting *cast, int side)
+{
+	double	tmp[2];
+	int		autre;
+
+	autre = cast->side ^ 1;
+	if (cast->ray[side] < 0)
+		tmp[side] = cast->curr[side] - 1;
+	else
+		tmp[side] = cast->curr[side] + 1;
+	cast->delta[side] = fabs(tmp[side] - cast->curr[side]) / \
+						fabs(cast->ray[side]);
+	if (cast->ray[autre] < 0)
+		tmp[autre] = floor(cast->curr[autre])- 0.0001;
+	else
+		tmp[autre] = ceil(cast->curr[autre]);
+	cast->delta[autre] = fabs(tmp[autre] - cast->curr[autre]) / \
+						 fabs(cast->ray[autre]);
+	if (fabs(cast->delta[autre]) < 0.0001)
+		tmp[autre] += 0.0001;
+	cast->delta[autre] = fabs(tmp[autre] - cast->curr[autre]) / \
+						 fabs(cast->ray[autre]);
+	cast->curr[0] = tmp[0];
+	cast->curr[1] = tmp[1];
+}
+
+void	do_it_pls(t_info *info, t_casting *cast, int i)
+{
+	if (cast->is_wall == 1)
+	{
+		cast->percent = (cast->curr[0] - floor(cast->curr[0])) / 1;
+		cast->texture = info->texture_n;
+		if (cast->ray[1] > 0)
+		{
+			cast->texture = info->texture_s;
+			cast->percent = 1 - cast->percent;
+		}
+	}
+	else
+	{
+		cast->texture = info->texture_e;
+		cast->percent = (cast->curr[1] - floor(cast->curr[1])) / 1;
+		if (cast->ray[0] < 0)
+		{
+			cast->texture = info->texture_w;
+			cast->percent = 1 - cast->percent;
+		}
+	}
+	if (cast->percent >= 1)
+		cast->percent = 0.9999;
+	cast->percent = floor(cast->percent * (double)cast->texture.width);
+	if (cast->wall_height < 0)
+		cast->start_px = 1;
+	else
+		cast->start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)cast->wall_height / 2));
+	if (cast->wall_height >= info->h)
+		cast->end_px = info->h;
+	else
+		cast->end_px = cast->start_px + cast->wall_height - 1;
+	put_col(info, cast, i);
+}
+
 void	brice_casting(t_info *info)
 {
-	int	i;
-	int	proj_dist;
-	//ecran de vue a dist = 1 / angle tot = 90deg
+	int			i;
+	t_casting	cast;
 
-	//Future struct cast a remplacer
-	double	ray[2];				//x,y
-	double	proj_screen[4];		//[0][1] == x,y gauche / [2][3] == x,y droite
-	double		wall_height;
-	int		is_wall;
-	double	dir_v_x;
-	double	dir_v_y;
-	double	curr[2];		//encore aled
-	double	prev_x;
-	double	prev_y;
-	int		start_px;
-	int		end_px;
-//	char	*dist;
-//	char	*origin;
-	double	delta[2];		//x,y
-	double	distance0;
-	double	distance1;
-	double	wall_ratio;
-	double	tmp[2];		//ALED
-	double	percent;
-	int		autre;
-	int		side;
-
-	proj_dist = 1;
+	cast.proj_dist = 1;
 
 	if (fabs(info->player.angle + M_PI / 2) < 0.0001)
 		info->player.angle = 3 * M_PI * 2;
 	else if (fabs(info->player.angle) < 0.0001)
 		info->player.angle = 2 * M_PI;
-
-	proj_screen[0] = info->player.angle + (M_PI / 4);
-	proj_screen[1] = (-sin(proj_screen[0])) * ((double)proj_dist / cos(M_PI / 4)) + info->player.y;
-	proj_screen[0] = (cos(proj_screen[0])) * ((double)proj_dist / cos(M_PI / 4)) + info->player.x;
-	proj_screen[2] = info->player.angle - (M_PI / 4);
-	proj_screen[3] = (-sin(proj_screen[2])) * ((double)proj_dist / cos(M_PI / 4)) + info->player.y;
-	proj_screen[2] = (cos(proj_screen[2])) * ((double)proj_dist / cos(M_PI / 4)) + info->player.x;
-
-
-	dir_v_x = (proj_screen[2] - proj_screen[0]) / (double)(info->w - 1);
-	dir_v_y = (proj_screen[3] - proj_screen[1]) / (double)(info->w - 1);
+	get_proj_screen(info, &cast);
+	cast.dir_v_x = (cast.proj_screen[2] - cast.proj_screen[0]) / \
+				(double)(info->w - 1);
+	cast.dir_v_y = (cast.proj_screen[3] - cast.proj_screen[1]) / \
+				(double)(info->w - 1);
 
 	i = -1;
-	side = 0;
+	cast.side = 0;
 	while (++i < info->w)
 	{
-		ray[0] = (proj_screen[0] + dir_v_x * i) - info->player.x;
-		ray[1] = (proj_screen[1] + dir_v_y * i) - info->player.y;
-		curr[0] = info->player.x;
-		if (fabs(ray[0]) > 0.0001)
+		cast.ray[0] = (cast.proj_screen[0] + cast.dir_v_x * i) - info->player.x;
+		cast.ray[1] = (cast.proj_screen[1] + cast.dir_v_y * i) - info->player.y;
+		cast.curr[0] = info->player.x;
+		if (fabs(cast.ray[0]) > 0.0001)
 		{
-			if (ray[0] < -0.0001)
-				curr[0] = floor(info->player.x) - 0.0001;
+			if (cast.ray[0] < -0.0001)
+				cast.curr[0] = floor(info->player.x) - 0.0001;
 			else
-				curr[0] = ceil(info->player.x);
-			delta[0] = fabs(curr[0] - info->player.x) / fabs(ray[0]);
+				cast.curr[0] = ceil(info->player.x);
+			cast.delta[0] = fabs(cast.curr[0] - info->player.x) / fabs(cast.ray[0]);
 		}
-		curr[1] = info->player.y;
-		if (fabs(ray[1]) > 0.0001)
+		cast.curr[1] = info->player.y;
+		if (fabs(cast.ray[1]) > 0.0001)
 		{
-			if (ray[1] < -0.0001)
-				curr[1] = floor(info->player.y) - 0.0001;
+			if (cast.ray[1] < -0.0001)
+				cast.curr[1] = floor(info->player.y) - 0.0001;
 			else
-				curr[1] = ceil(info->player.y);
-			delta[1] = fabs(curr[1] - info->player.y) / fabs(ray[1]);
+				cast.curr[1] = ceil(info->player.y);
+			cast.delta[1] = fabs(cast.curr[1] - info->player.y) / fabs(cast.ray[1]);
 		}
 
-		prev_x = info->player.x;
-		prev_y = info->player.y;
-		is_wall = 0;
-		while (is_wall == 0)
+		cast.prev_x = info->player.x;
+		cast.prev_y = info->player.y;
+		cast.is_wall = 0;
+		while (cast.is_wall == 0)
 		{
-			if (fabs(ray[0]) < 0.0001 || fabs(ray[1]) < 0.0001)
+			if (fabs(cast.ray[0]) < 0.0001 || fabs(cast.ray[1]) < 0.0001)
 			{
-				if (fabs(ray[0]) < 0.0001)
+				if (fabs(cast.ray[0]) < 0.0001)
 				{
-					if (info->map[(int)curr[1]][(int)curr[0]] == '1')
-						is_wall = 1;
+					if (info->map[(int)cast.curr[1]][(int)cast.curr[0]] == '1')
+						cast.is_wall = 1;
 					else
 					{
-						curr[1] += 1;
-						if (ray[1] < 0)
-							curr[1] -= 2;
+						cast.curr[1] += 1;
+						if (cast.ray[1] < 0)
+							cast.curr[1] -= 2;
 					}
 				}
 				else
 				{
-					if (info->map[(int)curr[1]][(int)curr[0]] == '1')
-						is_wall = 2;
+					if (info->map[(int)cast.curr[1]][(int)cast.curr[0]] == '1')
+						cast.is_wall = 2;
 					else
 					{
-						curr[0] += 1;
-						if (ray[0] < 0)
-							curr[0] -= 2;
+						cast.curr[0] += 1;
+						if (cast.ray[0] < 0)
+							cast.curr[0] -= 2;
 					}
 				}
 			}
 			else
 			{
-				if (fabs(delta[0] - delta[1]) < 0.0001 || delta[0] < delta[1])
+				if (fabs(cast.delta[0] - cast.delta[1]) < 0.0001 || cast.delta[0] < cast.delta[1])
 				{
-					curr[1] = delta[0] * ray[1] + prev_y;
-					side = 0;
-					if (info->map[(int)curr[1]][(int)curr[0]] == '1')
-						is_wall = 2;
+					cast.curr[1] = cast.delta[0] * cast.ray[1] + cast.prev_y;
+					cast.side = 0;
+					if (info->map[(int)cast.curr[1]][(int)cast.curr[0]] == '1')
+						cast.is_wall = 2;
 				}
 				else
 				{
-					curr[0] = delta[1] * ray[0] + prev_x;
-					side = 1;
-					if (info->map[(int)curr[1]][(int)curr[0]] == '1')
-						is_wall = 1;
+					cast.curr[0] = cast.delta[1] * cast.ray[0] + cast.prev_x;
+					cast.side = 1;
+					if (info->map[(int)cast.curr[1]][(int)cast.curr[0]] == '1')
+						cast.is_wall = 1;
 				}
-				if (is_wall == 0)
+				if (cast.is_wall == 0)
 				{
-					prev_x = curr[0];
-					prev_y = curr[1];
-					//	TRYING BRICE'S GET NEXT EDGE
-					autre = side ^ 1;
-					if (ray[side] < 0)
-						tmp[side] = curr[side] - 1;
-					else
-						tmp[side] = curr[side] + 1;
-					delta[side] = fabs(tmp[side] - curr[side]) / fabs(ray[side]);
-					if (ray[autre] < 0)
-						tmp[autre] = floor(curr[autre])- 0.0001;
-					else
-						tmp[autre] = ceil(curr[autre]);
-					delta[autre] = fabs(tmp[autre] - curr[autre]) / fabs(ray[autre]);
-					if (fabs(delta[autre]) < 0.0001)
-						tmp[autre] += 0.0001;
-					delta[autre] = fabs(tmp[autre] - curr[autre]) / fabs(ray[autre]);
-					curr[0] = tmp[0];
-					curr[1] = tmp[1];
-					//
+					cast.prev_x = cast.curr[0];
+					cast.prev_y = cast.curr[1];
+					next_curr(&cast, cast.side);
 				}
 			}
-//			if (is_wall != 0)
-//				printf("Touching wall at : %f | %f / (int)%d | (int)%d\n", curr[0], curr[1], (int)curr[0], (int)curr[1]);
 		}
 
-		if (fabs(curr[0] - info->player.x) < 0.0001)
-			distance0 = fabs(curr[1] - info->player.y);
-		else if (fabs(curr[1] - info->player.y) < 0.0001)
-			distance0 = fabs(curr[0] - info->player.x);
+		if (fabs(cast.curr[0] - info->player.x) < 0.0001)
+			cast.distance0 = fabs(cast.curr[1] - info->player.y);
+		else if (fabs(cast.curr[1] - info->player.y) < 0.0001)
+			cast.distance0 = fabs(cast.curr[0] - info->player.x);
 		else
-			distance0 = hypot(fabs(curr[0] - info->player.x), fabs(curr[1] - info->player.y));
-		if (fabs(ray[0]) < 0.0001)
-			distance1 = fabs(ray[1]);
-		else if (fabs(ray[1]) < 0.0001)
-			distance1 = fabs(ray[0]);
+			cast.distance0 = hypot(fabs(cast.curr[0] - info->player.x), fabs(cast.curr[1] - info->player.y));
+		if (fabs(cast.ray[0]) < 0.0001)
+			cast.distance1 = fabs(cast.ray[1]);
+		else if (fabs(cast.ray[1]) < 0.0001)
+			cast.distance1 = fabs(cast.ray[0]);
 		else
-			distance1 = hypot(fabs(ray[0]), fabs(ray[1]));
-		wall_ratio = distance1 / distance0;
-		wall_height = (int)round(wall_ratio * ((double)info->w / 2));
-
-
-		//Draw_Strip
-		if (is_wall == 1)
-		{
-			percent = (curr[0] - floor(curr[0])) / 1;
-			//texture = no;
-			if (ray[1] > 0)
-			{
-				//texture = so;
-				percent = 1 - percent;
-			}
-		}
-		else
-		{
-			//texture = ea;
-			percent = (curr[1] - floor(curr[1])) / 1;
-			if (ray[0] < 0)
-			{
-				//texture = we;
-				percent = 1 - percent;
-			}
-		}
-		if (percent >= 1)
-			percent = 0.9999;
-		percent = floor(percent * (double)info->texture.width);
-		if (wall_height < 0)
-			start_px = 1;
-		else
-			start_px = (int)floor((((double)info->h - 1 ) / 2) - ((double)wall_height / 2));
-		if (wall_height >= info->h)
-			end_px = info->h;
-		else
-			end_px = start_px + wall_height - 1;
-		put_col(info, start_px, end_px, i, percent, wall_height);
+			cast.distance1 = hypot(fabs(cast.ray[0]), fabs(cast.ray[1]));
+		cast.wall_ratio = cast.distance1 / cast.distance0;
+		cast.wall_height = (int)round(cast.wall_ratio * ((double)info->w / 2));
+		do_it_pls(info, &cast, i);
 	}
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
 }
