@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:43:10 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/05 15:58:08 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:19:53 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	is_wall(t_info *info, double y, double x)
 {
-	if (y > info->nb_line || \
-			x > info->nb_col ||\
-			x < 0 || \
-			y < 0)
+	if (y > info->nb_line || x > info->nb_col || x < 0 || y < 0)
 		return (1);
 	if (info->map[(int)y][(int)x] == '1')
 		return (1);
@@ -79,7 +76,6 @@ void	mv_left(t_info *info)
 		info->player.x = oldx;
 	}
 }
-
 
 void	mv_right_y(t_info *info)
 {

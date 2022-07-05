@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/05 15:22:51 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:11:58 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define HEIGHT 1080
 # define BUFFER_SIZE 1
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -32,21 +32,21 @@ typedef struct	s_data {
 	int		endian;
 }	t_data;
 
-typedef struct	s_texture {
+typedef struct s_texture {
 	t_data	img;
 	char	*path;
 	int		height;
 	int		width;
 }	t_texture;
 
-typedef struct	s_player {
+typedef struct s_player {
 	double	x;
 	double	y;
 	double	angle;
 
 }	t_player;
 
-typedef struct	s_hooking {
+typedef struct s_hooking {
 	int	forward;
 	int	forward2;
 	int	backward;
@@ -57,7 +57,7 @@ typedef struct	s_hooking {
 	int	cam_right;
 }	t_hooking;
 
-typedef struct	s_info {
+typedef struct s_info {
 	t_player	player;
 	t_hooking	hook;
 	t_data		img;
@@ -77,7 +77,7 @@ typedef struct	s_info {
 	int			nb_col;
 }	t_info;
 
-typedef struct	s_casting {
+typedef struct s_casting {
 	t_texture	texture;
 	double		delta[2];
 	double		ray[2];
