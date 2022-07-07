@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/07/07 11:45:47 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/07/07 14:04:07 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ MLX = minilibx-linux/libmlx_Linux.a
 SRC_FT = affiche \
 	brice_casting \
 	cub3d_basic \
+	cub3d_basic2 \
 	gnl2 \
 	gnl \
 	hook \

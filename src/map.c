@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:30:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/16 15:23:30 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/07 18:04:58 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ char	**get_map(int fd)
 	while (i < 10)
 	{
 		map[i] = get_next_line(fd);
+		printf("%s", map[i]);
 		i++;
 	}
+	printf("\n");
 	close(fd);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 11:32:53 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:33:32 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,35 @@ void	cast_angle(t_info *info, t_casting *cast)
 	}
 }
 
+void	casting2(t_info *info, t_casting *cast, int i)
+{
+	cast->ray[0] = (cast->proj_screen[0] + cast->dir_v_x * i) - info->player.x;
+	cast->ray[1] = (cast->proj_screen[1] + cast->dir_v_y * i) - info->player.y;
+	cast->curr[0] = info->player.x;
+	if (fabs(cast->ray[0]) > 0.0001)
+	{
+		if (cast->ray[0] < -0.0001)
+			cast->curr[0] = floor(info->player.x) - 0.0001;
+		else
+			cast->curr[0] = ceil(info->player.x);
+		cast->delta[0] = fabs(cast->curr[0] - info->player.x) / \
+						fabs(cast->ray[0]);
+	}
+	cast->curr[1] = info->player.y;
+	if (fabs(cast->ray[1]) > 0.0001)
+	{
+		if (cast->ray[1] < -0.0001)
+			cast->curr[1] = floor(info->player.y) - 0.0001;
+		else
+			cast->curr[1] = ceil(info->player.y);
+		cast->delta[1] = fabs(cast->curr[1] - info->player.y) / \
+						fabs(cast->ray[1]);
+	}
+	cast->prev_x = info->player.x;
+	cast->prev_y = info->player.y;
+	cast->is_wall = 0;
+}
+
 void	brice_casting(t_info *info)
 {
 	int			i;
@@ -74,37 +103,11 @@ void	brice_casting(t_info *info)
 	else if (fabs(info->player.angle) < 0.0001)
 		info->player.angle = 2 * M_PI;
 	get_proj_screen(info, &cast);
-	cast.dir_v_x = (cast.proj_screen[2] - cast.proj_screen[0]) / \
-				(double)(info->w - 1);
-	cast.dir_v_y = (cast.proj_screen[3] - cast.proj_screen[1]) / \
-				(double)(info->w - 1);
 	i = -1;
 	cast.side = 0;
 	while (++i < info->w)
 	{
-		cast.ray[0] = (cast.proj_screen[0] + cast.dir_v_x * i) - info->player.x;
-		cast.ray[1] = (cast.proj_screen[1] + cast.dir_v_y * i) - info->player.y;
-		cast.curr[0] = info->player.x;
-		if (fabs(cast.ray[0]) > 0.0001)
-		{
-			if (cast.ray[0] < -0.0001)
-				cast.curr[0] = floor(info->player.x) - 0.0001;
-			else
-				cast.curr[0] = ceil(info->player.x);
-			cast.delta[0] = fabs(cast.curr[0] - info->player.x) / fabs(cast.ray[0]);
-		}
-		cast.curr[1] = info->player.y;
-		if (fabs(cast.ray[1]) > 0.0001)
-		{
-			if (cast.ray[1] < -0.0001)
-				cast.curr[1] = floor(info->player.y) - 0.0001;
-			else
-				cast.curr[1] = ceil(info->player.y);
-			cast.delta[1] = fabs(cast.curr[1] - info->player.y) / fabs(cast.ray[1]);
-		}
-		cast.prev_x = info->player.x;
-		cast.prev_y = info->player.y;
-		cast.is_wall = 0;
+		casting2(info, &cast, i);
 		while (cast.is_wall == 0)
 		{
 			if (fabs(cast.ray[0]) < 0.0001 || fabs(cast.ray[1]) < 0.0001)

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:31:25 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 11:46:37 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:33:31 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	get_proj_screen(t_info *info, t_casting *cast)
 	cast->proj_screen[2] = (cos(cast->proj_screen[2])) * \
 						((double)cast->proj_dist / cos(M_PI / 4)) + \
 						info->player.x;
+	cast->dir_v_x = (cast->proj_screen[2] - cast->proj_screen[0]) / \
+				(double)(info->w - 1);
+	cast->dir_v_y = (cast->proj_screen[3] - cast->proj_screen[1]) / \
+				(double)(info->w - 1);
 }
 
 void	next_curr(t_casting *cast, int side)

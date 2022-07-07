@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/05 15:43:51 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:02:52 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,4 @@ void	free_func(t_info *info)
 	free_texture(info, info->texture_s);
 	free_texture(info, info->texture_e);
 	free_texture(info, info->texture_w);
-
-	//	TODO
-	//	free_all
 }
