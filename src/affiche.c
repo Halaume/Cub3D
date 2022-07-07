@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:08:55 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/05 17:15:57 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/07 11:59:20 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 void	put_col(t_info *info, t_casting *cast, int y)
 {
 	int		i;
-	double	step;
-	double	current;
-	int		percent_y;
 
 	cast->dist = info->img.addr + y * (info->img.bits_per_pixel / 8);
 	cast->origin = cast->texture.img.addr + (int)cast->percent * \
 				(cast->texture.img.bits_per_pixel / 8);
-	step = ((double)1 / (double)cast->wall_height) * \
+	cast->step = ((double)1 / (double)cast->wall_height) * \
 		(double)(cast->texture.height);
 	i = 0;
 	while (i < cast->start_px)
@@ -31,17 +28,17 @@ void	put_col(t_info *info, t_casting *cast, int y)
 		cast->dist += info->img.line_length;
 		i++;
 	}
-	current = (double)(i - cast->start_px) * step;
-	percent_y = (int)current;
+	cast->current = (double)(i - cast->start_px) * cast->step;
+	cast->percent_y = (int)cast->current;
 	while (i < cast->end_px && i < info->h)
 	{
-		percent_y = (int)current;
-		if (percent_y == cast->texture.height)
-			percent_y = cast->texture.height - 1;
+		cast->percent_y = (int)cast->current;
+		if (cast->percent_y == cast->texture.height)
+			cast->percent_y = cast->texture.height - 1;
 		*(unsigned int *)cast->dist = *(unsigned int *)(cast->origin + \
-				(int)percent_y * cast->texture.img.line_length);
+				(int)cast->percent_y * cast->texture.img.line_length);
 		cast->dist += info->img.line_length;
-		current += step;
+		cast->current += cast->step;
 		i++;
 	}
 	while (i < info->h)

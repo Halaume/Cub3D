@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/05 17:11:58 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/07/07 11:58:08 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ typedef struct s_casting {
 	double		distance1;
 	double		wall_ratio;
 	double		percent;
+	double		step;
+	double		current;
+	int			percent_y;
 	int			proj_dist;
 	int			is_wall;
 	int			start_px;
@@ -121,6 +124,11 @@ char	**get_map(int fd);
 //			Casting
 
 void	brice_casting(t_info *info);
+void	get_proj_screen(t_info *info, t_casting *cast);
+void	next_curr(t_casting *cast, int side);
+void	choose_texture(t_info *info, t_casting *cast);
+void	do_it_pls(t_info *info, t_casting *cast, int i);
+void	get_the_wall(t_info *info, t_casting *cast, int i);
 
 //			Player Mouvement
 
@@ -130,6 +138,7 @@ void	mv_for(t_info *info);
 void	mv_back(t_info *info);
 void	turn_right(t_info *info);
 void	turn_left(t_info *info);
+int		is_wall(t_info *info, double y, double x);
 
 //			Texture
 

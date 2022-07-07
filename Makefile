@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/06/30 13:45:26 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/07/07 11:45:47 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,12 @@ SRC_FT = affiche \
 	main \
 	map \
 	moove \
-	texture
+	moove_for \
+	moove_back \
+	moove_left \
+	moove_right \
+	texture \
+	casting_tools
 
 all: $(NAME)
 
