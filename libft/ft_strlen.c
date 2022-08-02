@@ -1,45 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl2.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 11:44:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/02 15:17:33 by nflan            ###   ########.fr       */
+/*   Created: 2022/08/02 15:09:50 by nflan             #+#    #+#             */
+/*   Updated: 2022/08/02 15:20:33 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
-#include "../inc/cub3d.h"
 
-int	check_line(char *str)
+#include "libft.h"
+
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 
 	i = 0;
 	if (!str)
 		return (0);
-	else
-	{
+	if (str)
 		while (str[i])
-		{
-			if (str[i] == '\n')
-				return (0);
 			i++;
-		}
-	}
-	return (1);
+	return (i);
 }
 
-int	fill_line(char *line, char *buffer, int j, int i)
+size_t	ft_tablen(char **tab)
 {
-	if (line)
-	{
-		while (line[++i])
-		{
-			buffer[j] = line[i];
-			j++;
-		}
-	}
-	return (j);
-}*/
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return (0);
+	if (tab[i])
+		while (tab[i])
+			i++;
+	return (i);
+}

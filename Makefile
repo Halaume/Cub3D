@@ -6,15 +6,20 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/07/07 14:04:07 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/08/02 15:18:45 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+vpath %.h libft
+vpath ft_%.c libft
+vpath ft_%.o libft
 
 NAME = cub3D
 
 INC_DIR =		inc
 OBJ_DIR =		obj
 SRC_DIR =		src
+LIB_DIR =		libft/
 
 SRC =			$(SRC_FT:%=$(SRC_DIR)/%.c)
 
@@ -22,7 +27,7 @@ OBJ =			$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 OBJ_DIRS =		$(OBJ_DIR)
 
-CC = gcc $(CFLAGS)
+CC = cc $(CFLAGS)
 
 RM = rm -fr
 
@@ -40,8 +45,7 @@ SRC_FT = affiche \
 	brice_casting \
 	cub3d_basic \
 	cub3d_basic2 \
-	gnl2 \
-	gnl \
+	ft_gnl \
 	hook \
 	liberation \
 	main \
@@ -54,7 +58,14 @@ SRC_FT = affiche \
 	texture \
 	casting_tools
 
+LIBFT = libft/libft.a
+
+LIBPATH = -L $(LIB_DIR)
+INCPATH = -I $(INC_DIR) -I $(LIB_DIR)
+
 all: $(NAME)
+
+-include libft/Makefile
 
 $(OBJ_DIRS):
 	mkdir -p $@
@@ -64,11 +75,14 @@ $(OBJ) : | $(OBJ_DIRS)
 $(OBJ_DIRS)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $< -o $@
 
-$(NAME): $(OBJ_DIRS) $(SRC) $(MLX) $(OBJ)
-	$(CC) $(OBJ) $(MLX) -lXext -lX11 -lm -Iminilibx -o $@
+$(NAME): $(OBJ_DIRS) $(SRC) $(MLX) $(OBJ) $(LIBFT)
+	$(CC) $(OBJ) $(MLX) $(LIBFT) -lXext -lX11 -lm -Iminilibx -o $@
 
 $(MLX):
 	$(MAKE) -C ./minilibx-linux
+
+$(LIBFT):	${SRCS} ${OBJS} libft.h
+	${MAKE} -C libft/
 
 clean:
 	@$(RM) $(OBJ_DIR)
@@ -76,6 +90,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(MAKE) fclean -C $(LIB_DIR)
 	@$(MAKE) clean -C ./minilibx-linux
 	@echo "Cleaned program and MLX"
 

@@ -6,10 +6,10 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:44:40 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/06/15 11:48:40 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:17:25 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "../inc/cub3d.h"
 
 char	*ft_join(char *line, char *buffer)
@@ -136,4 +136,4 @@ char	*get_next_line(int fd)
 	if (!str)
 		return (NULL);
 	return (str);
-}
+}*/

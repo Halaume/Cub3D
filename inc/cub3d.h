@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 11:58:08 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:20:05 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -106,7 +107,6 @@ typedef struct s_casting {
 
 //			Basics
 
-int		ft_strlen(char *str);
 void	init_info(t_info *info);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		closewin(t_info *info);
@@ -156,12 +156,15 @@ void	free_char_char(char **str);
 
 //			GNL
 
-int		check_line(char *str);
+/*int		check_line(char *str);
 int		fill_line(char *line, char *buffer, int j, int i);
 char	*ft_join(char *line, char *buffer);
 char	*get_line(int fd, char *line);
 char	*del_start(char *line);
-char	*get_start(char *line);
-char	*get_next_line(int fd);
+char	*get_start(char *line);*/
+unsigned int	ft_test_line(char *str);
+char			*ft_fill_str(char *str, char *buf);
+char			*get_line(char *str, int fd);
+char			*get_next_line(int fd);
 
 #endif
