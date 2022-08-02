@@ -6,27 +6,58 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/02 15:20:41 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/02 17:20:14 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+int	ft_closewin(t_info *info, int err)
+{
+	if (info->window)
+	{
+		if (info->img.img)
+			mlx_destroy_image(info->mlx, info->img.img);
+		mlx_clear_window(info->mlx, info->window);
+		mlx_destroy_window(info->mlx, info->window);
+	}
+	free_func(info);
+	if (info->mlx)
+	{
+		mlx_do_key_autorepeaton(info->mlx);
+		mlx_destroy_display(info->mlx);
+		free(info->mlx);
+	}
+	return (err);
+}
+
+int	ft_init_window(t_info *info)
+{
+	info->mlx = mlx_init();
+	if (!info->mlx)
+		return (ft_closewin(info, 1));
+	info->window = mlx_new_window(info->mlx, 1920, 1080, "Cub3D");
+	if (!info->window)
+		return (ft_closewin(info, 1));
+	info->img.img = mlx_new_image(info->mlx, 1920, 1080);
+	if (!info->img.img)
+		return (ft_closewin(info, 1));
+	info->img.addr = mlx_get_data_addr(info->img.img, &info->img.bits_per_pixel,
+			&info->img.line_length, &info->img.endian);
+	if (!info->img.addr)
+		return (ft_closewin(info, 1));
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
 	t_info	info;
 
 	if (argc != 2)
-		return (printf("Error\nNombre d'arguments invalide\n"), 1);
-	init_info(&info);
-	info.fd = open(argv[1], O_RDONLY);
-	if (!info.fd)
-		return (printf("Error\nOuverture de map echouee\n"), 1);
-	info.mlx = mlx_init();
-	info.window = mlx_new_window(info.mlx, 1920, 1080, "Cub3D");
-	info.img.img = mlx_new_image(info.mlx, 1920, 1080);
-	info.img.addr = mlx_get_data_addr(info.img.img, &info.img.bits_per_pixel, \
-			&info.img.line_length, &info.img.endian);
+		return (ft_putstr_error("Error\nNombre d'arguments invalide\n"));
+	init_info(&info, argv[1]);
+	if (ft_init_window(&info))
+		return (ft_putstr_error("Error\nInitialisation de la MLX echouee\n"));
 	if (get_texture(&info) == 1)
 		free_func(&info);
 	info.map = get_map(info.fd);

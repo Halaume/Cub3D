@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 14:03:55 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/02 17:51:56 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,36 @@ t_hooking	init_hook(void)
 	return (my_hook);
 }
 
-void	init_info(t_info *info)
+int	ft_parsarg(t_info *info)
+{
+	char	*buf;
+
+	(void)info;
+	buf = get_next_line(info->fd);
+	if (!buf)
+		return (1);
+	while (buf)
+	{
+		ft_play(info, buf);
+		free(buf);
+		buf = get_next_line(info->fd);
+	}
+	return (0);
+}
+
+int	ft_parse(t_info *info, char *file)
+{
+	info->fd = open(file, O_RDONLY);
+	if (info->fd == -1)
+		return (ft_perror("Error\nOuverture de map echouee", NULL));
+	if (ft_parsarg(info))
+		return (ft_free(info), ft_putstr_error("Error\nMalloc error\n"));
+	close(info->fd);
+	info->fd = 0;
+	return (0);
+}
+
+void	init_info(t_info *info, char *file)
 {
 	info->player = new_init_player();
 	info->h = 1080;
@@ -58,4 +87,9 @@ void	init_info(t_info *info)
 	info->texture_s.path = NULL;
 	info->texture_e.path = NULL;
 	info->texture_w.path = NULL;
+	info->img.img = NULL;
+	info->img.addr = NULL;
+	info->map = NULL;
+	if (ft_parse(info, file))
+		exit (1);
 }

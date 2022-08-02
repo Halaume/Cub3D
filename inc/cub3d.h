@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/02 15:20:05 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/02 17:47:06 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define BUFFER_SIZE 1
 
 typedef struct s_data {
 	void	*img;
@@ -107,52 +106,54 @@ typedef struct s_casting {
 
 //			Basics
 
-void	init_info(t_info *info);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		closewin(t_info *info);
+int				ft_parse(t_info *info, char *file);
+void			init_info(t_info *info, char *file);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int				closewin(t_info *info);
 
 //			Hooking
 
-int		hook(int keycode, t_info *info);
-int		hook_release(int keycode, t_info *info);
-int		looping_hook(t_info *info);
+int				hook(int keycode, t_info *info);
+int				hook_release(int keycode, t_info *info);
+int				looping_hook(t_info *info);
 
 //			Map
 
-char	**get_map(int fd);
+char			**get_map(int fd);
 
 //			Casting
 
-void	brice_casting(t_info *info);
-void	get_proj_screen(t_info *info, t_casting *cast);
-void	next_curr(t_casting *cast, int side);
-void	choose_texture(t_info *info, t_casting *cast);
-void	do_it_pls(t_info *info, t_casting *cast, int i);
-void	get_the_wall(t_info *info, t_casting *cast, int i);
+void			brice_casting(t_info *info);
+void			get_proj_screen(t_info *info, t_casting *cast);
+void			next_curr(t_casting *cast, int side);
+void			choose_texture(t_info *info, t_casting *cast);
+void			do_it_pls(t_info *info, t_casting *cast, int i);
+void			get_the_wall(t_info *info, t_casting *cast, int i);
 
 //			Player Mouvement
 
-void	mv_left(t_info *info);
-void	mv_right(t_info *info);
-void	mv_for(t_info *info);
-void	mv_back(t_info *info);
-void	turn_right(t_info *info);
-void	turn_left(t_info *info);
-int		is_wall(t_info *info, double y, double x);
+void			mv_left(t_info *info);
+void			mv_right(t_info *info);
+void			mv_for(t_info *info);
+void			mv_back(t_info *info);
+void			turn_right(t_info *info);
+void			turn_left(t_info *info);
+int				is_wall(t_info *info, double y, double x);
 
 //			Texture
 
-int		get_texture(t_info *info);
+int				get_texture(t_info *info);
 
 //			Affichage
 
-void	put_col(t_info *info, t_casting *casting, int y);
-void	tracing_again(t_info *info);
+void			put_col(t_info *info, t_casting *casting, int y);
+void			tracing_again(t_info *info);
 
 //			Liberation
 
-void	free_func(t_info *info);
-void	free_char_char(char **str);
+void			free_char_char(char **str);
+void			ft_free(t_info *info);
+void			free_func(t_info *info);
 
 //			GNL
 
@@ -166,5 +167,11 @@ unsigned int	ft_test_line(char *str);
 char			*ft_fill_str(char *str, char *buf);
 char			*get_line(char *str, int fd);
 char			*get_next_line(int fd);
+
+//			Tools
+int				ft_putstr_error(char *error);
+int				ft_putstr_frror(char *error, char *str, int i);
+int				ft_perror(char *error, char *str);
+int				ft_perror_free(char *error, char *str, int i);
 
 #endif

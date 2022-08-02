@@ -6,7 +6,7 @@
 #    By: omoudni <omoudni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 12:13:30 by nflan             #+#    #+#              #
-#    Updated: 2022/06/17 17:10:44 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/02 17:09:11 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 		ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_printf.c ft_printf_tools.c\
 
-CC = cc
+CC = cc $(CFLAGS)
 
 RM = rm -fr
 

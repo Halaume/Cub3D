@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:30:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 18:04:58 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/02 17:36:18 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ char	**get_map(int fd)
 	char	**map;
 	int		i;
 
-	map = malloc(sizeof(char *) * 11);
+	map = ft_calloc(sizeof(char *), 11);
 	if (!map)
 		return (NULL);
-	map[10] = NULL;
 	i = 0;
 	while (i < 10)
 	{

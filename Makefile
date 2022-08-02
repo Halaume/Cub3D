@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/02 15:18:45 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/02 17:07:09 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CC = cc $(CFLAGS)
 
 RM = rm -fr
 
-CFLAGS = -Wall -Wextra -Werror -pthread -g #3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 MLX = minilibx-linux/libmlx_Linux.a
 
@@ -56,7 +56,8 @@ SRC_FT = affiche \
 	moove_left \
 	moove_right \
 	texture \
-	casting_tools
+	casting_tools \
+	ft_tools
 
 LIBFT = libft/libft.a
 

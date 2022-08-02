@@ -6,7 +6,7 @@
 /*   By: omoudni <omoudni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 15:14:31 by nflan             #+#    #+#             */
-/*   Updated: 2022/07/21 15:49:19 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/02 16:40:09 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_strjoin_free(char *s1, char *s2, int i)
 	len = ft_strlen(s1) + ft_strlen(s2);
 	new = ft_calloc(sizeof(char), len + 1);
 	if (!new)
-		return (ft_putstr_error("Malloc error in ft_strjoin_free in "),
+		return (ft_putstr_error("Malloc error\n"),
 			ft_free_3_str(s1, s2, NULL, i), NULL);
 	if (s1)
 		while (s1[j])

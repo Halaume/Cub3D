@@ -5,34 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 14:56:39 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/02 15:17:48 by nflan            ###   ########.fr       */
+/*   Created: 2022/08/02 17:51:26 by nflan             #+#    #+#             */
+/*   Updated: 2022/08/02 17:51:28 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-void	ft_print(char *buf, char c, int i)
-{
-	int	p;
-
-	p = i;
-	if (buf)
-	{
-		if (ft_strchr(buf, c))
-		{
-			while (p--)
-				write(1, "pipe ", 5);
-			write(1, "heredoc > ", 10);
-		}
-	}
-	else
-	{
-		while (p--)
-			write(1, "pipe ", 5);
-		write(1, "heredoc > ", 10);
-	}
-}
 
 unsigned int	ft_test_line(char *str)
 {
