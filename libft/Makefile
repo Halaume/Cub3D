@@ -6,7 +6,7 @@
 #    By: omoudni <omoudni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 12:13:30 by nflan             #+#    #+#              #
-#    Updated: 2022/08/02 17:09:11 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/03 11:20:54 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ re: fclean all
 .PHONY: all clean fclean re
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	${CC} -c $< -o ${<:.c=.o}
 
 .SECONDARY: $(OBJS)
 

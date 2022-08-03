@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/02 17:07:09 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/03 12:37:19 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ SRC_FT = affiche \
 	moove_right \
 	texture \
 	casting_tools \
-	ft_tools
+	ft_tools \
+	ft_colors \
 
 LIBFT = libft/libft.a
 

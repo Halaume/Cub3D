@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 15:32:54 by nflan             #+#    #+#             */
-/*   Updated: 2022/05/13 16:17:00 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/03 11:24:49 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trim_start = 0;
 	if (s1 && !*s1)
 	{
-		new = malloc(1);
+		new = ft_calloc(sizeof(char), 1);
 		if (!new)
 			return (NULL);
-		new[0] = '\0';
 	}
 	if (s1 && *s1)
 	{
@@ -74,6 +73,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 		s1_len = ft_strlen(s1);
 		len = s1_len - trim_start - ft_trim_end(s1, set, s1_len - 1);
 		new = ft_substr(s1, ft_trim_start(s1, set, 0), len);
+		if (!new)
+			return (NULL);
 	}
 	return (new);
 }

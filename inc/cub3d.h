@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/02 17:47:06 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/03 13:20:09 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+
+typedef struct s_map {
+	char			*line;
+	struct s_map	*next;
+}	t_map;
 
 typedef struct s_data {
 	void	*img;
@@ -63,8 +68,9 @@ typedef struct s_info {
 	t_data		img;
 	t_texture	texture_n;
 	t_texture	texture_s;
-	t_texture	texture_e;
 	t_texture	texture_w;
+	t_texture	texture_e;
+	t_map		*mapping;
 	char		**map;
 	void		*mlx;
 	void		*window;
@@ -110,6 +116,12 @@ int				ft_parse(t_info *info, char *file);
 void			init_info(t_info *info, char *file);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				closewin(t_info *info);
+
+//			Colors
+
+int				create_trgb(int t, int r, int g, int b);
+int				ft_check_colors(char **tab);
+int				ft_fill_color(int *tofill, char *buf);
 
 //			Hooking
 
@@ -173,5 +185,9 @@ int				ft_putstr_error(char *error);
 int				ft_putstr_frror(char *error, char *str, int i);
 int				ft_perror(char *error, char *str);
 int				ft_perror_free(char *error, char *str, int i);
+
+//			PRINT A ENLEVER
+
+void	print_tab(char **tab);
 
 #endif
