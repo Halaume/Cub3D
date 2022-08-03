@@ -6,38 +6,11 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:10:49 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 11:39:35 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:55:55 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-char	*ft_strdup(const char *s)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	j = 0;
-	i = 0;
-	while (s[i])
-		i++;
-	str = malloc(sizeof(char) * i + 1);
-	if (!str)
-		return (0);
-	while (j < i)
-	{
-		str[j] = s[j];
-		j++;
-	}
-	str[j] = '\0';
-	return (str);
-}
-
-char	*get_texture_path(void)
-{
-	return (ft_strdup("textures/wall.xpm"));
-}
 
 void	get_address(t_info *info)
 {
@@ -59,10 +32,6 @@ int	get_texture(t_info *info)
 {
 	//TODO	Get good texture path after parsing
 
-	info->texture_n.path = ft_strdup("textures/wall_n.xpm");
-	info->texture_s.path = ft_strdup("textures/wall_s.xpm");
-	info->texture_e.path = ft_strdup("textures/wall_e.xpm");
-	info->texture_w.path = ft_strdup("textures/wall_w.xpm");
 	info->texture_n.img.img = mlx_xpm_file_to_image(info->mlx, \
 			info->texture_n.path, &info->texture_n.width, \
 			&info->texture_n.height);
@@ -77,7 +46,7 @@ int	get_texture(t_info *info)
 			&info->texture_w.height);
 	if (!info->texture_n.img.img || !info->texture_s.img.img || \
 			!info->texture_e.img.img || !info->texture_w.img.img)
-		return (printf("Impossible d'ouvrir une texture\n"), 1);
+		return (ft_putstr_error("Error\nImpossible d'ouvrir une texture\n"));
 	get_address(info);
 	return (0);
 }

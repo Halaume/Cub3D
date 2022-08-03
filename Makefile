@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/03 12:37:19 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/03 15:28:05 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ SRC_FT = affiche \
 	casting_tools \
 	ft_tools \
 	ft_colors \
+	ft_parse \
+	ft_print \
 
 LIBFT = libft/libft.a
 

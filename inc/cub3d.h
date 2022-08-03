@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/03 13:20:09 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/03 16:56:42 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,10 @@ int				looping_hook(t_info *info);
 
 //			Map
 
-char			**get_map(int fd);
+//char			**get_map(int fd);
+size_t			ft_maplen(t_map *chain);
+size_t			ft_longest(t_map *map);
+int				ft_getmap(t_info *info);
 
 //			Casting
 
@@ -188,6 +191,8 @@ int				ft_perror_free(char *error, char *str, int i);
 
 //			PRINT A ENLEVER
 
+void	ft_print_mapping(t_map *map);
+void	ft_print_text(t_info *info);
 void	print_tab(char **tab);
 
 #endif

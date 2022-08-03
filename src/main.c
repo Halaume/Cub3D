@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/02 17:20:14 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/03 15:42:55 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ int	main(int argc, char **argv)
 	init_info(&info, argv[1]);
 	if (ft_init_window(&info))
 		return (ft_putstr_error("Error\nInitialisation de la MLX echouee\n"));
-	if (get_texture(&info) == 1)
+	if (get_texture(&info))
+	{
 		free_func(&info);
-	info.map = get_map(info.fd);
+		exit (1);
+	}
 	brice_casting(&info);
 	mlx_do_key_autorepeatoff(info.mlx);
 	mlx_hook(info.window, 17, 0, closewin, &info);

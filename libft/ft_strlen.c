@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:09:50 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/02 15:20:33 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/03 15:20:49 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (!str)
@@ -27,7 +27,7 @@ size_t	ft_strlen(const char *str)
 
 size_t	ft_tablen(char **tab)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (!tab)

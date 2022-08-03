@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/03 13:20:48 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/03 15:38:54 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ void	free_char_char(char **str)
 	str = NULL;
 }
 
-void	free_texture(t_info *info, t_texture texture)
+void	free_texture(t_info *info, t_texture *texture)
 {
-	if (texture.img.img)
-		mlx_destroy_image(info->mlx, texture.img.img);
-	if (texture.path)
-		free(texture.path);
+	if (texture->img.img)
+		mlx_destroy_image(info->mlx, texture->img.img);
+	texture->img.img = NULL;
+	if (texture->path)
+		free(texture->path);
+	texture->path = NULL;
 }
 
 void	ft_free_map(t_map *map)
@@ -71,15 +73,19 @@ void	ft_free(t_info *info)
 	info->texture_e.path = NULL;
 	if (info->mapping)
 		ft_free_map(info->mapping);
+	if (info->map)
+		ft_free_split(info->map);
 }
 
 void	free_func(t_info *info)
 {
-	free_char_char(info->map);
-	free_texture(info, info->texture_n);
-	free_texture(info, info->texture_s);
-	free_texture(info, info->texture_e);
-	free_texture(info, info->texture_w);
+	if (info->map)
+		ft_free_split(info->map);
+	info->map = NULL;
+	free_texture(info, &info->texture_n);
+	free_texture(info, &info->texture_s);
+	free_texture(info, &info->texture_e);
+	free_texture(info, &info->texture_w);
 	if (info)
 		ft_free(info);
 }
