@@ -6,13 +6,13 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:30:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/03 15:30:43 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/04 18:13:20 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-char	**get_map(int fd)
+/*char	**get_map(int fd)
 {
 	char	**map;
 	int		i;
@@ -30,6 +30,38 @@ char	**get_map(int fd)
 	printf("\n");
 	close(fd);
 	return (map);
+}*/
+
+void	ft_mapadd_back(t_map **map, t_map *new)
+{
+	t_map	*tmp;
+
+	tmp = *map;
+	if (map && new)
+	{
+		if (*map == NULL)
+			*map = new;
+		else
+		{
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = new;
+		}
+	}
+}
+
+int	ft_mapnew(t_map **map, char *buf)
+{
+	t_map	*new;
+
+	new = ft_calloc(sizeof(t_map), 1);
+	if (!new)
+		return (ft_putstr_error("Error\nMalloc error\n"));
+	new->line = ft_strtrim(buf, "\n");
+	if (!new->line)
+		return (free(new), ft_putstr_error("Error\nMalloc error\n"));
+	ft_mapadd_back(map, new);
+	return (0);
 }
 
 size_t	ft_maplen(t_map *chain)
@@ -82,7 +114,7 @@ int	ft_getmap(t_info *info)
 		return (ft_putstr_error("Error\nMalloc error\n"));
 	while (tmp)
 	{
-		info->map[i] = ft_substr(tmp->line, 0, len);
+		info->map[i] = ft_substr_map(tmp->line, 0, len);
 		if (!info->map[i])
 			return (ft_putstr_error("Error\nMalloc error\n"));
 		i++;

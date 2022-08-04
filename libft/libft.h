@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 16:50:07 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/03 15:20:36 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/04 18:14:13 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,14 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t n);
 long	ft_atoi(const char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
+// CALLOC avec ' '
+void	ft_bspace(void *s, size_t n);
+void	*ft_calmap(size_t nmemb, size_t size);
+//
 char	*ft_strdup(const char *str);
 char	*ft_strdup_free(char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr_map(char const *s, unsigned int start, size_t len);
 char	*ft_substr_free(char *s, unsigned int start, size_t len);
 // STRJOIN
 void	ft_free_3_str(char *s1, char *s2, char *s3, int i);

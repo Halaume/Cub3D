@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/03 16:56:42 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/04 16:03:38 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,16 +112,9 @@ typedef struct s_casting {
 
 //			Basics
 
-int				ft_parse(t_info *info, char *file);
 void			init_info(t_info *info, char *file);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				closewin(t_info *info);
-
-//			Colors
-
-int				create_trgb(int t, int r, int g, int b);
-int				ft_check_colors(char **tab);
-int				ft_fill_color(int *tofill, char *buf);
 
 //			Hooking
 
@@ -129,12 +122,29 @@ int				hook(int keycode, t_info *info);
 int				hook_release(int keycode, t_info *info);
 int				looping_hook(t_info *info);
 
+/*--------------------PARSING-------------------*/
+//			Parse
+int				ft_check_map(char *buf);
+int				ft_play(t_info *info, char *buf);
+int				ft_parsarg(t_info *info);
+int				ft_parse(t_info *info, char *file);
+//			Colors
+int				create_trgb(int t, int r, int g, int b);
+int				ft_check_colors(char **tab);
+int				ft_fill_color(int *tofill, char *buf);
 //			Map
-
 //char			**get_map(int fd);
+void			ft_mapadd_back(t_map **map, t_map *new);
+int				ft_mapnew(t_map **map, char *buf);
 size_t			ft_maplen(t_map *chain);
 size_t			ft_longest(t_map *map);
 int				ft_getmap(t_info *info);
+//			Check Map
+int				ft_valid_map(t_info *info);
+//			Textures (partext)
+int				ft_fill_text(t_texture *text, char *buf);
+int				ft_add_text(t_info *info, char *buf);
+int				ft_check_fill(char *buf);
 
 //			Casting
 

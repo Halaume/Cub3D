@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:09:13 by nflan             #+#    #+#             */
-/*   Updated: 2022/06/15 15:30:55 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/04 18:31:35 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		if (len > ft_strlen(s))
 			len = ft_strlen(s);
 		new = ft_calloc(sizeof(char), len + 1);
+		if (!new)
+			return (NULL);
+		if (start < ft_strlen(s))
+			while (i < len && s[start])
+				new[i++] = s[start++];
+	}
+	return (new);
+}
+
+char	*ft_substr_map(char const *s, unsigned int start, size_t len)
+{
+	char			*new;
+	unsigned int	i;
+
+	new = NULL;
+	if (s)
+	{
+		i = 0;
+		new = ft_calmap(sizeof(char), len + 1);
 		if (!new)
 			return (NULL);
 		if (start < ft_strlen(s))
