@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:14:50 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/05 12:19:54 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 16:36:19 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	new_init_player(t_info *info)
 	}
 	if (!tab[y])
 		return (free_func(info), ft_putstr_error("Error\nJoueur introuvable\n"));
-	info->player.x = x;
-	info->player.y = y;
+	info->player.x = x + 0.5;
+	info->player.y = y + 0.5;
 	ft_init_player_angle(info, y, x);
 	return (0);
 }

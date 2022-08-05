@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/05 12:20:36 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 16:49:02 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,12 @@ int				ft_valid_map(t_info *info);
 //			Player
 int				ft_nb_player(char **map);
 int				new_init_player(t_info *info);
-//			Check Map_zero_space
-int				ft_check_space(char **map, int y, int x);
-int				ft_spaces(char **map);
+//			Check Map_tools
+int				ft_valid_elems(char c);
 int				ft_check_zerobis(char **map, int y, int x);
 int				ft_check_zero(char **map, int y, int x);
-int				ft_zero(char **map);
+int				ft_checkside(char c);
+int				ft_sides(char **map);
 //			Textures (partext)
 int				ft_fill_text(t_texture *text, char *buf);
 int				ft_add_text(t_info *info, char *buf);

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/03 15:42:55 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 16:30:40 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 		return (ft_putstr_error("Error\nInitialisation de la MLX echouee\n"));
 	if (get_texture(&info))
 	{
-		free_func(&info);
+		ft_closewin(&info, 1);
 		exit (1);
 	}
 	brice_casting(&info);
