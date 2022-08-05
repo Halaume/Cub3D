@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:43:10 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 11:45:13 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/05 17:49:05 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	is_wall(t_info *info, double y, double x)
 {
-	if (y > info->nb_line || x > info->nb_col || x < 0 || y < 0)
+	if ((int)y > info->nb_line || (int)x > info->nb_col || (int)x < 0
+		|| (int)y < 0)
 		return (1);
 	if (info->map[(int)y][(int)x] == '1')
 		return (1);

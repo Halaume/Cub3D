@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:44:32 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 11:45:10 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/05 17:46:24 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	mv_for(t_info *info)
 	oldx = info->player.x;
 	mv_forward_y(info);
 	mv_forward_x(info, oldy);
-	if (is_wall(info, info->player.x, info->player.y))
+	if (is_wall(info, info->player.y, info->player.x))
 	{
 		info->player.y = oldy;
 		info->player.x = oldx;

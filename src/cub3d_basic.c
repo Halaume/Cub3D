@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/05 12:16:48 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 17:48:22 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ void	init_info(t_info *info, char *file)
 	if (new_init_player(info))
 		exit (1);
 	info->nb_line = ft_tablen(info->map);
-	info->nb_col = ft_longest(info->mapping);
+	info->nb_col = ft_strlen(info->map[0]);
 }
