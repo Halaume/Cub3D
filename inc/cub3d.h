@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/04 16:03:38 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 12:20:36 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_casting {
 
 //			Basics
 
+void			init_texture(t_info *info);
 void			init_info(t_info *info, char *file);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				closewin(t_info *info);
@@ -141,6 +142,15 @@ size_t			ft_longest(t_map *map);
 int				ft_getmap(t_info *info);
 //			Check Map
 int				ft_valid_map(t_info *info);
+//			Player
+int				ft_nb_player(char **map);
+int				new_init_player(t_info *info);
+//			Check Map_zero_space
+int				ft_check_space(char **map, int y, int x);
+int				ft_spaces(char **map);
+int				ft_check_zerobis(char **map, int y, int x);
+int				ft_check_zero(char **map, int y, int x);
+int				ft_zero(char **map);
 //			Textures (partext)
 int				ft_fill_text(t_texture *text, char *buf);
 int				ft_add_text(t_info *info, char *buf);
@@ -194,6 +204,7 @@ char			*get_line(char *str, int fd);
 char			*get_next_line(int fd);
 
 //			Tools
+int				ft_poserr(int y, int x, char *str);
 int				ft_putstr_error(char *error);
 int				ft_putstr_frror(char *error, char *str, int i);
 int				ft_perror(char *error, char *str);

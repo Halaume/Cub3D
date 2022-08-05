@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 12:35:28 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/03 17:51:24 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 12:02:00 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	ft_check_colors(char **tab)
 {
 	if (ft_tablen(tab) != 3)
 		return (0);
-	if (ft_atoi(tab[0]) < 0 || ft_atoi(tab[0]) > 255)
+	if (ft_digital(tab[0]) || ft_atoi(tab[0]) < 0 || ft_atoi(tab[0]) > 255)
 		return (0);
-	if (ft_atoi(tab[1]) < 0 || ft_atoi(tab[1]) > 255)
+	if (ft_digital(tab[1]) || ft_atoi(tab[1]) < 0 || ft_atoi(tab[1]) > 255)
 		return (0);
-	if (ft_atoi(tab[2]) < 0 || ft_atoi(tab[2]) > 255)
+	if (ft_digital(tab[2]) || ft_atoi(tab[2]) < 0 || ft_atoi(tab[2]) > 255)
 		return (0);
 	return (1);
 }

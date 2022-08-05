@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:10:49 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/03 16:55:55 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 12:31:37 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ void	get_address(t_info *info)
 	info->texture_e.img.addr = mlx_get_data_addr(info->texture_e.img.img, \
 			&info->texture_e.img.bits_per_pixel, \
 			&info->texture_e.img.line_length, &info->texture_e.img.endian);
-	info->texture_w.img.addr = mlx_get_data_addr(info->texture_w.img.img, \
-			&info->texture_w.img.bits_per_pixel, \
-			&info->texture_w.img.line_length, &info->texture_w.img.endian);
+	info->texture_w.img.addr = NULL;//mlx_get_data_addr(info->texture_w.img.img, \
+//			&info->texture_w.img.bits_per_pixel, \
+//			&info->texture_w.img.line_length, &info->texture_w.img.endian);
 }
 
 int	get_texture(t_info *info)
 {
-	//TODO	Get good texture path after parsing
-
 	info->texture_n.img.img = mlx_xpm_file_to_image(info->mlx, \
 			info->texture_n.path, &info->texture_n.width, \
 			&info->texture_n.height);
@@ -48,5 +46,8 @@ int	get_texture(t_info *info)
 			!info->texture_e.img.img || !info->texture_w.img.img)
 		return (ft_putstr_error("Error\nImpossible d'ouvrir une texture\n"));
 	get_address(info);
+	if (!info->texture_n.img.addr || !info->texture_s.img.addr || \
+			!info->texture_e.img.addr || !info->texture_w.img.addr)
+		return (ft_putstr_error("Error\nImpossible d'ouvrir une texture\n"));
 	return (0);
 }

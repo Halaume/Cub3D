@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:19:06 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/04 16:06:15 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 12:27:57 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,24 @@ p\n"));
 	return (0);
 }
 
+int	ft_parsing_info_err(t_info *info)
+{
+	ft_putstr_error("Error\nIl manque des informations:");
+	if (!info->texture_n.path)
+		ft_putstr_error(" la texture Nord");
+	if (!info->texture_s.path)
+		ft_putstr_error(" la texture Sud");
+	if (!info->texture_w.path)
+		ft_putstr_error(" la texture Ouest");
+	if (!info->texture_e.path)
+		ft_putstr_error(" la texture Est");
+	if (!info->color_sky)
+		ft_putstr_error(" la couleur du plafond");
+	if (!info->color_floor)
+		ft_putstr_error(" la couleur du sol");
+	return (ft_putstr_error("\n"));
+}
+
 int	ft_parsarg(t_info *info)
 {
 	char	*buf;
@@ -68,7 +86,7 @@ int	ft_parsarg(t_info *info)
 	}
 	if (!info->texture_n.path || !info->texture_s.path || !info->texture_w.path
 		|| !info->texture_e.path || !info->color_sky || !info->color_floor)
-		return (ft_putstr_error("Error\nIl manque des informations\n"));
+		return (ft_parsing_info_err(info));
 	return (0);
 }
 
@@ -86,7 +104,5 @@ int	ft_parse(t_info *info, char *file)
 	ft_print_text(info);
 	if (ft_valid_map(info))
 		return (ft_free(info), 1);
-//	ft_free(info);
-//	exit(0);
 	return (0);
 }

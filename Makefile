@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/04 16:04:14 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/05 12:21:10 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,9 @@ SRC_FT = affiche \
 	ft_colors \
 	ft_parse \
 	ft_check_map \
+	ft_check_map_zs \
 	ft_partext \
+	ft_player \
 	ft_print \
 
 LIBFT = libft/libft.a

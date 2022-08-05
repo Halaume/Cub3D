@@ -6,43 +6,11 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/03 17:17:38 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/05 12:16:48 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-int	new_init_player(t_info *info)
-{
-	int			x;
-	int			y;
-	char		**tab;
-
-	tab = info->map;
-	y = 0;
-	while (tab[y])
-	{
-		x = 0;
-		while (tab[y][x] && (tab[y][x] != 'W' && tab[y][x] != 'N' && tab[y][x] != 'S' && tab[y][x] != 'E'))
-			x++;
-		if (tab[y][x])
-			break ;
-		y++;
-	}
-	if (!tab[y])
-		return (free_func(info), ft_putstr_error("Error\nJoueur introuvable\n"));
-	info->player.x = x;
-	info->player.y = y;
-	if (tab[y][x] == 'N')
-		info->player.angle = M_PI / 2;
-	else if (tab[y][x] == 'S')
-		info->player.angle = M_PI * 1.5;
-	else if (tab[y][x] == 'W')
-		info->player.angle = M_PI;
-	else if (tab[y][x] == 'E')
-		info->player.angle = M_PI * 2;
-	return (0);
-}
 
 t_hooking	init_hook(void)
 {
@@ -59,14 +27,8 @@ t_hooking	init_hook(void)
 	return (my_hook);
 }
 
-void	init_info(t_info *info, char *file)
+void	init_texture(t_info *info)
 {
-	info->h = 1080;
-	info->w = 1920;
-	info->fd = 0;
-	info->mlx = NULL;
-	info->window = NULL;
-	info->hook = init_hook();
 	info->texture_n.img.img = NULL;
 	info->texture_s.img.img = NULL;
 	info->texture_e.img.img = NULL;
@@ -75,6 +37,19 @@ void	init_info(t_info *info, char *file)
 	info->texture_s.path = NULL;
 	info->texture_e.path = NULL;
 	info->texture_w.path = NULL;
+}
+
+void	init_info(t_info *info, char *file)
+{
+	info->h = 1080;
+	info->w = 1920;
+	info->fd = 0;
+	info->mlx = NULL;
+	info->window = NULL;
+	info->hook = init_hook();
+	init_texture(info);
+	info->color_sky = 0;
+	info->color_floor = 0;
 	info->img.img = NULL;
 	info->img.addr = NULL;
 	info->map = NULL;
