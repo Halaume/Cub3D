@@ -32,6 +32,8 @@ int	ft_play(t_info *info, char *buf)
 
 	if (id < 6 && ft_check_fill(buf))
 	{
+		if (ft_check_fill(buf) == 2)
+			return (ft_putstr_error("Error\nCaracteristique invalide\n"));
 		while (*buf == ' ')
 			buf++;
 		if (ft_add_text(info, buf))
@@ -90,11 +92,23 @@ int	ft_parsarg(t_info *info)
 	return (0);
 }
 
-int	ft_parse(t_info *info, char *file)
+int	ft_init_fd(t_info *info, char *file)
 {
+	char	*tmp;
+
+	tmp = file + ft_strlen(file) - 4;
+	if (ft_strncmp(tmp, ".cub", 5))
+		return (ft_putstr_error("Error\nFichier invalide\n"));
 	info->fd = open(file, O_RDONLY);
 	if (info->fd == -1)
 		return (ft_perror("Error\nOuverture de map echouee", NULL));
+	return (0);
+}
+
+int	ft_parse(t_info *info, char *file)
+{
+	if (ft_init_fd(info, file))
+		return (1);
 	if (ft_parsarg(info))
 		return (ft_free(info), 1);
 	close(info->fd);

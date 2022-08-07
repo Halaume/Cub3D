@@ -53,11 +53,13 @@ int	ft_check_fill(char *buf)
 	int	l;
 
 	l = ft_strlen(buf);
-	if (!l)
+	if (!l || l == 1)
 		return (0);
 	if (ft_strnstr(buf, "NO", l) || ft_strnstr(buf, "SO", l)
 		|| ft_strnstr(buf, "WE", l) || ft_strnstr(buf, "EA", l)
 		|| ft_strnstr(buf, "F", l) || ft_strnstr(buf, "C", l))
 		return (1);
+	else
+		return (2);
 	return (0);
 }
