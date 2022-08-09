@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/05 16:27:24 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/09 12:15:32 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRC_FT = affiche \
 	ft_colors \
 	ft_parse \
 	ft_check_map \
-	ft_check_mapz \
+	ft_check_map_tools \
 	ft_partext \
 	ft_player \
 	ft_print \

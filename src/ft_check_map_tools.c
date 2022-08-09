@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_mapz.c                                    :+:      :+:    :+:   */
+/*   ft_check_map_tools.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:12:42 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/05 16:48:42 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/09 12:15:26 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_valid_elems(char c)
 	return (0);
 }
 
-int	ft_check_zerobis(char **map, int y, int x)
+int	ft_check_around(char **map, int y, int x)
 {
 	if (x - 1 >= 0)
 		if (map[y][x - 1] == ' ')
@@ -36,10 +36,10 @@ int	ft_check_zerobis(char **map, int y, int x)
 int	ft_check_zero(char **map, int y, int x)
 {
 	if (y - 1 >= 0)
-		if (ft_check_zerobis(map, y - 1, x))
+		if (ft_check_around(map, y - 1, x))
 			return (1);
 	if (y + 1 < (int)ft_tablen(map))
-		if (ft_check_zerobis(map, y + 1, x))
+		if (ft_check_around(map, y + 1, x))
 			return (1);
 	if (x - 1 >= 0)
 		if (map[y][x - 1] == ' ')

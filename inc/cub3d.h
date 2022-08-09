@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/05 16:49:02 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/09 12:06:38 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ int				ft_nb_player(char **map);
 int				new_init_player(t_info *info);
 //			Check Map_tools
 int				ft_valid_elems(char c);
-int				ft_check_zerobis(char **map, int y, int x);
+int				ft_check_around(char **map, int y, int x);
 int				ft_check_zero(char **map, int y, int x);
 int				ft_checkside(char c);
 int				ft_sides(char **map);
