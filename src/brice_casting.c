@@ -92,87 +92,6 @@ void	casting2(t_info *info, t_casting *cast, int i)
 	cast->is_wall = 0;
 }
 
-void	ft_player_color(int rgb[3])
-{
-	rgb[0] = 255;
-	rgb[1] = 0;
-	rgb[2] = 0;
-}
-
-void	ft_wall_color(int rgb[3])
-{
-	rgb[0] = 21;
-	rgb[1] = 176;
-	rgb[2] = 151;
-}
-
-void	ft_space_color(int rgb[3])
-{
-	rgb[0] = 72;
-	rgb[1] = 86;
-	rgb[2] = 150;
-}
-
-void	ft_door_color(int rgb[3])
-{
-	rgb[0] = 81;
-	rgb[1] = 60;
-	rgb[2] = 44;
-}
-
-//comparer x en fonction de la position dans la ligne et y en fonction de la ligne de la map. donc fonction pour dire si 1 -> mur, 2->porte etc
-void	ft_init_color_map(t_info *info, int x, int y, int rgb[3])
-{
-	rgb[0] = 153;
-	rgb[1] = 225;
-	rgb[2] = 217;
-	if (x == info->w - 110 && y == 90)
-		ft_player_color(rgb);
-}
-
-int	ft_test_mapping(t_info *info, int x, int y)
-{
-	int	i;
-	int	j;
-	int	rgb[3];
-
-	i = -1;
-	ft_init_color_map(info, x, y, rgb);
-	while (++i < 20)
-	{
-		j = -1;
-		while (++j < 20)
-		{
-			if ((y == 10 && i == 0) || (x == info->w - 190 && j == 0) || (x == info->w - 30 && j == 19))
-				my_mlx_pixel_put(&info->img, x + j, y + i, create_trgb(100, 0, 0, 0));
-			else if (y == 170 && i == 19)
-				my_mlx_pixel_put(&info->img, x + j, y + i, create_trgb(100, 0, 0, 0));
-			else
-				my_mlx_pixel_put(&info->img, x + j, y + i, create_trgb(100, rgb[0], rgb[1], rgb[2]));
-		}
-	}
-	return (0);
-}
-
-int	ft_launch_map(t_info *info)
-{
-	int	x;
-	int	y;
-
-	y = 10; 
-	while (y < 190)
-	{
-		x = info->w - 190;
-		while (x < info->w - 10)
-		{
-			ft_test_mapping(info, x, y);
-			x += 20;
-		}
-		y += 20;
-	}
-	return (0);
-}
-
 void	brice_casting(t_info *info)
 {
 	int			i;
@@ -198,6 +117,6 @@ void	brice_casting(t_info *info)
 		}
 		get_the_wall(info, &cast, i);
 	}
-	ft_launch_map(info);
+	ft_launch_minimap(info);
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
 }

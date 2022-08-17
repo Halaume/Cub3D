@@ -81,6 +81,7 @@ typedef struct s_info {
 	int			color_floor;
 	int			nb_line;
 	int			nb_col;
+	int			print_map;
 }	t_info;
 
 typedef struct s_casting {
@@ -112,6 +113,8 @@ typedef struct s_casting {
 
 //			Basics
 
+int				ft_parsing_info_err(t_info *info);
+int				ft_closewin(t_info *info, int err);
 void			init_texture(t_info *info);
 void			init_info(t_info *info, char *file);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -133,6 +136,12 @@ int				ft_parse(t_info *info, char *file);
 int				create_trgb(int t, int r, int g, int b);
 int				ft_check_colors(char **tab);
 int				ft_fill_color(int *tofill, char *buf);
+//			Coloring
+void			ft_player_color(int rgb[3]);
+void			ft_wall_color(int rgb[3]);
+void			ft_space_color(int rgb[3]);
+void			ft_door_color(int rgb[3]);
+void			ft_floor_color(int rgb[3]);
 //			Map
 //char			**get_map(int fd);
 void			ft_mapadd_back(t_map **map, t_map *new);
@@ -183,6 +192,18 @@ int				get_texture(t_info *info);
 
 void			put_col(t_info *info, t_casting *casting, int y);
 void			tracing_again(t_info *info);
+
+//			Minimap
+void			ft_init_color_minimap(t_info *info, int pos[2], int rgb[3]);
+int				ft_fill_minimap(t_info *info, int x, int y, int pos[2]);
+int				ft_launch_minimap(t_info *info);
+
+//			Print_map
+int				ft_print_map(t_info *info, int x, int y, int rgb[3]);
+void			ft_init_color_map(t_info *info, int ij[2], int rgb[3]);
+void			ft_draw_map(t_info *info);
+int				ft_open_map(t_info *info);
+void			ft_map(t_info *info);
 
 //			Liberation
 

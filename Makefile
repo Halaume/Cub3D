@@ -59,11 +59,14 @@ SRC_FT = affiche \
 	casting_tools \
 	ft_tools \
 	ft_colors \
+	ft_coloring \
 	ft_parse \
 	ft_check_map \
 	ft_check_map_tools \
 	ft_partext \
 	ft_player \
+	ft_print_map \
+	ft_minimap \
 	ft_print \
 
 LIBFT = libft/libft.a

@@ -12,6 +12,24 @@
 
 #include "../inc/cub3d.h"
 
+int	ft_parsing_info_err(t_info *info)
+{
+	ft_putstr_error("Error\nIl manque des informations:");
+	if (!info->texture_n.path)
+		ft_putstr_error(" la texture Nord");
+	if (!info->texture_s.path)
+		ft_putstr_error(" la texture Sud");
+	if (!info->texture_w.path)
+		ft_putstr_error(" la texture Ouest");
+	if (!info->texture_e.path)
+		ft_putstr_error(" la texture Est");
+	if (!info->color_sky)
+		ft_putstr_error(" la couleur du plafond");
+	if (!info->color_floor)
+		ft_putstr_error(" la couleur du sol");
+	return (ft_putstr_error("\n"));
+}
+
 t_hooking	init_hook(void)
 {
 	t_hooking	my_hook;
@@ -54,6 +72,7 @@ void	init_info(t_info *info, char *file)
 	info->img.addr = NULL;
 	info->map = NULL;
 	info->mapping = NULL;
+	info->print_map = 0;
 	if (ft_parse(info, file))
 		exit (1);
 	if (new_init_player(info))

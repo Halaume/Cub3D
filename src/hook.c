@@ -14,6 +14,8 @@
 
 int	hook(int keycode, t_info *info)
 {
+	if (info->print_map && keycode != 59 && keycode != 65307)
+		return (0);
 	if (keycode == 65361)
 		info->hook.cam_left = 1;
 	if (keycode == 65363)
@@ -30,6 +32,8 @@ int	hook(int keycode, t_info *info)
 		info->hook.forward = 1;
 	if (keycode == 115)
 		info->hook.backward = 1;
+	if (keycode == 59)
+		ft_map(info);
 	if (keycode == 65307)
 		closewin(info);
 	looping_hook(info);
@@ -38,6 +42,8 @@ int	hook(int keycode, t_info *info)
 
 int	hook_release(int keycode, t_info *info)
 {
+	if (info->print_map)
+		return (0);
 	if (keycode == 65361)
 		info->hook.cam_left = 0;
 	if (keycode == 65363)
@@ -54,12 +60,16 @@ int	hook_release(int keycode, t_info *info)
 		info->hook.forward = 0;
 	if (keycode == 115)
 		info->hook.backward = 0;
+	if (keycode == 59)
+		return (0);
 	looping_hook(info);
 	return (0);
 }
 
 int	looping_hook(t_info *info)
 {
+	if (info->print_map)
+		return (0);
 	if (info->hook.cam_left && !info->hook.cam_right)
 		turn_left(info);
 	if (info->hook.cam_right && !info->hook.cam_left)

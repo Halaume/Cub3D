@@ -54,24 +54,6 @@ p\n"));
 	return (0);
 }
 
-int	ft_parsing_info_err(t_info *info)
-{
-	ft_putstr_error("Error\nIl manque des informations:");
-	if (!info->texture_n.path)
-		ft_putstr_error(" la texture Nord");
-	if (!info->texture_s.path)
-		ft_putstr_error(" la texture Sud");
-	if (!info->texture_w.path)
-		ft_putstr_error(" la texture Ouest");
-	if (!info->texture_e.path)
-		ft_putstr_error(" la texture Est");
-	if (!info->color_sky)
-		ft_putstr_error(" la couleur du plafond");
-	if (!info->color_floor)
-		ft_putstr_error(" la couleur du sol");
-	return (ft_putstr_error("\n"));
-}
-
 int	ft_parsarg(t_info *info)
 {
 	char	*buf;
