@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/18 17:31:27 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/18 17:36:52 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,19 @@ typedef struct s_texture {
 	char				*path;
 	int					height;
 	int					width;
+	struct s_texture	*next;
 }	t_texture;
+
+typedef struct s_sprite {
+	char		c;
+	char		*directory;
+	t_texture	*text;
+}
 
 typedef struct s_player {
 	double	x;
 	double	y;
 	double	angle;
-
 }	t_player;
 
 typedef struct s_hooking {
