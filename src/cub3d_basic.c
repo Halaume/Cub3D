@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/18 16:23:51 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/18 17:21:22 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void	init_texture(t_info *info)
 	info->texture_s.path = NULL;
 	info->texture_e.path = NULL;
 	info->texture_w.path = NULL;
+	info->texture_n.next = NULL;
+	info->texture_s.next = NULL;
+	info->texture_e.next = NULL;
+	info->texture_w.next = NULL;
+	info->sprite = NULL;
 }
 
 void	ft_define_sm(t_info *info)
