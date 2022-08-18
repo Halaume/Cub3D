@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/09 12:06:38 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/18 15:08:05 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_info {
 	int			color_floor;
 	int			nb_line;
 	int			nb_col;
+	int			s_m;
 	int			print_map;
 }	t_info;
 
@@ -197,12 +198,12 @@ void			tracing_again(t_info *info);
 void			ft_init_color_minimap(t_info *info, int pos[2], int rgb[3]);
 int				ft_fill_minimap(t_info *info, int x, int y, int pos[2]);
 int				ft_launch_minimap(t_info *info);
+void			ft_mapping(t_info *info);
 
 //			Print_map
 int				ft_print_map(t_info *info, int x, int y, int rgb[3]);
 void			ft_init_color_map(t_info *info, int ij[2], int rgb[3]);
 void			ft_draw_map(t_info *info);
-int				ft_open_map(t_info *info);
 void			ft_map(t_info *info);
 
 //			Liberation

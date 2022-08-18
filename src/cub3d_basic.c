@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/05 17:48:22 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/18 16:23:51 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ void	init_texture(t_info *info)
 	info->texture_w.path = NULL;
 }
 
+void	ft_define_sm(t_info *info)
+{
+	info->s_m = 20;
+	if (info->nb_col > 94 || info->nb_line > 52)
+	{
+		if (info->nb_col - 94 > info->nb_line - 52)
+			info->s_m = info->w / info->nb_col - 1;
+		else
+			info->s_m = info->h / info->nb_line - 1;
+	}
+}
+
 void	init_info(t_info *info, char *file)
 {
 	info->h = 1080;
@@ -79,4 +91,5 @@ void	init_info(t_info *info, char *file)
 		exit (1);
 	info->nb_line = ft_tablen(info->map);
 	info->nb_col = ft_strlen(info->map[0]);
+	ft_define_sm(info);
 }

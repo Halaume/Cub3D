@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:03:26 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/02 16:54:44 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/18 12:30:01 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 
 void	tracing_again(t_info *info)
 {
-	if (!info->print_map)
+	mlx_destroy_image(info->mlx, info->img.img);
+	info->img.img = mlx_new_image(info->mlx, 1920, 1080);
+	if (!info->img.img)
 	{
-		mlx_destroy_image(info->mlx, info->img.img);
-		info->img.img = mlx_new_image(info->mlx, 1920, 1080);
-		if (!info->img.img)
-		{
-			ft_closewin(info, 1);
-			ft_putstr_error("Error\nImage issue\n");
-			exit(1);
-		}
-		info->img.addr = mlx_get_data_addr(info->img.img, \
-				&info->img.bits_per_pixel, &info->img.line_length, \
-				&info->img.endian);
-		if (!info->img.addr)
-		{
-			ft_closewin(info, 1);
-			ft_putstr_error("Error\nImage address issue\n");
-			exit(1);
-		}
-		brice_casting(info);
+		ft_closewin(info, 1);
+		ft_putstr_error("Error\nImage issue\n");
+		exit(1);
 	}
+	info->img.addr = mlx_get_data_addr(info->img.img, \
+			&info->img.bits_per_pixel, &info->img.line_length, \
+			&info->img.endian);
+	if (!info->img.addr)
+	{
+		ft_closewin(info, 1);
+		ft_putstr_error("Error\nImage address issue\n");
+		exit(1);
+	}
+	brice_casting(info);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

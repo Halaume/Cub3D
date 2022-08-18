@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_minimap.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/18 11:21:16 by nflan             #+#    #+#             */
+/*   Updated: 2022/08/18 15:29:21 by nflan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 void	ft_init_color_minimap(t_info *info, int pos[2], int rgb[3])
@@ -35,10 +47,7 @@ int	ft_fill_minimap(t_info *info, int x, int y, int pos[2])
 		while (++j < 20)
 		{
 			if ((y == 10 && i == 0) || (x == info->w - 190 && j == 0)
-				|| (x == info->w - 30 && j == 19))
-				my_mlx_pixel_put(&info->img, x + j, y + i,
-					create_trgb(100, 0, 0, 0));
-			else if (y == 170 && i == 19)
+				|| (x == info->w - 30 && j == 19) || (y == 170 && i == 19))
 				my_mlx_pixel_put(&info->img, x + j, y + i,
 					create_trgb(100, 0, 0, 0));
 			else
@@ -71,4 +80,12 @@ int	ft_launch_minimap(t_info *info)
 		pos[1] += 1;
 	}
 	return (0);
+}
+
+void	ft_mapping(t_info *info)
+{
+	if (!info->print_map)
+		ft_launch_minimap(info);
+	else if (info->print_map)
+		ft_draw_map(info);
 }

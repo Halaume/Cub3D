@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/05 17:16:33 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:22:53 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	hook(int keycode, t_info *info)
 {
-	if (info->print_map && keycode != 59 && keycode != 65307)
-		return (0);
 	if (keycode == 65361)
 		info->hook.cam_left = 1;
 	if (keycode == 65363)
@@ -32,7 +30,7 @@ int	hook(int keycode, t_info *info)
 		info->hook.forward = 1;
 	if (keycode == 115)
 		info->hook.backward = 1;
-	if (keycode == 59)
+	if (keycode == 109)
 		ft_map(info);
 	if (keycode == 65307)
 		closewin(info);
@@ -42,8 +40,6 @@ int	hook(int keycode, t_info *info)
 
 int	hook_release(int keycode, t_info *info)
 {
-	if (info->print_map)
-		return (0);
 	if (keycode == 65361)
 		info->hook.cam_left = 0;
 	if (keycode == 65363)
@@ -60,16 +56,12 @@ int	hook_release(int keycode, t_info *info)
 		info->hook.forward = 0;
 	if (keycode == 115)
 		info->hook.backward = 0;
-	if (keycode == 59)
-		return (0);
 	looping_hook(info);
 	return (0);
 }
 
 int	looping_hook(t_info *info)
 {
-	if (info->print_map)
-		return (0);
 	if (info->hook.cam_left && !info->hook.cam_right)
 		turn_left(info);
 	if (info->hook.cam_right && !info->hook.cam_left)

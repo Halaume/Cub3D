@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/18 11:21:07 by nflan             #+#    #+#             */
+/*   Updated: 2022/08/18 16:21:34 by nflan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 int	ft_print_map(t_info *info, int x, int y, int rgb[3])
@@ -6,12 +18,21 @@ int	ft_print_map(t_info *info, int x, int y, int rgb[3])
 	int	j;
 
 	i = -1;
-	while (++i < 20)
+	while (++i < info->s_m)
 	{
 		j = -1;
-		while (++j < 20)
-			my_mlx_pixel_put(&info->img, x + j, y + i, create_trgb(100,
-					rgb[0], rgb[1], rgb[2]));
+		while (++j < info->s_m)
+		{
+			if ((y == 10 && i == 0) || (y == info->nb_line * info->s_m
+					+ info->s_m && i == info->s_m - 1) || (x == 10 && j == 0)
+				|| (x == info->nb_col * info->s_m + info->s_m
+					&& j == info->s_m - 1))
+				my_mlx_pixel_put(&info->img, x + j, y + i,
+					create_trgb(100, 0, 0, 0));
+			else
+				my_mlx_pixel_put(&info->img, x + j, y + i, create_trgb(100,
+						rgb[0], rgb[1], rgb[2]));
+		}
 	}
 	return (0);
 }
@@ -47,48 +68,18 @@ void	ft_draw_map(t_info *info)
 		{
 			ft_init_color_map(info, ij, rgb);
 			ft_print_map(info, x, y, rgb);
-			x += 20;
+			x += info->s_m;
 			ij[1] += 1;
 		}
-		y += 20;
+		y += info->s_m;
 		ij[0] += 1;
 	}
 }
 
-int	ft_open_map(t_info *info)
-{
-	mlx_destroy_image(info->mlx, info->img.img);
-	info->img.img = mlx_new_image(info->mlx, info->nb_col * 20 + 20, \
-			info->nb_line * 20 + 20);
-	if (!info->img.img)
-	{
-		ft_closewin(info, 1);
-		ft_putstr_error("Error\nImage issue\n");
-		exit(1);
-	}
-	info->img.addr = mlx_get_data_addr(info->img.img, \
-			&info->img.bits_per_pixel, &info->img.line_length, \
-			&info->img.endian);
-	if (!info->img.addr)
-	{
-		ft_closewin(info, 1);
-		ft_putstr_error("Error\nImage address issue\n");
-		exit(1);
-	}
-	ft_draw_map(info);
-	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
-	return (1);
-}
-
 void	ft_map(t_info *info)
 {
-	if (info->nb_col > 94 || info->nb_line > 52)
-	{
-		ft_putstr_error("Error\nCan't print this huge map\n");
-		return ;
-	}
 	if (!info->print_map)
-		info->print_map = ft_open_map(info);
+		info->print_map = 1;
 	else
 		info->print_map = 0;
 }
