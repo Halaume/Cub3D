@@ -6,10 +6,12 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:24:09 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/09 12:14:40 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/22 11:05:52 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
+//	TODO
+//	Chain list -> pos x/y of door -> state Open/Close -> time last open
 #include "../inc/cub3d.h"
 
 int	ft_count_walldo(char **map, int y, int x, int *i)
@@ -42,6 +44,8 @@ int	ft_count_walldo(char **map, int y, int x, int *i)
 int	ft_check_doors(char **map, int y, int x)
 {
 	int	i;
+
+	//init i?
 
 	if (ft_count_walldo(map, y, x, &i))
 		return (1);

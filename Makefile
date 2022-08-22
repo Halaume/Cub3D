@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/09 12:15:32 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/22 11:58:38 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRC_FT = affiche \
 	ft_print_map \
 	ft_minimap \
 	ft_print \
+	hook_mouse
 
 LIBFT = libft/libft.a
 

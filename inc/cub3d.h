@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/18 17:31:27 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/22 13:49:56 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ typedef struct s_hooking {
 	int	right;
 	int	cam_left;
 	int	cam_right;
+	int	mouse_hold;
+	int	mouse_pos;
+	int	mouse_prev_pos;
 }	t_hooking;
 
 typedef struct s_info {
@@ -124,6 +127,9 @@ int				closewin(t_info *info);
 //			Hooking
 
 int				hook(int keycode, t_info *info);
+int				hook_mouse(int keycode, int x, int y, t_info *info);
+int				hook_mouse_release(int keycode, int x, int y, t_info *info);
+int				hook_mouse_mouv(int x, int y, t_info *info);
 int				hook_release(int keycode, t_info *info);
 int				looping_hook(t_info *info);
 

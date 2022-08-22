@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/18 17:37:56 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/22 14:18:14 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ t_hooking	init_hook(void)
 	my_hook.right = 0;
 	my_hook.cam_left = 0;
 	my_hook.cam_right = 0;
+	my_hook.mouse_hold = 1;
+	my_hook.mouse_pos = 0;
+	my_hook.mouse_prev_pos = 0;
 	return (my_hook);
 }
 
