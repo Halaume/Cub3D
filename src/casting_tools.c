@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:31:25 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 17:33:31 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:52:22 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	choose_texture(t_info *info, t_casting *cast)
 
 void	do_it_pls(t_info *info, t_casting *cast, int i)
 {
+	check_angle(info, cast);
 	choose_texture(info, cast);
 	if (cast->wall_height < 0)
 		cast->start_px = 1;

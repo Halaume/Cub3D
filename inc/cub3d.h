@@ -6,7 +6,6 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 15:50:16 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +187,7 @@ void			next_curr(t_casting *cast, int side);
 void			choose_texture(t_info *info, t_casting *cast);
 void			do_it_pls(t_info *info, t_casting *cast, int i);
 void			get_the_wall(t_info *info, t_casting *cast, int i);
+void			check_angle(t_info *info, t_casting *cast);
 
 //			Brice Casting
 
