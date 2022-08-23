@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/23 16:52:48 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/08/23 17:53:34 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus \
 		  ft_doors_bonus ft_gnl_bonus ft_minimap_bonus ft_parse_bonus \
 		  ft_partext_bonus ft_player_bonus ft_print_bonus ft_print_map_bonus \
 		  ft_tools_bonus hook_bonus hook_mouse_bonus liberation_bonus \
-		  main_bonus map_bonus moove_back_bonus moove_bonus moove_for_bonus \
+		  main map_bonus moove_back_bonus moove_bonus moove_for_bonus \
 		  moove_left_bonus moove_right_bonus texture_bonus 
 
 LIBFT = libft/libft.a
