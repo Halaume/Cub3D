@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/22 15:23:21 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:08:16 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	hook(int keycode, t_info *info)
 
 int	hook_release(int keycode, t_info *info)
 {
-	printf("keycode = %d\n", keycode);
 	if (keycode == 65361)
 		info->hook.cam_left = 0;
 	if (keycode == 65363)
@@ -63,7 +62,6 @@ int	hook_release(int keycode, t_info *info)
 
 void	mouse_loop(t_info *info)
 {
-	(void)info;
 	if (info->hook.mouse_hold == 1)
 	{
 		if (info->hook.mouse_prev_pos - info->hook.mouse_pos > 0)
