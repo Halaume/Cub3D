@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:03:26 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/18 12:30:01 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/23 11:11:57 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	tracing_again(t_info *info)
 {
 	mlx_destroy_image(info->mlx, info->img.img);
-	info->img.img = mlx_new_image(info->mlx, 1920, 1080);
+	info->img.img = mlx_new_image(info->mlx, info->w, info->h);
 	if (!info->img.img)
 	{
 		ft_closewin(info, 1);

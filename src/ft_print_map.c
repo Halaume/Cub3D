@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:21:07 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/18 16:21:34 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/23 11:16:50 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@ int	ft_print_map(t_info *info, int x, int y, int rgb[3])
 {
 	int	i;
 	int	j;
+	int	diff;
 
 	i = -1;
+	diff = -10;
+	if (info->nb_col > 94 || info->nb_line > 52)
+		diff = info->s_m;
 	while (++i < info->s_m)
 	{
 		j = -1;
 		while (++j < info->s_m)
 		{
-			if ((y == 10 && i == 0) || (y == info->nb_line * info->s_m
-					+ info->s_m && i == info->s_m - 1) || (x == 10 && j == 0)
-				|| (x == info->nb_col * info->s_m + info->s_m
-					&& j == info->s_m - 1))
+			if ((y == 10 && i == 0) || (x == 10 && j == 0)
+				|| (y == info->nb_line * info->s_m + diff && i == info->s_m - 1)
+				|| (x == info->nb_col * info->s_m + diff && j == info->s_m - 1))
 				my_mlx_pixel_put(&info->img, x + j, y + i,
 					create_trgb(100, 0, 0, 0));
 			else

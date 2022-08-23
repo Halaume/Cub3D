@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/22 15:18:11 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:11:31 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	ft_init_window(t_info *info)
 	info->mlx = mlx_init();
 	if (!info->mlx)
 		return (ft_closewin(info, 1));
-	info->window = mlx_new_window(info->mlx, 1920, 1080, "Cub3D");
+	info->window = mlx_new_window(info->mlx, info->w, info->h, "Cub3D");
 	if (!info->window)
 		return (ft_closewin(info, 1));
-	info->img.img = mlx_new_image(info->mlx, 1920, 1080);
+	info->img.img = mlx_new_image(info->mlx, info->w, info->h);
 	if (!info->img.img)
 		return (ft_closewin(info, 1));
 	info->img.addr = mlx_get_data_addr(info->img.img, &info->img.bits_per_pixel,

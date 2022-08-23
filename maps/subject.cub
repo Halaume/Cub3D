@@ -1,13 +1,13 @@
-     NO textures/bluewall.xpm
-     SO textures/bluewall.xpm
-WE textures/bluewall.xpm
-EA textures/bluewall.xpm
+     NO textures/colorstone.xpm
+     SO textures/bluestone.xpm
+WE textures/greystone.xpm
+EA textures/mossy.xpm
 
 
 
 
-F 225,255,255
-C 0,0,0
+F 192,192,192
+C 100,100,255
 
 
         1111111111111111111111111
