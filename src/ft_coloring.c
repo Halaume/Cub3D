@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:21:00 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/18 11:21:01 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/23 15:00:11 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@ void	ft_space_color(int rgb[3])
 	rgb[0] = 72;
 	rgb[1] = 86;
 	rgb[2] = 150;
-}
-
-void	ft_door_color(int rgb[3])
-{
-	rgb[0] = 81;
-	rgb[1] = 60;
-	rgb[2] = 44;
 }
 
 void	ft_floor_color(int rgb[3])
