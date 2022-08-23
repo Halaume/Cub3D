@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/22 11:58:38 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/08/23 12:46:49 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,17 +15,21 @@ vpath ft_%.c libft
 vpath ft_%.o libft
 
 NAME = cub3D
+NAMEB = cub3D_bonus
 
-INC_DIR =		inc
+INC =			inc/cub3d.h
+INCB =			inc/cub3d_bonus.h
 OBJ_DIR =		obj
+OBJB_DIR =		obj_bonus
 SRC_DIR =		src
+SRCB_DIR =		src_bonus
 LIB_DIR =		libft/
 
 SRC =			$(SRC_FT:%=$(SRC_DIR)/%.c)
+SRCB =			$(SRCB_FT:%=$(SRCB_DIR)/%.c)
 
 OBJ =			$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
-
-OBJ_DIRS =		$(OBJ_DIR)
+OBJB =			$(SRCB:$(SRCB_DIR)%.c=$(OBJB_DIR)%.o)
 
 CC = cc $(CFLAGS)
 
@@ -41,34 +45,20 @@ MLX = minilibx-linux/libmlx_Linux.a
 #HOW TO LIST .c 
 #	ls -l | awk '{print $9}' | grep -E ".c$"| sed "s/\.c/ \\\/g" | sed '$s/\\$//g'
 
-SRC_FT = affiche \
-	brice_casting \
-	cub3d_basic \
-	cub3d_basic2 \
-	ft_gnl \
-	hook \
-	liberation \
-	main \
-	map \
-	moove \
-	moove_for \
-	moove_back \
-	moove_left \
-	moove_right \
-	texture \
-	casting_tools \
-	ft_tools \
-	ft_colors \
-	ft_coloring \
-	ft_parse \
-	ft_check_map \
-	ft_check_map_tools \
-	ft_partext \
-	ft_player \
-	ft_print_map \
-	ft_minimap \
-	ft_print \
-	hook_mouse
+SRC_FT = affiche brice_casting cub3d_basic cub3d_basic2 ft_gnl hook liberation \
+		 main map moove moove_for moove_back moove_left moove_right texture \
+		 casting_tools ft_tools ft_colors ft_coloring ft_parse ft_check_map \
+		 ft_check_map_tools ft_partext ft_player ft_print_map ft_minimap \
+		 ft_print hook_mouse
+
+SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus \
+		  cub3d_basic2_bonus cub3d_basic_bonus ft_check_map_bonus \
+		  ft_check_map_tools_bonus ft_coloring_bonus ft_colors_bonus \
+		  ft_doors_bonus ft_gnl_bonus ft_minimap_bonus ft_parse_bonus \
+		  ft_partext_bonus ft_player_bonus ft_print_bonus ft_print_map_bonus \
+		  ft_tools_bonus hook_bonus hook_mouse_bonus liberation_bonus \
+		  main_bonus map_bonus moove_back_bonus moove_bonus moove_for_bonus \
+		  moove_left_bonus moove_right_bonus texture_bonus 
 
 LIBFT = libft/libft.a
 
@@ -79,16 +69,29 @@ all: $(NAME)
 
 -include libft/Makefile
 
-$(OBJ_DIRS):
+$(OBJ_DIR):
 	mkdir -p $@
 
-$(OBJ) : | $(OBJ_DIRS)
+$(OBJ) : $(INC) | $(OBJ_DIR)
 
-$(OBJ_DIRS)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $< -o $@
 
-$(NAME): $(OBJ_DIRS) $(SRC) $(MLX) $(OBJ) $(LIBFT)
+$(NAME): $(OBJ_DIR) $(SRC) $(MLX) $(OBJ) $(LIBFT)
 	$(CC) $(OBJ) $(MLX) $(LIBFT) -lXext -lX11 -lm -Iminilibx -o $@
+
+bonus: $(NAMEB)
+
+$(OBJB_DIR):
+	mkdir -p $@
+
+$(OBJB) : $(INCB) | $(OBJB_DIR)
+
+$(OBJB_DIR)/%.o: $(SRCB_DIR)/%.c
+	$(CC) -c $< -o $@
+
+$(NAMEB): $(OBJB_DIR) $(SRCB) $(MLX) $(OBJB) $(LIBFT)
+	$(CC) $(OBJB) $(MLX) $(LIBFT) -lXext -lX11 -lm -Iminilibx -o $@
 
 $(MLX):
 	$(MAKE) -C ./minilibx-linux
@@ -98,10 +101,12 @@ $(LIBFT):	${SRCS} ${OBJS} libft.h
 
 clean:
 	@$(RM) $(OBJ_DIR)
+	@$(RM) $(OBJB_DIR)
 	@echo "Cleaned object"
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) $(NAMEB)
 	@$(MAKE) fclean -C $(LIB_DIR)
 	@$(MAKE) clean -C ./minilibx-linux
 	@echo "Cleaned program and MLX"
@@ -136,5 +141,5 @@ coffee: all clean
 	@echo "\0033[1;32m\033[3C                    Take Your Coffee"
 	$(call print_aligned_coffee)
 
-.SECONDARY: $(OBJ) $(OBJ_DIR)
-.PHONY: all clean fclean re coffee
+.SECONDARY: $(OBJ) $(OBJ_DIR) $(OBJB) $(OBJB_DIR)
+.PHONY: all clean fclean re coffee bonus
