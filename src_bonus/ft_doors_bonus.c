@@ -9,7 +9,7 @@
 /*   Updated: 2022/08/22 11:05:52 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
+
 //	TODO
 //	Chain list -> pos x/y of door -> state Open/Close -> time last open
 #include "../inc/cub3d.h"
@@ -81,4 +81,4 @@ int	ft_doors(char **map)
 		y++;
 	}
 	return (0);
-}*/
+}
