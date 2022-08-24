@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_basic.c                                      :+:      :+:    :+:   */
+/*   cub3d_basic_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/22 15:22:32 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:34:41 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../inc/cub3d_bonus.h"
 
 int	ft_parsing_info_err(t_info *info)
 {
@@ -74,8 +74,8 @@ void	ft_define_sm(t_info *info)
 
 void	init_info(t_info *info, char *file)
 {
-	info->h = 1080;
-	info->w = 1920;
+	info->h = HEIGHT;
+	info->w = WIDTH;
 	info->fd = 0;
 	info->mlx = NULL;
 	info->window = NULL;
@@ -88,6 +88,7 @@ void	init_info(t_info *info, char *file)
 	info->map = NULL;
 	info->mapping = NULL;
 	info->print_map = 0;
+	info->door = NULL;
 	if (ft_parse(info, file))
 		exit (1);
 	if (new_init_player(info))

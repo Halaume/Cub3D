@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   liberation.c                                       :+:      :+:    :+:   */
+/*   liberation_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/03 15:38:54 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 11:47:20 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../inc/cub3d_bonus.h"
 
 void	free_char_char(char **str)
 {
@@ -52,6 +52,7 @@ void	ft_free_map(t_map *map)
 		free(tmp->line);
 		tmp->line = NULL;
 		free(tmp);
+		tmp = NULL;
 	}
 }
 
@@ -75,6 +76,8 @@ void	ft_free(t_info *info)
 		ft_free_map(info->mapping);
 	if (info->map)
 		ft_free_split(info->map);
+	if (info->door)
+		ft_free_doors(info->door);
 }
 
 void	free_func(t_info *info)

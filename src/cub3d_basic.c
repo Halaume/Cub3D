@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/22 15:22:32 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:09:48 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,10 @@ void	init_texture(t_info *info)
 	info->texture_w.path = NULL;
 }
 
-void	ft_define_sm(t_info *info)
-{
-	info->s_m = 20;
-	if (info->nb_col > 94 || info->nb_line > 52)
-	{
-		if (info->nb_col - 94 > info->nb_line - 52)
-			info->s_m = info->w / info->nb_col - 1;
-		else
-			info->s_m = info->h / info->nb_line - 1;
-	}
-}
-
 void	init_info(t_info *info, char *file)
 {
-	info->h = 1080;
-	info->w = 1920;
+	info->h = HEIGHT;
+	info->w = WIDTH;
 	info->fd = 0;
 	info->mlx = NULL;
 	info->window = NULL;
@@ -87,12 +75,10 @@ void	init_info(t_info *info, char *file)
 	info->img.addr = NULL;
 	info->map = NULL;
 	info->mapping = NULL;
-	info->print_map = 0;
 	if (ft_parse(info, file))
 		exit (1);
 	if (new_init_player(info))
 		exit (1);
 	info->nb_line = ft_tablen(info->map);
 	info->nb_col = ft_strlen(info->map[0]);
-	ft_define_sm(info);
 }

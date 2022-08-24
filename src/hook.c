@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 11:39:55 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 12:14:55 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	hook(int keycode, t_info *info)
 		info->hook.forward = 1;
 	if (keycode == 115)
 		info->hook.backward = 1;
-	if (keycode == 109)
-		ft_map(info);
 	if (keycode == 65307)
 		closewin(info);
 	looping_hook(info);

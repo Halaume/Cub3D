@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 15:53:18 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:07:11 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	cast_angle(t_info *info, t_casting *cast)
 {
 	if (fabs(cast->delta[0] - cast->delta[1]) < 0.0001 || \
 			cast->delta[0] < cast->delta[1])
-	//PROPABLY BUG HERE
 	{
 		cast->curr[1] = cast->delta[0] * cast->ray[1] + cast->prev_y;
 		cast->side = 0;
@@ -118,6 +117,5 @@ void	brice_casting(t_info *info)
 		}
 		get_the_wall(info, &cast, i);
 	}
-	ft_mapping(info);
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
 }
