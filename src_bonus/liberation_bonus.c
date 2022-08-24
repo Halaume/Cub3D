@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 11:47:20 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:37:43 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ void	ft_free(t_info *info)
 	if (info->texture_e.path)
 		free(info->texture_e.path);
 	info->texture_e.path = NULL;
+	if (info->texture_d.path)
+		free(info->texture_d.path);
+	info->texture_d.path = NULL;
+	if (info->texture_ex.path)
+		free(info->texture_ex.path);
+	info->texture_ex.path = NULL;
 	if (info->mapping)
 		ft_free_map(info->mapping);
 	if (info->map)
@@ -89,6 +95,8 @@ void	free_func(t_info *info)
 	free_texture(info, &info->texture_s);
 	free_texture(info, &info->texture_e);
 	free_texture(info, &info->texture_w);
+	free_texture(info, &info->texture_d);
+	free_texture(info, &info->texture_ex);
 	if (info)
 		ft_free(info);
 }
