@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   hook_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/22 15:23:21 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 12:11:21 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../inc/cub3d_bonus.h"
 
 int	hook(int keycode, t_info *info)
 {
@@ -34,13 +34,14 @@ int	hook(int keycode, t_info *info)
 		ft_map(info);
 	if (keycode == 65307)
 		closewin(info);
+	if (keycode == 101)
+		open_door(info);
 	looping_hook(info);
 	return (0);
 }
 
 int	hook_release(int keycode, t_info *info)
 {
-	printf("keycode = %d\n", keycode);
 	if (keycode == 65361)
 		info->hook.cam_left = 0;
 	if (keycode == 65363)

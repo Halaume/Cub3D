@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moove.c                                            :+:      :+:    :+:   */
+/*   moove_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:43:10 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/22 11:18:32 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 12:11:11 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../inc/cub3d_bonus.h"
 
-/*t_door	*get_this_door(t_door *list, int x, int y)
+t_door	*get_this_door(t_door *list, int x, int y)
 {
 	t_door	*tmp;
 
@@ -29,10 +29,10 @@ int	is_door_open(t_info *info, int y, int x)
 	this_door = get_this_door(info->door, x, y);
 	if (this_door == NULL)
 		return (-1);
-	if (this_door->state = 1)
+	if (this_door->is_open = 0)
 		return (1);
 	return (0);
-}*/
+}
 
 int	is_wall(t_info *info, double y, double x)
 {
@@ -41,10 +41,10 @@ int	is_wall(t_info *info, double y, double x)
 		return (1);
 	if (info->map[(int)y][(int)x] == '1')
 		return (1);
-//	if (info->map[(int)y][(int)x] == '2' && is_door_open(info, (int)y, (int)x) == 1)
-//		return (1);
-//	if (is_door_open(info, (int)y, (int)x) == -1)
-//		return (printf("error, door not exist\n"), 1);
+	if (info->map[(int)y][(int)x] == '2' && is_door_open(info, (int)y, (int)x) == 1)
+		return (1);
+	if (is_door_open(info, (int)y, (int)x) == -1)
+		return (printf("error, door not exist\n"), 1);
 	return (0);
 }
 
