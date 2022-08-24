@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:31:25 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 17:33:31 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:31:03 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,26 @@ void	next_curr(t_casting *cast, int side)
 	cast->curr[1] = tmp[1];
 }
 
+void	check_door_text(t_info *info, t_casting *cast)
+{
+	if (cast->is_wall == 3)
+	{
+		cast->percent = (cast->curr[0] - floor(cast->curr[0])) / 1;
+		cast->texture = info->texture_d;
+		if (cast->ray[1] > 0)
+			cast->percent = 1 - cast->percent;
+	}
+	else if (cast->is_wall == 4)
+	{
+		cast->texture = info->texture_d;
+		cast->percent = (cast->curr[1] - floor(cast->curr[1])) / 1;
+		if (cast->ray[0] < 0)
+			cast->percent = 1 - cast->percent;
+	}
+}
 void	choose_texture(t_info *info, t_casting *cast)
 {
+	check_door_text(info, cast);
 	if (cast->is_wall == 1)
 	{
 		cast->percent = (cast->curr[0] - floor(cast->curr[0])) / 1;
@@ -72,7 +90,7 @@ void	choose_texture(t_info *info, t_casting *cast)
 			cast->percent = 1 - cast->percent;
 		}
 	}
-	else
+	else if (cast->is_wall == 2)
 	{
 		cast->texture = info->texture_e;
 		cast->percent = (cast->curr[1] - floor(cast->curr[1])) / 1;

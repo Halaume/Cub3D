@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 12:38:23 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:27:36 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	cast_droit(t_info *info, t_casting *cast)
 	{
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 1;
+		else if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+			cast->is_wall = 3;
 		else
 		{
 			cast->curr[1] += 1;
@@ -29,6 +31,8 @@ void	cast_droit(t_info *info, t_casting *cast)
 	{
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 2;
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+			cast->is_wall = 4;
 		else
 		{
 			cast->curr[0] += 1;
@@ -47,6 +51,8 @@ void	cast_angle(t_info *info, t_casting *cast)
 		cast->side = 0;
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 2;
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+			cast->is_wall = 4;
 	}
 	else
 	{
@@ -54,6 +60,8 @@ void	cast_angle(t_info *info, t_casting *cast)
 		cast->side = 1;
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 1;
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+			cast->is_wall = 3;
 	}
 	if (cast->is_wall == 0)
 	{
