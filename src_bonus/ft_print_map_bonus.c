@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:21:07 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/23 11:16:50 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:23:36 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ft_init_color_map(t_info *info, int ij[2], int rgb[3])
 		ft_wall_color(rgb);
 	else if (info->map[ij[0]][ij[1]] == '2')
 		ft_door_color(rgb);
+	else if (info->map[ij[0]][ij[1]] == 'X')
+		ft_exit_color(rgb);
 	else
 		ft_floor_color(rgb);
 }

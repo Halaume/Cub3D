@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 11:34:41 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:08:57 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ void	init_texture(t_info *info)
 	info->texture_s.img.img = NULL;
 	info->texture_e.img.img = NULL;
 	info->texture_w.img.img = NULL;
+	info->texture_d.img.img = NULL;
+	info->texture_ex.img.img = NULL;
 	info->texture_n.path = NULL;
 	info->texture_s.path = NULL;
 	info->texture_e.path = NULL;
 	info->texture_w.path = NULL;
+	info->texture_d.path = NULL;
+	info->texture_ex.path = NULL;
 }
 
 void	ft_define_sm(t_info *info)
@@ -88,6 +92,7 @@ void	init_info(t_info *info, char *file)
 	info->map = NULL;
 	info->mapping = NULL;
 	info->print_map = 0;
+	info->is_exit = 0;
 	info->door = NULL;
 	if (ft_parse(info, file))
 		exit (1);

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 11:42:20 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:23:05 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct s_info {
 	t_texture	texture_s;
 	t_texture	texture_w;
 	t_texture	texture_e;
+	t_texture	texture_d;
+	t_texture	texture_ex;
 	t_map		*mapping;
 	t_door		*door;
 	char		**map;
@@ -94,6 +96,7 @@ typedef struct s_info {
 	int			nb_col;
 	int			s_m;
 	int			print_map;
+	int			is_exit;
 }	t_info;
 
 typedef struct s_casting {
@@ -168,6 +171,7 @@ void			ft_wall_color(int rgb[3]);
 void			ft_space_color(int rgb[3]);
 void			ft_door_color(int rgb[3]);
 void			ft_floor_color(int rgb[3]);
+void			ft_exit_color(int rgb[3]);
 //			Map
 void			ft_mapadd_back(t_map **map, t_map *new);
 int				ft_mapnew(t_map **map, char *buf);
@@ -175,8 +179,9 @@ size_t			ft_maplen(t_map *chain);
 size_t			ft_longest(t_map *map);
 int				ft_getmap(t_info *info);
 //			Check Map
-int				ft_charcheck(char **map, int y, int x);
-int				ft_parsingage(char **map);
+int				ft_charcheck(t_info *info, char **map, int y, int x);
+int				ft_parsingage(t_info *info);
+int				ft_check_doex(t_info *info);
 int				ft_valid_map(t_info *info);
 //			Player
 int				ft_nb_player(char **map);
@@ -190,7 +195,7 @@ int				ft_checkside(char c);
 int				ft_sides(char **map);
 //			Textures (partext)
 int				ft_fill_text(t_texture *text, char *buf);
-int				ft_add_text(t_info *info, char *buf);
+int				ft_add_text(t_info *info, char *buf, int err);
 int				ft_check_fill(char *buf);
 
 //			Casting
