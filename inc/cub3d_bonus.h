@@ -6,12 +6,12 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 16:14:35 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 11:42:20 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
@@ -38,17 +38,16 @@ typedef struct s_data {
 }	t_data;
 
 typedef struct s_texture {
-	t_data				img;
-	char				*path;
-	int					height;
-	int					width;
+	t_data	img;
+	char	*path;
+	int		height;
+	int		width;
 }	t_texture;
 
 typedef struct s_player {
 	double	x;
 	double	y;
 	double	angle;
-
 }	t_player;
 
 typedef struct s_hooking {
@@ -65,6 +64,14 @@ typedef struct s_hooking {
 	int	mouse_prev_pos;
 }	t_hooking;
 
+typedef struct s_door {
+	int				x;
+	int				y;
+	int				is_op;
+	unsigned int	last_open;
+	struct s_door	*next;
+}	t_door;
+
 typedef struct s_info {
 	t_player	player;
 	t_hooking	hook;
@@ -74,6 +81,7 @@ typedef struct s_info {
 	t_texture	texture_w;
 	t_texture	texture_e;
 	t_map		*mapping;
+	t_door		*door;
 	char		**map;
 	void		*mlx;
 	void		*window;
@@ -210,6 +218,13 @@ void			turn_right(t_info *info);
 void			turn_left(t_info *info);
 int				is_wall(t_info *info, double y, double x);
 
+//			Doors
+
+int				ft_count_walldo(char **map, int y, int x, int *i);
+int				ft_check_doors(char **map, int y, int x);
+int				ft_fill_doors(t_info *info, int x, int y);
+int				ft_doors(t_info *info, int i);
+
 //			Texture
 
 void			get_address(t_info *info);
@@ -237,6 +252,7 @@ void			ft_map(t_info *info);
 void			free_char_char(char **str);
 void			ft_free(t_info *info);
 void			free_func(t_info *info);
+void			ft_free_doors(t_door *doors);
 
 //			GNL
 
@@ -257,5 +273,6 @@ int				ft_perror_free(char *error, char *str, int i);
 void	ft_print_mapping(t_map *map);
 void	ft_print_text(t_info *info);
 void	print_tab(char **tab);
+void	print_doors(t_door *door);
 
 #endif

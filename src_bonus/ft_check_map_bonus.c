@@ -6,13 +6,11 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:51:30 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/09 12:14:59 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 11:20:24 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d_bonus.h"
-
-//int	ft_doors(char **map);
 
 int	ft_charcheck(char **map, int y, int x)
 {
@@ -65,7 +63,9 @@ int	ft_valid_map(t_info *info)
 		return (ft_putstr_error("Error\nMap error\n"));
 	if (ft_sides(info->map) || ft_parsingage(info->map))
 		return (1);
-//	if (ft_doors(info->map))
-//		return (1);
+	if (ft_doors(info, 1))
+		return (1);
+	if (ft_doors(info, 2))
+		return (1);
 	return (0);
 }

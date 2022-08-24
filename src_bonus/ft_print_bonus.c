@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 12:50:14 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/03 15:30:25 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 11:42:05 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,21 @@ void	print_tab(char **tab)
 		{
 			printf("%s\n", tab[i]);
 			i++;
+		}
+	}
+}
+
+void	print_doors(t_door *door)
+{
+	if (door)
+	{
+		while (door)
+		{
+			printf("x = %d\n", door->x);
+			printf("y = %d\n", door->y);
+			printf("is_op = %d\n", door->is_op);
+			printf("timestamp = %u\n", door->last_open);
+			door = door->next;
 		}
 	}
 }
