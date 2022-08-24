@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/24 11:33:44 by nflan            ###   ########.fr        #
+#    Updated: 2022/08/24 13:07:32 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC_FT = affiche brice_casting cub3d_basic cub3d_basic2 ft_gnl hook liberation \
 		 casting_tools ft_tools ft_colors ft_coloring ft_parse ft_check_map \
 		 ft_check_map_tools ft_partext ft_player ft_print hook_mouse check_edge
 
-SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus \
+SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus door_bonus \
 		  cub3d_basic2_bonus cub3d_basic_bonus ft_check_map_bonus \
 		  ft_check_map_tools_bonus ft_coloring_bonus ft_colors_bonus \
 		  ft_doors_bonus ft_gnl_bonus ft_minimap_bonus ft_parse_bonus \

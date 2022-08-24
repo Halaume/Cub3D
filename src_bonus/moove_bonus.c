@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:43:10 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 12:11:11 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:19:39 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_door	*get_this_door(t_door *list, int x, int y)
 	t_door	*tmp;
 
 	tmp = list;
-	while (tmp->x != x && tmp->y != y)
-		tmp = tmp-next;
+	while (tmp && !(tmp->x == x && tmp->y == y))
+		tmp = tmp->next;
 	return (tmp);
 }
 
@@ -28,8 +28,8 @@ int	is_door_open(t_info *info, int y, int x)
 
 	this_door = get_this_door(info->door, x, y);
 	if (this_door == NULL)
-		return (-1);
-	if (this_door->is_open = 0)
+		return (0);
+	if (this_door->is_op == 0)
 		return (1);
 	return (0);
 }
@@ -43,8 +43,6 @@ int	is_wall(t_info *info, double y, double x)
 		return (1);
 	if (info->map[(int)y][(int)x] == '2' && is_door_open(info, (int)y, (int)x) == 1)
 		return (1);
-	if (is_door_open(info, (int)y, (int)x) == -1)
-		return (printf("error, door not exist\n"), 1);
 	return (0);
 }
 

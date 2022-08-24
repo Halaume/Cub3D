@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 11:42:20 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 13:06:55 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,11 @@ void			init_info(t_info *info, char *file);
 void			tracing_again(t_info *info);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				closewin(t_info *info);
+
+//			Door
+
+t_door			*get_this_door(t_door *list, int x, int y);
+void			open_door(t_info *info);
 
 //			Hooking
 
