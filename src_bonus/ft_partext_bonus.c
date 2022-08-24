@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:48:39 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/05 12:23:48 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:06:20 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ int	ft_fill_text(t_texture *text, char *buf)
 	return (0);
 }
 
-int	ft_add_text(t_info *info, char *buf)
+int	ft_add_text(t_info *info, char *buf, int err)
 {
-	int	err;
-
-	err = 0;
 	if (!strncmp(buf, "NO ", 3))
 		err = ft_fill_text(&info->texture_n, buf + 2);
 	else if (!strncmp(buf, "SO ", 3))
@@ -35,6 +32,10 @@ int	ft_add_text(t_info *info, char *buf)
 		err = ft_fill_text(&info->texture_w, buf + 2);
 	else if (!strncmp(buf, "EA ", 3))
 		err = ft_fill_text(&info->texture_e, buf + 2);
+	else if (!strncmp(buf, "DO ", 3))
+		err = ft_fill_text(&info->texture_d, buf + 2);
+	else if (!strncmp(buf, "EX ", 3))
+		err = ft_fill_text(&info->texture_ex, buf + 2);
 	else if (!strncmp(buf, "F ", 2))
 		err = ft_fill_color(&info->color_floor, buf + 1);
 	else if (!strncmp(buf, "C ", 2))
@@ -53,13 +54,16 @@ int	ft_check_fill(char *buf)
 	int	l;
 
 	l = ft_strlen(buf);
-	if (!l || l == 1)
+	if (!buf || l == 1)
 		return (0);
-	if (ft_strnstr(buf, "NO", l) || ft_strnstr(buf, "SO", l)
-		|| ft_strnstr(buf, "WE", l) || ft_strnstr(buf, "EA", l)
-		|| ft_strnstr(buf, "F", l) || ft_strnstr(buf, "C", l))
+	if (ft_strnstr(buf, "NO ", l) || ft_strnstr(buf, "SO ", l)
+		|| ft_strnstr(buf, "WE ", l) || ft_strnstr(buf, "EA ", l)
+		|| ft_strnstr(buf, "F ", l) || ft_strnstr(buf, "C ", l)
+		|| ft_strnstr(buf, "DO ", l) || ft_strnstr(buf, "EX ", l))
 		return (1);
-	else
+	while (*buf == ' ')
+		buf++;
+	if (*buf != '1')
 		return (2);
 	return (0);
 }

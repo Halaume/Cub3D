@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/24 15:53:59 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/08/24 18:24:27 by nflan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,13 +52,13 @@ SRC_FT = affiche brice_casting cub3d_basic cub3d_basic2 ft_gnl hook liberation \
 
 SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus door_bonus \
 		  cub3d_basic2_bonus cub3d_basic_bonus ft_check_map_bonus \
-		  ft_check_map_tools_bonus ft_coloring_bonus ft_colors_bonus \
-		  ft_doors_bonus ft_gnl_bonus ft_minimap_bonus ft_parse_bonus \
-		  ft_partext_bonus ft_player_bonus ft_print_bonus ft_print_map_bonus \
-		  ft_tools_bonus hook_bonus hook_mouse_bonus liberation_bonus \
-		  main map_bonus moove_back_bonus moove_bonus moove_for_bonus \
-		  moove_left_bonus moove_right_bonus texture_bonus liberation2_bonus \
-		  auto_close_bonus
+		  ft_check_map_tools_bonus ft_coloring_bonus ft_coloring2_bonus \
+		  ft_colors_bonus ft_doors_bonus ft_gnl_bonus ft_minimap_bonus \
+		  ft_parse_bonus ft_partext_bonus ft_player_bonus ft_print_bonus \
+		  ft_print_map_bonus ft_tools_bonus hook_bonus hook_mouse_bonus \
+		  liberation_bonus main map_bonus moove_back_bonus moove_bonus \
+		  moove_for_bonus moove_left_bonus moove_right_bonus texture_bonus \
+		  liberation2_bonus auto_close_bonus
 
 LIBFT = libft/libft.a
 

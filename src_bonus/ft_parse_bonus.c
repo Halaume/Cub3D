@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:19:06 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/05 12:27:57 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:05:30 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,16 @@ int	ft_play(t_info *info, char *buf)
 {
 	static int	id = 0;
 
-	if (id < 6 && ft_check_fill(buf))
+	if (ft_check_fill(buf))
 	{
 		if (ft_check_fill(buf) == 2)
 			return (ft_putstr_error("Error\nCaracteristique invalide\n"));
 		while (*buf == ' ')
 			buf++;
-		if (ft_add_text(info, buf))
+		if (ft_add_text(info, buf, 0))
 			return (1);
-		id++;
 	}
-	else if (id >= 6 && ft_check_map(buf))
+	else if (ft_check_map(buf))
 	{
 		if (id == 8)
 			return (ft_putstr_error("Error\nIl ne doit rien y avoir apres la ma\

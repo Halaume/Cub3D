@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 17:59:39 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:23:05 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,30 @@ typedef struct s_door {
 
 typedef struct s_info {
 	struct timeval	start;
-	t_player		player;
-	t_hooking		hook;
-	t_data			img;
-	t_texture		texture_n;
-	t_texture		texture_s;
-	t_texture		texture_w;
-	t_texture		texture_e;
-	t_map			*mapping;
-	t_door			*door;
-	char			**map;
-	void			*mlx;
-	void			*window;
-	int				h;
-	int				w;
-	int				fd;
-	int				color_sky;
-	int				color_floor;
-	int				nb_line;
-	int				nb_col;
-	int				s_m;
-	int				print_map;
+	t_player	player;
+	t_hooking	hook;
+	t_data		img;
+	t_texture	texture_n;
+	t_texture	texture_s;
+	t_texture	texture_w;
+	t_texture	texture_e;
+	t_texture	texture_d;
+	t_texture	texture_ex;
+	t_map		*mapping;
+	t_door		*door;
+	char		**map;
+	void		*mlx;
+	void		*window;
+	int			h;
+	int			w;
+	int			fd;
+	int			color_sky;
+	int			color_floor;
+	int			nb_line;
+	int			nb_col;
+	int			s_m;
+	int			print_map;
+	int			is_exit;
 }	t_info;
 
 typedef struct s_casting {
@@ -156,6 +159,7 @@ int						hook_release(int keycode, t_info *info);
 void					mouse_loop(t_info *info);
 int						looping_hook(t_info *info);
 //hook_mouse.c
+<<<<<<< HEAD
 int						hook_mouse(int keycode, int x, int y, t_info *info);
 int						hook_mouse_release(int keycode, int x, int y, t_info *info);
 int						hook_mouse_mouv(int x, int y, t_info *info);
@@ -226,6 +230,80 @@ void					mv_back(t_info *info);
 void					turn_right(t_info *info);
 void					turn_left(t_info *info);
 int						is_wall(t_info *info, double y, double x);
+=======
+int				hook_mouse(int keycode, int x, int y, t_info *info);
+int				hook_mouse_release(int keycode, int x, int y, t_info *info);
+int				hook_mouse_mouv(int x, int y, t_info *info);
+
+/*--------------------PARSING-------------------*/
+//			Parse
+int				ft_check_map(char *buf);
+int				ft_play(t_info *info, char *buf);
+int				ft_parsarg(t_info *info);
+int				ft_init_fd(t_info *info, char *file);
+int				ft_parse(t_info *info, char *file);
+//			Colors
+int				create_trgb(int t, int r, int g, int b);
+int				ft_check_colors(char **tab);
+int				ft_fill_color(int *tofill, char *buf);
+//			Coloring
+void			ft_player_color(int rgb[3]);
+void			ft_wall_color(int rgb[3]);
+void			ft_space_color(int rgb[3]);
+void			ft_door_color(int rgb[3]);
+void			ft_floor_color(int rgb[3]);
+void			ft_exit_color(int rgb[3]);
+//			Map
+void			ft_mapadd_back(t_map **map, t_map *new);
+int				ft_mapnew(t_map **map, char *buf);
+size_t			ft_maplen(t_map *chain);
+size_t			ft_longest(t_map *map);
+int				ft_getmap(t_info *info);
+//			Check Map
+int				ft_charcheck(t_info *info, char **map, int y, int x);
+int				ft_parsingage(t_info *info);
+int				ft_check_doex(t_info *info);
+int				ft_valid_map(t_info *info);
+//			Player
+int				ft_nb_player(char **map);
+void			ft_init_player_angle(t_info *info, int y, int x);
+int				new_init_player(t_info *info);
+//			Check Map_tools
+int				ft_valid_elems(char c);
+int				ft_check_around(char **map, int y, int x);
+int				ft_check_zero(char **map, int y, int x);
+int				ft_checkside(char c);
+int				ft_sides(char **map);
+//			Textures (partext)
+int				ft_fill_text(t_texture *text, char *buf);
+int				ft_add_text(t_info *info, char *buf, int err);
+int				ft_check_fill(char *buf);
+
+//			Casting
+
+void			get_proj_screen(t_info *info, t_casting *cast);
+void			next_curr(t_casting *cast, int side);
+void			choose_texture(t_info *info, t_casting *cast);
+void			do_it_pls(t_info *info, t_casting *cast, int i);
+void			get_the_wall(t_info *info, t_casting *cast, int i);
+
+//			Brice Casting
+
+void			cast_droit(t_info *info, t_casting *cast);
+void			cast_angle(t_info *info, t_casting *cast);
+void			casting2(t_info *info, t_casting *cast, int i);
+void			brice_casting(t_info *info);
+
+//			Player Mouvement
+
+void			mv_left(t_info *info);
+void			mv_right(t_info *info);
+void			mv_for(t_info *info);
+void			mv_back(t_info *info);
+void			turn_right(t_info *info);
+void			turn_left(t_info *info);
+int				is_wall(t_info *info, double y, double x);
+>>>>>>> origin/leNcleS
 
 //			Doors
 
