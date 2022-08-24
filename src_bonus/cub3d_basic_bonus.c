@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 11:34:41 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 17:54:34 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	init_info(t_info *info, char *file)
 	info->mapping = NULL;
 	info->print_map = 0;
 	info->door = NULL;
+	gettimeofday(&info->start, NULL);
 	if (ft_parse(info, file))
 		exit (1);
 	if (new_init_player(info))

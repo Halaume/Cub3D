@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:03:26 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 11:11:57 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/24 15:52:06 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	tracing_again(t_info *info)
 		exit(1);
 	}
 	brice_casting(info);
+	door_closed(info);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

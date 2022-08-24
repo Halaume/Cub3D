@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:10:41 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 14:19:53 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:54:42 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,12 @@ void	open_door(t_info *info)
 			return ;
 		}
 		if (my_door->is_op == 0)
+		{
 			my_door->is_op = 1;
+			my_door->last_open = get_now(info);
+		}
 		else
 			close_door(info, my_door);
 	}
 }
 
-/*unsigned long long	get_now(t_info *info)
-{
-	unsigned long long	now;
-	struct	timeval	get_time;
-
-	gettimeofday(get_time, NULL);
-	now = ((get_time.tv_sec - 1 - info->start.tv_sec) * 1000000) + \
-			1000000 + (get_time.tv_usec - info->start.tv_usec);
-	now = now / 1000;
-	return (now);
-}*/
