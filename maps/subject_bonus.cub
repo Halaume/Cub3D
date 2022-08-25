@@ -5,7 +5,7 @@ EA textures/purplestone.xpm
 
 DO textures/eagle.xpm
 
-EX textures/barrel.xpm
+EX textures/sprite
 
 F 192,192,192
 C 100,100,255
