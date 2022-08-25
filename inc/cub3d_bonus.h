@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 18:32:48 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/25 15:20:06 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,14 @@ typedef struct s_casting {
 	char		*origin;
 }	t_casting;
 
+
+//	TEST
+
+int						check_north_corner(t_info *info, t_casting *cast);
+int						check_south_corner(t_info *info, t_casting *cast);
+int						check_west_corner(t_info *info, t_casting *cast);
+int						check_east_corner(t_info *info, t_casting *cast);
+
 //	Main
 
 int						ft_closewin(t_info *info, int err);
@@ -214,6 +222,7 @@ void			next_curr(t_casting *cast, int side);
 void			choose_texture(t_info *info, t_casting *cast);
 void			do_it_pls(t_info *info, t_casting *cast, int i);
 void			get_the_wall(t_info *info, t_casting *cast, int i);
+void			check_angle(t_info *info, t_casting *cast);
 
 //			Brice Casting
 

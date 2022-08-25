@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 18:27:36 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:20:46 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 void	cast_droit(t_info *info, t_casting *cast)
 {
+	t_door	*door;
+
+	door = get_this_door(info->door, (int)cast->curr[0], (int)cast->curr[1]);
 	if (fabs(cast->ray[0]) < 0.0001)
 	{
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 1;
-		else if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+		else if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
+				&& door && door->is_op == 0)
 			cast->is_wall = 3;
 		else
 		{
@@ -31,7 +35,8 @@ void	cast_droit(t_info *info, t_casting *cast)
 	{
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 2;
-		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
+				&& door && door->is_op == 0)
 			cast->is_wall = 4;
 		else
 		{
@@ -44,23 +49,30 @@ void	cast_droit(t_info *info, t_casting *cast)
 
 void	cast_angle(t_info *info, t_casting *cast)
 {
+	t_door	*door;
+
+
 	if (fabs(cast->delta[0] - cast->delta[1]) < 0.0001 || \
 			cast->delta[0] < cast->delta[1])
 	{
 		cast->curr[1] = cast->delta[0] * cast->ray[1] + cast->prev_y;
 		cast->side = 0;
+		door = get_this_door(info->door, (int)cast->curr[0], (int)cast->curr[1]);
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 2;
-		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
+				&& door && door->is_op == 0)
 			cast->is_wall = 4;
 	}
 	else
 	{
 		cast->curr[0] = cast->delta[1] * cast->ray[0] + cast->prev_x;
 		cast->side = 1;
+		door = get_this_door(info->door, (int)cast->curr[0], (int)cast->curr[1]);
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 1;
-		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
+				&& door && door->is_op == 0)
 			cast->is_wall = 3;
 	}
 	if (cast->is_wall == 0)

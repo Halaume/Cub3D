@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:31:25 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 18:31:03 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:49:01 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	check_door_text(t_info *info, t_casting *cast)
 			cast->percent = 1 - cast->percent;
 	}
 }
+
 void	choose_texture(t_info *info, t_casting *cast)
 {
 	check_door_text(info, cast);
@@ -107,6 +108,7 @@ void	choose_texture(t_info *info, t_casting *cast)
 
 void	do_it_pls(t_info *info, t_casting *cast, int i)
 {
+	check_angle(info, cast);
 	choose_texture(info, cast);
 	if (cast->wall_height < 0)
 		cast->start_px = 1;

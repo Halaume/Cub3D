@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:10:41 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 17:54:42 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:46:58 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ double	get_next_y(t_info *info)
 
 void	close_door(t_info *info, t_door *door)
 {
-	if ((int)info->player.x != door->x && (int)info->player.y != door->y)
+	if (!((int)info->player.x == door->x && (int)info->player.y == door->y))
 		door->is_op = 0;
 }
 
@@ -64,4 +64,3 @@ void	open_door(t_info *info)
 			close_door(info, my_door);
 	}
 }
-
