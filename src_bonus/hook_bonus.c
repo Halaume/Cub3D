@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 12:36:10 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:50:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	mouse_loop(t_info *info)
 
 int	looping_hook(t_info *info)
 {
+	if (info->map[(int)info->player.y][(int)info->player.x] == 'X')
+		closewin(info);
 	mouse_loop(info);
 	if (info->hook.cam_left && !info->hook.cam_right)
 		turn_left(info);

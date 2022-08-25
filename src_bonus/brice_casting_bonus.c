@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/25 12:20:46 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:33:02 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	cast_droit(t_info *info, t_casting *cast)
 void	cast_angle(t_info *info, t_casting *cast)
 {
 	t_door	*door;
-
 
 	if (fabs(cast->delta[0] - cast->delta[1]) < 0.0001 || \
 			cast->delta[0] < cast->delta[1])
