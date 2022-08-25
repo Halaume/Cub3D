@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 18:08:57 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/25 12:13:06 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,23 @@ void	init_texture(t_info *info)
 	info->texture_e.img.img = NULL;
 	info->texture_w.img.img = NULL;
 	info->texture_d.img.img = NULL;
-	info->texture_ex.img.img = NULL;
 	info->texture_n.path = NULL;
 	info->texture_s.path = NULL;
 	info->texture_e.path = NULL;
 	info->texture_w.path = NULL;
 	info->texture_d.path = NULL;
-	info->texture_ex.path = NULL;
+	info->texture_n.next = NULL;
+	info->texture_s.next = NULL;
+	info->texture_e.next = NULL;
+	info->texture_w.next = NULL;
+	info->texture_d.next = NULL;
+}
+
+void	init_fold(t_info *info)
+{
+	info->fold_ex.path = NULL;
+	info->fold_ex.sprite = NULL;
+	info->fold_ex.nb = -2;
 }
 
 void	ft_define_sm(t_info *info)
@@ -85,6 +95,7 @@ void	init_info(t_info *info, char *file)
 	info->window = NULL;
 	info->hook = init_hook();
 	init_texture(info);
+	init_fold(info);
 	info->color_sky = 0;
 	info->color_floor = 0;
 	info->img.img = NULL;

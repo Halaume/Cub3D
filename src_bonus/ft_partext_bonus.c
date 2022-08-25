@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:48:39 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/24 18:06:20 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/25 11:11:57 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ int	ft_fill_text(t_texture *text, char *buf)
 		return (2);
 	text->path = ft_strtrim(buf, " \n");
 	if (!text->path)
+		return (1);
+	return (0);
+}
+
+int	ft_fill_fold(t_fold *fold, char *buf)
+{
+	if (fold->path)
+		return (2);
+	fold->path = ft_strtrim(buf, " \n");
+	if (!fold->path)
 		return (1);
 	return (0);
 }
@@ -35,7 +45,7 @@ int	ft_add_text(t_info *info, char *buf, int err)
 	else if (!strncmp(buf, "DO ", 3))
 		err = ft_fill_text(&info->texture_d, buf + 2);
 	else if (!strncmp(buf, "EX ", 3))
-		err = ft_fill_text(&info->texture_ex, buf + 2);
+		err = ft_fill_fold(&info->fold_ex, buf + 2);
 	else if (!strncmp(buf, "F ", 2))
 		err = ft_fill_color(&info->color_floor, buf + 1);
 	else if (!strncmp(buf, "C ", 2))

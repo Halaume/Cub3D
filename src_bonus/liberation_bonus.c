@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 18:37:43 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/25 16:53:43 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,44 @@ void	ft_free_map(t_map *map)
 	}
 }
 
+void	free_sprite(t_texture *tmp, t_info *info)
+{
+	free(tmp->path);
+	tmp->path = NULL;
+	if (tmp->img.img)
+		free_texture(info, tmp);
+}
+
+void	ft_free_sprite(t_texture *sprite, t_info *info)
+{
+	t_texture	*tmp;
+
+	if (sprite)
+	{
+		tmp = sprite;
+		sprite = sprite->next;
+		if (tmp && tmp->path)
+			free_sprite(tmp, info);
+		free(tmp);
+		while (sprite != info->fold_ex.sprite)
+		{
+			tmp = sprite;
+			sprite = sprite->next;
+			if (tmp && tmp->path)
+				free_sprite(tmp, info);
+			free(tmp);
+			tmp = NULL;
+		}
+	}
+}
+
+void	ft_free_fold(t_fold *fold, t_info *info)
+{
+	free(fold->path);
+	ft_free_sprite(fold->sprite, info);
+	fold = NULL;
+}
+
 void	ft_free(t_info *info)
 {
 	if (info->fd)
@@ -75,9 +113,9 @@ void	ft_free(t_info *info)
 	if (info->texture_d.path)
 		free(info->texture_d.path);
 	info->texture_d.path = NULL;
-	if (info->texture_ex.path)
-		free(info->texture_ex.path);
-	info->texture_ex.path = NULL;
+	if (info->fold_ex.path)
+		ft_free_fold(&info->fold_ex, info);
+	info->fold_ex.path = NULL;
 	if (info->mapping)
 		ft_free_map(info->mapping);
 	if (info->map)
@@ -96,7 +134,6 @@ void	free_func(t_info *info)
 	free_texture(info, &info->texture_e);
 	free_texture(info, &info->texture_w);
 	free_texture(info, &info->texture_d);
-	free_texture(info, &info->texture_ex);
 	if (info)
 		ft_free(info);
 }

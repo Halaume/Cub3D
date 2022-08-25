@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:10:49 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 18:21:18 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/25 13:17:21 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,30 @@ void	get_address(t_info *info)
 
 int	ft_open_exit_bonus(t_info *info)
 {
-	if (info->texture_ex.path)
+	int			i;
+	t_texture	*tmp;
+
+	i = -1;
+	tmp = info->fold_ex.sprite;
+	while (++i < info->fold_ex.nb - 2)
 	{
-		info->texture_ex.img.img = mlx_xpm_file_to_image(info->mlx,
-				info->texture_ex.path, &info->texture_ex.width,
-				&info->texture_ex.height);
-		if (!info->texture_ex.img.img)
-			return (ft_putstr_error("Error\nImpossible d'ouvrir la texture de \
-sortie\n"));
-		info->texture_ex.img.addr = mlx_get_data_addr(info->texture_ex.img.img,
-				&info->texture_ex.img.bits_per_pixel,
-				&info->texture_ex.img.line_length,
-				&info->texture_ex.img.endian);
-		if (!info->texture_ex.img.addr)
-			return (ft_putstr_error("Error\nImpossible d'ouvrir la texture de \
-sortie\n"));
+		printf("path = %s\n", tmp->path);
+		printf("nb = %d\n", info->fold_ex.nb);
+		if (tmp->path)
+		{
+			tmp->img.img = mlx_xpm_file_to_image(info->mlx, tmp->path,
+					&tmp->width, &tmp->height);
+			if (!tmp->img.img)
+				return (ft_putstr_error("Error\nImpossible d'ouvrir la texture \
+de sortie\n"));
+			tmp->img.addr = mlx_get_data_addr(tmp->img.img,
+						&tmp->img.bits_per_pixel, &tmp->img.line_length,
+						&tmp->img.endian);
+			if (!tmp->img.addr)
+				return (ft_putstr_error("Error\nImpossible d'ouvrir la texture \
+de sortie\n"));
+		}
+		tmp = tmp->next;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 12:50:14 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/24 17:51:08 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/25 11:19:13 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_print_text(t_info *info)
 		printf("Path text_w = '%s'\n", info->texture_w.path);
 		printf("Path text_e = '%s'\n", info->texture_e.path);
 		printf("Path text_door = '%s'\n", info->texture_d.path);
-		printf("Path text_exit = '%s'\n", info->texture_ex.path);
+		printf("Path fold_exit = '%s'\n", info->fold_ex.path);
 		printf("Floor color = '%d'\n", info->color_floor);
 		printf("Celling color = '%d'\n", info->color_sky);
 		if (info->map)
