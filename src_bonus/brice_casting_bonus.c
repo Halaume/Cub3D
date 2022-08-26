@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/25 17:00:26 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/26 12:45:27 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ void	brice_casting(t_info *info)
 		casting2(info, &cast, i);
 		while (cast.is_wall == 0)
 		{
+			if (info->map[(int)cast.curr[1]][(int)cast.curr[0]] == 'X')
+				get_the_exit(info, &cast, i);
 			if (fabs(cast.ray[0]) < 0.0001 || fabs(cast.ray[1]) < 0.0001)
 				cast_droit(info, &cast);
 			else
@@ -137,10 +139,5 @@ void	brice_casting(t_info *info)
 		get_the_wall(info, &cast, i);
 	}
 	ft_mapping(info);
-	if (info->fold_ex.sprite)
-	{
-		printf("img sprite = %s\n", info->fold_ex.sprite->path);
-		info->fold_ex.sprite = info->fold_ex.sprite->next;
-	}
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
 }

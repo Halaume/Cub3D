@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:10:49 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/25 13:17:21 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/26 12:56:58 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	get_address(t_info *info)
 			&info->texture_w.img.line_length, &info->texture_w.img.endian);
 }
 
-int	ft_open_exit_bonus(t_info *info)
+/*int	ft_open_exit_bonus(t_info *info)
 {
 	int			i;
 	t_texture	*tmp;
@@ -56,7 +56,7 @@ de sortie\n"));
 		tmp = tmp->next;
 	}
 	return (0);
-}
+}*/
 
 int	ft_open_bonus(t_info *info)
 {
@@ -75,7 +75,8 @@ porte\n"));
 			return (ft_putstr_error("Error\nImpossible d'ouvrir la texture de \
 porte\n"));
 	}
-	return (ft_open_exit_bonus(info));
+	return (0);
+//	return (ft_open_exit_bonus(info));
 }
 
 int	get_texture(t_info *info)
