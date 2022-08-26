@@ -65,13 +65,13 @@ void	check_door_text(t_info *info, t_casting *cast)
 	if (cast->is_wall == 3)
 	{
 		cast->percent = (cast->curr[0] - floor(cast->curr[0])) / 1;
-		cast->texture = info->texture_d;
+		cast->texture = *info->texture_d;
 		if (cast->ray[1] > 0)
 			cast->percent = 1 - cast->percent;
 	}
 	else if (cast->is_wall == 4)
 	{
-		cast->texture = info->texture_d;
+		cast->texture = *info->texture_d;
 		cast->percent = (cast->curr[1] - floor(cast->curr[1])) / 1;
 		if (cast->ray[0] < 0)
 			cast->percent = 1 - cast->percent;
@@ -84,20 +84,20 @@ void	choose_texture(t_info *info, t_casting *cast)
 	if (cast->is_wall == 1)
 	{
 		cast->percent = (cast->curr[0] - floor(cast->curr[0])) / 1;
-		cast->texture = info->texture_n;
+		cast->texture = *info->texture_n;
 		if (cast->ray[1] > 0)
 		{
-			cast->texture = info->texture_s;
+			cast->texture = *info->texture_s;
 			cast->percent = 1 - cast->percent;
 		}
 	}
 	else if (cast->is_wall == 2)
 	{
-		cast->texture = info->texture_e;
+		cast->texture = *info->texture_e;
 		cast->percent = (cast->curr[1] - floor(cast->curr[1])) / 1;
 		if (cast->ray[0] < 0)
 		{
-			cast->texture = info->texture_w;
+			cast->texture = *info->texture_w;
 			cast->percent = 1 - cast->percent;
 		}
 	}

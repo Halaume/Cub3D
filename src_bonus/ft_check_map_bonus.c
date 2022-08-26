@@ -61,16 +61,16 @@ int	ft_parsingage(t_info *info)
 
 int	ft_check_doex(t_info *info)
 {
-	if (!info->door && info->texture_d.path)
+	if (!info->door && info->texture_d)
 		return (ft_putstr_error("Error\nTexture pour la porte mais pas de porte\
  dans la carte\n"));
-	if (info->door && !info->texture_d.path)
+	if (info->door && !info->texture_d)
 		return (ft_putstr_error("Error\nPorte(s) dans la map mais pas de \
 texture\n"));
-	if (info->is_exit && !info->fold_ex.path)
+	if (info->is_exit && !info->texture_ex)
 		return (ft_putstr_error("Error\nSortie(s) dans la map mais pas de \
 texture\n"));
-	if (!info->is_exit && info->fold_ex.path)
+	if (!info->is_exit && info->texture_ex)
 		return (ft_putstr_error("Error\nTexture pour la sortie mais pas de \
 sortie dans la carte\n"));
 	return (0);

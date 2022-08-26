@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/26 15:04:25 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:50:01 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	ft_parsing_info_err(t_info *info)
 {
 	ft_putstr_error("Error\nIl manque des informations:");
-	if (!info->texture_n.path)
+	if (!info->texture_n)
 		ft_putstr_error(" la texture Nord");
-	if (!info->texture_s.path)
+	if (!info->texture_s)
 		ft_putstr_error(" la texture Sud");
-	if (!info->texture_w.path)
+	if (!info->texture_w)
 		ft_putstr_error(" la texture Ouest");
-	if (!info->texture_e.path)
+	if (!info->texture_e)
 		ft_putstr_error(" la texture Est");
 	if (!info->color_sky)
 		ft_putstr_error(" la couleur du plafond");
@@ -50,28 +50,12 @@ t_hooking	init_hook(void)
 
 void	init_texture(t_info *info)
 {
-	info->texture_n.img.img = NULL;
-	info->texture_s.img.img = NULL;
-	info->texture_e.img.img = NULL;
-	info->texture_w.img.img = NULL;
-	info->texture_d.img.img = NULL;
-	info->texture_n.path = NULL;
-	info->texture_s.path = NULL;
-	info->texture_e.path = NULL;
-	info->texture_w.path = NULL;
-	info->texture_d.path = NULL;
-	info->texture_n.next = NULL;
-	info->texture_s.next = NULL;
-	info->texture_e.next = NULL;
-	info->texture_w.next = NULL;
-	info->texture_d.next = NULL;
-}
-
-void	init_fold(t_info *info)
-{
-	info->fold_ex.path = NULL;
-	info->fold_ex.sprite = NULL;
-	info->fold_ex.nb = -2;
+	info->texture_n = NULL;
+	info->texture_s = NULL;
+	info->texture_e = NULL;
+	info->texture_w = NULL;
+	info->texture_d = NULL;
+	info->texture_ex = NULL;
 }
 
 void	ft_define_sm(t_info *info)
@@ -95,7 +79,6 @@ void	init_info(t_info *info, char *file)
 	info->window = NULL;
 	info->hook = init_hook();
 	init_texture(info);
-	init_fold(info);
 	info->color_sky = 0;
 	info->color_floor = 0;
 	info->img.img = NULL;

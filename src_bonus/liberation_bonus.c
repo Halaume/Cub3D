@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/26 15:06:44 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:16:45 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	free_texture(t_info *info, t_texture *texture)
 	if (texture->path)
 		free(texture->path);
 	texture->path = NULL;
+	free(texture);
+	texture = NULL;
 }
 
 void	ft_free_map(t_map *map)
@@ -64,76 +66,62 @@ void	free_sprite(t_texture *tmp, t_info *info)
 		free_texture(info, tmp);
 }
 
-void	ft_free_sprite(t_texture *sprite, t_info *info)
+int	ft_count_ind(t_texture *text)
 {
-	t_texture	*tmp;
+	int	i;
 
-	if (sprite)
+	i = 0;
+	if (!text)
+		return (i);
+	if (!text->next)
+		return (1);
+	while (text)
 	{
-		tmp = sprite;
-		sprite = sprite->next;
-		if (tmp && tmp->path)
-			free_sprite(tmp, info);
-		free(tmp);
-		while (sprite != info->fold_ex.sprite)
-		{
-			tmp = sprite;
-			sprite = sprite->next;
-			if (tmp && tmp->path)
-				free_sprite(tmp, info);
-			free(tmp);
-			tmp = NULL;
-		}
+		if (text->next->index == 0)
+			return (text->index);
+		text = text->next;
 	}
+	return (0);
 }
 
-void	ft_free_fold(t_fold *fold, t_info *info)
+void	ft_free_texture(t_info *info, t_texture *text)
 {
-	free(fold->path);
-	ft_free_sprite(fold->sprite, info);
-	fold = NULL;
+	t_texture	*tmp;
+	int			i;
+
+	i = ft_count_ind(text) + 1;
+	if (text)
+	{
+		while (text && i--)
+		{
+			tmp = text;
+			text = text->next;
+			if (tmp && tmp->path)
+				free_sprite(tmp, info);
+		}
+	}
 }
 
 void	ft_free(t_info *info)
 {
 	if (info->fd)
 		close(info->fd);
-	if (info->texture_n.path)
-		free(info->texture_n.path);
-	info->texture_n.path = NULL;
-	if (info->texture_s.path)
-		free(info->texture_s.path);
-	info->texture_s.path = NULL;
-	if (info->texture_w.path)
-		free(info->texture_w.path);
-	info->texture_w.path = NULL;
-	if (info->texture_e.path)
-		free(info->texture_e.path);
-	info->texture_e.path = NULL;
-	if (info->texture_d.path)
-		free(info->texture_d.path);
-	info->texture_d.path = NULL;
-	if (info->fold_ex.path)
-		ft_free_fold(&info->fold_ex, info);
-	info->fold_ex.path = NULL;
+	if (info->texture_n)
+		ft_free_texture(info, info->texture_n);
+	if (info->texture_s)
+		ft_free_texture(info, info->texture_s);
+	if (info->texture_e)
+		ft_free_texture(info, info->texture_e);
+	if (info->texture_w)
+		ft_free_texture(info, info->texture_w);
+	if (info->texture_d)
+		ft_free_texture(info, info->texture_d);
+	if (info->texture_ex)
+		ft_free_texture(info, info->texture_ex);
 	if (info->mapping)
 		ft_free_map(info->mapping);
 	if (info->map)
 		ft_free_split(info->map);
 	if (info->door)
 		ft_free_doors(info->door);
-}
-
-void	free_func(t_info *info)
-{
-	if (info->map)
-		ft_free_split(info->map);
-	info->map = NULL;
-	free_texture(info, &info->texture_n);
-	free_texture(info, &info->texture_s);
-	free_texture(info, &info->texture_e);
-	free_texture(info, &info->texture_w);
-	free_texture(info, &info->texture_d);
-	if (info)
-		ft_free(info);
 }

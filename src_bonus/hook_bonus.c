@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/25 16:50:04 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:11:14 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	hook_release(int keycode, t_info *info)
 
 void	mouse_loop(t_info *info)
 {
-	(void)info;
 	if (info->hook.mouse_hold == 1)
 	{
 		if (info->hook.mouse_prev_pos - info->hook.mouse_pos > 0)

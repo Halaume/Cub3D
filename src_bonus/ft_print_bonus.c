@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 12:50:14 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/26 15:06:21 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:59:30 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ void	ft_print_text(t_info *info)
 {
 	if (info)
 	{
-		printf("Path text_n = '%s'\n", info->texture_n.path);
-		printf("Path text_s = '%s'\n", info->texture_s.path);
-		printf("Path text_w = '%s'\n", info->texture_w.path);
-		printf("Path text_e = '%s'\n", info->texture_e.path);
-		printf("Path text_door = '%s'\n", info->texture_d.path);
-		printf("Path fold_exit = '%s'\n", info->fold_ex.path);
+		printf("Path text_n = '%s'\n", info->texture_n->path);
+		printf("Path text_s = '%s'\n", info->texture_s->path);
+		printf("Path text_w = '%s'\n", info->texture_w->path);
+		printf("Path text_e = '%s'\n", info->texture_e->path);
+		if (info->texture_d)
+			printf("Path text_door = '%s'\n", info->texture_d->path);
+		if (info->texture_ex)
+			printf("Path text_exit = '%s'\n", info->texture_ex->path);
 		printf("Floor color = '%d'\n", info->color_floor);
 		printf("Celling color = '%d'\n", info->color_sky);
 		if (info->map)

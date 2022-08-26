@@ -6,11 +6,27 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:03:26 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 15:52:06 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:04:04 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d_bonus.h"
+
+void	ft_next_texture(t_info *info)
+{
+	if (info->texture_n->next)
+		info->texture_n = info->texture_n->next;
+	if (info->texture_s->next)
+		info->texture_s = info->texture_s->next;
+	if (info->texture_e->next)
+		info->texture_e = info->texture_e->next;
+	if (info->texture_w->next)
+		info->texture_w = info->texture_w->next;
+	if (info->texture_d && info->texture_d->next)
+		info->texture_d = info->texture_d->next;
+	if (info->texture_ex && info->texture_ex->next)
+		info->texture_ex = info->texture_ex->next;
+}
 
 void	tracing_again(t_info *info)
 {
@@ -33,6 +49,7 @@ void	tracing_again(t_info *info)
 	}
 	brice_casting(info);
 	door_closed(info);
+	ft_next_texture(info);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -52,7 +69,7 @@ int	closewin(t_info *info)
 	mlx_destroy_image(info->mlx, info->img.img);
 	mlx_destroy_window(info->mlx, info->window);
 	mlx_do_key_autorepeaton(info->mlx);
-	free_func(info);
+	ft_free(info);
 	mlx_destroy_display(info->mlx);
 	free(info->mlx);
 	exit (0);
