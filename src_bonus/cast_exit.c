@@ -14,7 +14,7 @@
 
 void	pls_help_exit(t_info *info, t_casting *cast, int i)
 {
-	cast->texture = *info->fold_ex.sprite;
+	cast->texture = *info->texture_ex;
 	if (cast->wall_height < 0)
 		cast->start_px = 1;
 	else
