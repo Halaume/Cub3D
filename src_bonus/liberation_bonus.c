@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/26 16:05:26 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/26 17:16:45 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,35 +66,41 @@ void	free_sprite(t_texture *tmp, t_info *info)
 		free_texture(info, tmp);
 }
 
+int	ft_count_ind(t_texture *text)
+{
+	int	i;
+
+	i = 0;
+	if (!text)
+		return (i);
+	if (!text->next)
+		return (1);
+	while (text)
+	{
+		if (text->next->index == 0)
+			return (text->index);
+		text = text->next;
+	}
+	return (0);
+}
+
 void	ft_free_texture(t_info *info, t_texture *text)
 {
 	t_texture	*tmp;
-	int			b;
 	int			i;
 
-	i = text->index;
-	b = 0;
+	i = ft_count_ind(text) + 1;
 	if (text)
 	{
-		while (i != text->index || !b)
+		while (text && i--)
 		{
-			b = 1;
 			tmp = text;
 			text = text->next;
 			if (tmp && tmp->path)
 				free_sprite(tmp, info);
-			free(tmp);
-			tmp = NULL;
 		}
 	}
 }
-
-/*void	ft_free_fold(t_fold *fold, t_info *info)
-{
-	free(fold->path);
-	ft_free_sprite(fold->sprite, info);
-	fold = NULL;
-}*/
 
 void	ft_free(t_info *info)
 {
@@ -118,12 +124,4 @@ void	ft_free(t_info *info)
 		ft_free_split(info->map);
 	if (info->door)
 		ft_free_doors(info->door);
-}
-
-void	free_func(t_info *info)
-{
-	if (info->map)
-		ft_free_split(info->map);
-	info->map = NULL;
-	ft_free(info);
 }

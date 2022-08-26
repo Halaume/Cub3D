@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:03:26 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/26 16:10:27 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/26 17:04:04 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	closewin(t_info *info)
 	mlx_destroy_image(info->mlx, info->img.img);
 	mlx_destroy_window(info->mlx, info->window);
 	mlx_do_key_autorepeaton(info->mlx);
-	free_func(info);
+	ft_free(info);
 	mlx_destroy_display(info->mlx);
 	free(info->mlx);
 	exit (0);

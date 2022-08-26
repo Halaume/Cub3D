@@ -126,10 +126,5 @@ void	brice_casting(t_info *info)
 		get_the_wall(info, &cast, i);
 	}
 	ft_mapping(info);
-	if (info->fold_ex.sprite)
-	{
-		printf("img sprite = %s\n", info->fold_ex.sprite->path);
-		info->fold_ex.sprite = info->fold_ex.sprite->next;
-	}
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
 }

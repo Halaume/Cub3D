@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:19:06 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/26 15:09:52 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/26 17:02:07 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,5 @@ int	ft_parse(t_info *info, char *file)
 	ft_print_text(info);
 	if (ft_valid_map(info))
 		return (ft_free(info), 1);
-//	if (ft_init_sprite(info))
-//		return (ft_free(info), 1);
 	return (0);
 }
