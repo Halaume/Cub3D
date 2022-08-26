@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/25 12:30:30 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/26 15:09:06 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_texture {
 	char				*path;
 	int					height;
 	int					width;
+	int					index;
 	struct s_texture	*next;
 }	t_texture;
 
@@ -87,12 +88,12 @@ typedef struct s_info {
 	t_player	player;
 	t_hooking	hook;
 	t_data		img;
-	t_texture	texture_n;
-	t_texture	texture_s;
-	t_texture	texture_w;
-	t_texture	texture_e;
-	t_texture	texture_d;
-	t_fold		fold_ex;
+	t_texture	*texture_n;
+	t_texture	*texture_s;
+	t_texture	*texture_w;
+	t_texture	*texture_e;
+	t_texture	*texture_d;
+	t_texture	*texture_ex;
 	t_map		*mapping;
 	t_door		*door;
 	char		**map;
@@ -212,6 +213,11 @@ int					ft_check_zero(char **map, int y, int x);
 int					ft_checkside(char c);
 int					ft_sides(char **map);
 //			Textures (partext)
+void				ft_spriteadd_back(t_texture **sprite, t_texture *new);
+int					ft_sprite_new(t_texture *text, char *path, int i);
+int					ft_text_new(t_info *info, t_texture *text, char *path);
+int					ft_fill_sprite(t_texture *text, char *path, int nb);
+int					ft_init_sprite(t_info *info, t_texture *text, char *path);
 int					ft_fill_text(t_texture *text, char *buf);
 int					ft_add_text(t_info *info, char *buf, int err);
 int					ft_check_fill(char *buf);
