@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/26 12:45:27 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:03:06 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ void	cast_droit(t_info *info, t_casting *cast)
 	door = get_this_door(info->door, (int)cast->curr[0], (int)cast->curr[1]);
 	if (fabs(cast->ray[0]) < 0.0001)
 	{
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == 'X')
+		{
+			cast->exit[0] = cast->curr[0];
+			cast->exit[1] = cast->curr[1];
+			cast->exit_ray[0] = cast->ray[0];
+			cast->exit_ray[1] = cast->ray[1];
+			cast->exit_state = 3;
+		}
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 1;
 		else if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
@@ -33,6 +41,14 @@ void	cast_droit(t_info *info, t_casting *cast)
 	}
 	else
 	{
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == 'X')
+		{
+			cast->exit[0] = cast->curr[0];
+			cast->exit[1] = cast->curr[1];
+			cast->exit_ray[0] = cast->ray[0];
+			cast->exit_ray[1] = cast->ray[1];
+			cast->exit_state = 4;
+		}
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 2;
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
@@ -57,6 +73,14 @@ void	cast_angle(t_info *info, t_casting *cast)
 		cast->curr[1] = cast->delta[0] * cast->ray[1] + cast->prev_y;
 		cast->side = 0;
 		door = get_this_door(info->door, (int)cast->curr[0], (int)cast->curr[1]);
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == 'X')
+		{
+			cast->exit[0] = cast->curr[0];
+			cast->exit[1] = cast->curr[1];
+			cast->exit_ray[0] = cast->ray[0];
+			cast->exit_ray[1] = cast->ray[1];
+			cast->exit_state = 4;
+		}
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 2;
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
@@ -68,6 +92,14 @@ void	cast_angle(t_info *info, t_casting *cast)
 		cast->curr[0] = cast->delta[1] * cast->ray[0] + cast->prev_x;
 		cast->side = 1;
 		door = get_this_door(info->door, (int)cast->curr[0], (int)cast->curr[1]);
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == 'X')
+		{
+			cast->exit[0] = cast->curr[0];
+			cast->exit[1] = cast->curr[1];
+			cast->exit_ray[0] = cast->ray[0];
+			cast->exit_ray[1] = cast->ray[1];
+			cast->exit_state = 3;
+		}
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 1;
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
@@ -126,17 +158,18 @@ void	brice_casting(t_info *info)
 	cast.side = 0;
 	while (++i < info->w)
 	{
+		cast.exit[0] = 0;
+		cast.exit[1] = 0;
 		casting2(info, &cast, i);
 		while (cast.is_wall == 0)
 		{
-			if (info->map[(int)cast.curr[1]][(int)cast.curr[0]] == 'X')
-				get_the_exit(info, &cast, i);
 			if (fabs(cast.ray[0]) < 0.0001 || fabs(cast.ray[1]) < 0.0001)
 				cast_droit(info, &cast);
 			else
 				cast_angle(info, &cast);
 		}
 		get_the_wall(info, &cast, i);
+		get_the_exit(info, &cast, i);
 	}
 	ft_mapping(info);
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
