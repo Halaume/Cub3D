@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/28 15:01:25 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:45:23 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,16 @@ typedef struct s_info {
 
 typedef struct s_casting {
 	t_texture	texture;
+	t_texture	texture_ex;
 	double		delta[2];
 	double		ray[2];
 	double		exit_ray[2];
+	double		exit_mid[2];
+	double		exit_ends[4];
 	double		curr[2];
 	double		proj_screen[4];
 	double		wall_height;
+	double		ex_height;
 	double		dir_v_x;
 	double		dir_v_y;
 	double		prev_x;
@@ -127,15 +131,20 @@ typedef struct s_casting {
 	double		distance1;
 	double		wall_ratio;
 	double		percent;
+	double		percent_ex;
 	double		step;
+	double		step_ex;
 	double		current;
 	double		exit[2];
+	double		exit_dist;
 	int			exit_state;
 	int			percent_y;
 	int			proj_dist;
 	int			is_wall;
 	int			start_px;
 	int			end_px;
+	int			start_px_ex;
+	int			end_px_ex;
 	int			side;
 	char		*dist;
 	char		*origin;
