@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 13:26:48 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 16:36:47 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void	init_info(t_info *info, char *file)
 	init_texture(info);
 	info->color_sky = 0;
 	info->color_floor = 0;
-	info->img.img = NULL;
-	info->img.addr = NULL;
 	info->map = NULL;
 	info->mapping = NULL;
 	info->print_map = 0;
 	info->is_exit = 0;
 	info->door = NULL;
+	info->cur_i = 0;
+	info->nb_i = 0;
 	gettimeofday(&info->start, NULL);
 	if (ft_parse(info, file))
 		exit (1);
