@@ -2,6 +2,8 @@ NO ./path
 SO ./path
 WE ./path
 EA ./path
+DO       ./textures/sprite
+
 F 0,0,0
 C 0,0,0
 

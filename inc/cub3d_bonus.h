@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/26 17:04:16 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 11:31:47 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <dirent.h>
+# include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/time.h>
 
@@ -217,7 +218,7 @@ void				ft_spriteadd_back(t_texture **sprite, t_texture *new);
 int					ft_sprite_new(t_texture **text, char *path, int i);
 int					ft_text_new(t_info *info, t_texture **text, char *path);
 int					ft_fill_sprite(t_texture **text, char *path, int nb);
-int					ft_init_sprite(t_info *info, t_texture **text, char *path);
+int					ft_init_sprite(t_info *info, t_texture **text, char *path, DIR *fd);
 int					ft_fill_text(t_texture *text, char *buf);
 int					ft_add_text(t_info *info, char *buf, int err);
 int					ft_check_fill(char *buf);

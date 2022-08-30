@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:10:41 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 17:54:42 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:24:23 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ double	get_next_x(t_info *info)
 double	get_next_y(t_info *info)
 {
 	double	y;
+
 	if (sin(info->player.angle) > 0)
 		y = (info->player.y - (sin(info->player.angle) * (0.25)) - 0.1);
 	else
@@ -64,4 +65,3 @@ void	open_door(t_info *info)
 			close_door(info, my_door);
 	}
 }
-

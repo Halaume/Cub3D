@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 11:10:25 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 13:18:06 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	main(int argc, char **argv)
 	t_info	info;
 
 	if (argc != 2)
-		return (ft_putstr_error("Error\nNombre d'arguments invalide\n"));
+		return (ft_putstr_error("Error\nInvalid number of args\n"));
 	init_info(&info, argv[1]);
 	if (ft_init_window(&info))
-		return (ft_putstr_error("Error\nInitialisation de la MLX echouee\n"));
+		return (ft_putstr_error("Error\nMLX initialization error\n"));
 	if (get_texture(&info))
 	{
 		ft_closewin(&info, 1);

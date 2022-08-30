@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:12:42 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/24 18:16:09 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 13:06:24 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ int	ft_sides(char **map)
 	x = 0;
 	while (map[y++] && y + 1 < (int)ft_tablen(map))
 		if (ft_checkside(map[y][x]))
-			return (ft_poserr(y, x, "Carte invalide (ni ' ' ni '1') sur les \
-contours de la carte: "));
+			return (ft_poserr(y, x, "Invalid map (missing ' ' or '1') on the \
+sides of the map: "));
 	while (map[y][x++] && x + 1 < (int)ft_strlen(map[y]))
 		if (ft_checkside(map[y][x]))
-			return (ft_poserr(y, x, "Carte invalide (ni ' ' ni '1') sur les \
-contours de la carte: "));
+			return (ft_poserr(y, x, "Invalid map (missing ' ' or '1') on the \
+sides of the map: "));
 	while (map[y--][x] && y > 0)
 		if (ft_checkside(map[y][x]))
-			return (ft_poserr(y, x, "Carte invalide (ni ' ' ni '1') sur les \
-contours de la carte: "));
+			return (ft_poserr(y, x, "Invalid map (missing ' ' or '1') on the \
+sides of the map: "));
 	while (map[y][x--] && x > 0)
 		if (ft_checkside(map[y][x]))
-			return (ft_poserr(y, x, "Carte invalide (ni ' ' ni '1') sur les \
-contours de la carte: "));
+			return (ft_poserr(y, x, "Invalid map (missing ' ' or '1') on the \
+sides of the map: "));
 	return (0);
 }

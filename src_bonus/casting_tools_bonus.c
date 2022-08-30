@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:31:25 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 18:31:03 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:24:58 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	check_door_text(t_info *info, t_casting *cast)
 			cast->percent = 1 - cast->percent;
 	}
 }
+
 void	choose_texture(t_info *info, t_casting *cast)
 {
 	check_door_text(info, cast);
