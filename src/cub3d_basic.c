@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 15:09:48 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 17:55:52 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	ft_parsing_info_err(t_info *info)
 {
-	ft_putstr_error("Error\nIl manque des informations:");
+	ft_putstr_error("Error\nSome informations are missing:");
 	if (!info->texture_n.path)
-		ft_putstr_error(" la texture Nord");
+		ft_putstr_error(" North texture");
 	if (!info->texture_s.path)
-		ft_putstr_error(" la texture Sud");
+		ft_putstr_error(" South texture");
 	if (!info->texture_w.path)
-		ft_putstr_error(" la texture Ouest");
+		ft_putstr_error(" West texture");
 	if (!info->texture_e.path)
-		ft_putstr_error(" la texture Est");
+		ft_putstr_error(" East texture");
 	if (!info->color_sky)
-		ft_putstr_error(" la couleur du plafond");
+		ft_putstr_error(" ceilling color");
 	if (!info->color_floor)
-		ft_putstr_error(" la couleur du sol");
+		ft_putstr_error(" floor color");
 	return (ft_putstr_error("\n"));
 }
 

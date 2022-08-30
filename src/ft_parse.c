@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:19:06 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/23 15:07:03 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 17:56:58 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_play(t_info *info, char *buf)
 	if (id < 6 && ft_check_fill(buf))
 	{
 		if (ft_check_fill(buf) == 2)
-			return (ft_putstr_error("Error\nCaracteristique invalide\n"));
+			return (ft_putstr_error("Error\nInvalide information\n"));
 		while (*buf == ' ')
 			buf++;
 		if (ft_add_text(info, buf))
@@ -43,8 +43,7 @@ int	ft_play(t_info *info, char *buf)
 	else if (id >= 6 && ft_check_map(buf))
 	{
 		if (id == 8)
-			return (ft_putstr_error("Error\nIl ne doit rien y avoir apres la ma\
-p\n"));
+			return (ft_putstr_error("Error\nNothing needed after the map\n"));
 		if (ft_mapnew(&info->mapping, buf))
 			return (1);
 		id = 7;
@@ -60,7 +59,7 @@ int	ft_parsarg(t_info *info)
 
 	buf = get_next_line(info->fd);
 	if (!buf)
-		return (ft_putstr_error("Error\nMalloc error\n"));
+		return (ft_putstr_error("Error\nCan't read this file\n"));
 	while (buf)
 	{
 		if (ft_play(info, buf))
@@ -80,10 +79,10 @@ int	ft_init_fd(t_info *info, char *file)
 
 	tmp = file + ft_strlen(file) - 4;
 	if (ft_strncmp(tmp, ".cub", 5))
-		return (ft_putstr_error("Error\nFichier invalide\n"));
+		return (ft_putstr_error("Error\nInvalid argument\n"));
 	info->fd = open(file, O_RDONLY);
 	if (info->fd == -1)
-		return (ft_perror("Error\nOuverture de map echouee", NULL));
+		return (ft_perror("Error\nError while opening the map file", NULL));
 	return (0);
 }
 

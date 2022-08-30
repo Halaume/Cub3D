@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 11:11:31 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 17:59:25 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_closewin(t_info *info, int err)
 		mlx_destroy_display(info->mlx);
 		free(info->mlx);
 	}
-	return (err);
+	exit (err);
 }
 
 int	ft_init_window(t_info *info)
@@ -54,15 +54,12 @@ int	main(int argc, char **argv)
 	t_info	info;
 
 	if (argc != 2)
-		return (ft_putstr_error("Error\nNombre d'arguments invalide\n"));
+		return (ft_putstr_error("Error\nInvalid number of args\n"));
 	init_info(&info, argv[1]);
 	if (ft_init_window(&info))
-		return (ft_putstr_error("Error\nInitialisation de la MLX echouee\n"));
+		return (ft_putstr_error("Error\nMLX initialization error\n"));
 	if (get_texture(&info))
-	{
 		ft_closewin(&info, 1);
-		exit (1);
-	}
 	brice_casting(&info);
 	mlx_do_key_autorepeatoff(info.mlx);
 	mlx_hook(info.window, 17, 0, closewin, &info);

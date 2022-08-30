@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:19:06 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 13:22:08 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 17:53:49 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_parsarg(t_info *info)
 
 	buf = get_next_line(info->fd);
 	if (!buf)
-		return (ft_putstr_error("Error\nMalloc error\n"));
+		return (ft_putstr_error("Error\nCan't read this file\n"));
 	while (buf)
 	{
 		if (ft_play(info, buf))

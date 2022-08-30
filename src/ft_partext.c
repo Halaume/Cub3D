@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:48:39 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/05 12:23:48 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 17:57:32 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	ft_add_text(t_info *info, char *buf)
 	if (err == 1)
 		return (ft_putstr_error("Error\nMalloc error\n"));
 	else if (err == 2)
-		return (ft_putstr_error("Error\nDoublon dans les textures\n"));
+		return (ft_putstr_error("Error\nDuplicate texture\n"));
 	else if (err == 3)
-		return (ft_putstr_error("Error\nLa couleur n'est pas bonne Kevin\n"));
+		return (ft_putstr_error("Error\nWrong RGB color (255,255,255 max)\n"));
 	return (0);
 }
 
