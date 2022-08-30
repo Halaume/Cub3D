@@ -1,12 +1,13 @@
+
 NO ./path
 SO ./path
 WE ./path
-DO       ./textures/sprite
-
 EA ./path
+EX       ./textures/sprite
 F 0,0,0
 C 0,0,0
 
 1111111
-1E02201
+1000101
+1E00001
 1111111

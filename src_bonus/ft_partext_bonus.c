@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:48:39 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/26 17:15:30 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 13:25:43 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,17 @@ int	ft_fill_sprite(t_texture **text, char *path, int nb)
 		free(tmp);
 		tmp = NULL;
 	}
-	free(path);
 	return (0);
 }
 
-int	ft_init_sprite(t_info *info, t_texture **text, char *path)
+int	ft_init_sprite(t_info *info, t_texture **text, char *path, DIR *fd)
 {
 	int				i;
-	DIR				*fd;
 	struct dirent	*dir;
 	t_texture		*tmp;
 
-(void) info;
-	fd = 0;
+	(void) info;
 	i = 0;
-	fd = opendir(path);
-	if (!fd)
-		return (ft_perror("Error\nTexture: ", path));
 	while (1)
 	{
 		dir = readdir(fd);
@@ -95,21 +89,30 @@ int	ft_init_sprite(t_info *info, t_texture **text, char *path)
 			tmp = tmp->next;
 		tmp->next = *text;
 	}
-	closedir(fd);
 	return (0);
 }
 
 int	ft_text_new(t_info *info, t_texture **text, char *buf)
 {
-	char	*path;
+	char		*path;
+	DIR			*fd;
+	struct stat	state;
 
 	if (*text)
 		return (2);
 	path = ft_strtrim(buf, " \n");
 	if (!path)
 		return (ft_putstr_error("Error\nMalloc error\n"));
-	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 5))
-		return (ft_init_sprite(info, text, path));
+	if (stat(path, &state))
+		return (ft_perror("Error\nTexture: ", path), free(path), 1);
+	if (S_ISDIR(state.st_mode))
+	{
+		fd = opendir(path);
+		if (!fd)
+			return (ft_perror("Error\nTexture: ", path), free(path), 1);
+		ft_init_sprite(info, text, path, fd);
+		closedir(fd);
+	}
 	else
 		if (ft_sprite_new(text, path, 0))
 			return (ft_putstr_error("Error\nMalloc error\n"));
@@ -138,9 +141,9 @@ int	ft_add_text(t_info *info, char *buf, int err)
 	if (err == 1)
 		return (err);
 	else if (err == 2)
-		return (ft_putstr_error("Error\nDoublon dans les textures\n"));
+		return (ft_putstr_error("Error\nDuplicate texture\n"));
 	else if (err == 3)
-		return (ft_putstr_error("Error\nLa couleur n'est pas bonne Kevin\n"));
+		return (ft_putstr_error("Error\nWrong RGB color (255,255,255 max)\n"));
 	return (0);
 }
 

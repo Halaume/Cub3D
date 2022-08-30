@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:41:52 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/05 12:10:52 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 12:54:46 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	ft_poserr(int y, int x, char *str)
 	pos = ft_itoa(x);
 	if (!pos)
 		return (1);
-	ft_putstr_error("colonne ");
+	ft_putstr_error("column ");
 	ft_putstr_error(pos);
 	free(pos);
-	ft_putstr_error(" ligne ");
+	ft_putstr_error(" line ");
 	pos = ft_itoa(y);
 	if (!pos)
 		return (1);
