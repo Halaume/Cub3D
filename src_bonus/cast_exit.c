@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 12:12:32 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 14:55:36 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:34:17 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	init_exit(t_info *info, t_casting * cast)
 
 void	put_col_exit(t_info *info, t_casting *cast, int *i, int y, double *current)
 {
-
-	cast->dist = info->img.addr + y * (info->img.bits_per_pixel / 8);
+	cast->dist = info->img[info->cur_i].addr + y * (info->img[info->cur_i].bits_per_pixel / 8);
 	cast->origin = cast->texture_ex.img.addr + (int)cast->percent_ex * \
 				(cast->texture_ex.img.bits_per_pixel / 8);
 	if (cast->start_px_ex < 0)
@@ -69,7 +68,7 @@ void	put_col_exit(t_info *info, t_casting *cast, int *i, int y, double *current)
 		*i = cast->start_px_ex;
 		*current = 0;
 	}
-	cast->dist += info->img.line_length * *i;
+	cast->dist += info->img[info->cur_i].line_length * *i;
 }
 
 void	put_the_wall_exit(t_info *info, t_casting *cast, int y)
@@ -89,7 +88,7 @@ void	put_the_wall_exit(t_info *info, t_casting *cast, int y)
 				(int)percent_y * cast->texture_ex.img.line_length);
 		if (!(tmp >> 24))
 			*(unsigned int *)cast->dist = tmp;
-		cast->dist += info->img.line_length;
+		cast->dist += info->img[info->cur_i].line_length;
 		current += cast->step_ex;
 		i += 1;
 	}
