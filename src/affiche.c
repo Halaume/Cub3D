@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:08:55 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/07/07 13:47:12 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:28:55 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	put_the_wall(t_info *info, t_casting *cast, int *i)
 			cast->percent_y = cast->texture.height - 1;
 		*(unsigned int *)cast->dist = *(unsigned int *)(cast->origin + \
 				(int)cast->percent_y * cast->texture.img.line_length);
-		cast->dist += info->img.line_length;
+		cast->dist += info->img[info->cur_i].line_length;
 		cast->current += cast->step;
 		*i += 1;
 	}
@@ -33,7 +33,7 @@ void	put_col(t_info *info, t_casting *cast, int y)
 {
 	int		i;
 
-	cast->dist = info->img.addr + y * (info->img.bits_per_pixel / 8);
+	cast->dist = info->img[info->cur_i].addr + y * (info->img[info->cur_i].bits_per_pixel / 8);
 	cast->origin = cast->texture.img.addr + (int)cast->percent * \
 				(cast->texture.img.bits_per_pixel / 8);
 	cast->step = ((double)1 / (double)cast->wall_height) * \
@@ -42,14 +42,14 @@ void	put_col(t_info *info, t_casting *cast, int y)
 	while (i < cast->start_px)
 	{
 		*(unsigned int *)cast->dist = info->color_sky;
-		cast->dist += info->img.line_length;
+		cast->dist += info->img[info->cur_i].line_length;
 		i++;
 	}
 	put_the_wall(info, cast, &i);
 	while (i < info->h)
 	{
 		*(unsigned int *)cast->dist = info->color_floor;
-		cast->dist += info->img.line_length;
+		cast->dist += info->img[info->cur_i].line_length;
 		i++;
 	}
 }

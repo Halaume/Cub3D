@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:46 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/24 10:56:48 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 18:27:41 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define NB_IMG 8
 
 typedef struct s_map {
 	char			*line;
@@ -67,7 +68,7 @@ typedef struct s_hooking {
 typedef struct s_info {
 	t_player	player;
 	t_hooking	hook;
-	t_data		img;
+	t_data		img[NB_IMG];
 	t_texture	texture_n;
 	t_texture	texture_s;
 	t_texture	texture_w;
@@ -76,6 +77,8 @@ typedef struct s_info {
 	char		**map;
 	void		*mlx;
 	void		*window;
+	int			nb_i;
+	int			cur_i;
 	int			h;
 	int			w;
 	int			fd;

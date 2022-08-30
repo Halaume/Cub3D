@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 17:59:33 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 18:06:56 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_closewin(t_info *info, int err)
 		mlx_destroy_display(info->mlx);
 		free(info->mlx);
 	}
+	if (err != 1)
+		exit (0);
 	exit (err);
 }
 

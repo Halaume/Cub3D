@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 11:10:15 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 18:18:59 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ int	ft_count_ind(t_texture *text)
 
 	i = 0;
 	if (!text)
-		return (i);
+		return (-1);
 	if (!text->next)
-		return (1);
-	while (text)
+		return (0);
+	while (text->next)
 	{
-		if (text->next->index == 0)
-			return (text->index);
+		if (text->next && text->next->index == 0)
+			break ;
 		text = text->next;
 	}
-	return (0);
+	return (text->index);
 }
 
 void	ft_free_texture(t_info *info, t_texture *text)

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:38:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 17:55:52 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 18:27:13 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	init_info(t_info *info, char *file)
 	init_texture(info);
 	info->color_sky = 0;
 	info->color_floor = 0;
-	info->img.img = NULL;
-	info->img.addr = NULL;
+	info->nb_i = 0;
+	info->cur_i = 0;
 	info->map = NULL;
 	info->mapping = NULL;
 	if (ft_parse(info, file))
