@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:51:30 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 13:05:23 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 13:27:37 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ player): "));
 '0'): "));
 	}
 	else if (map[y][x] == 'X')
-		info->is_exit = 1;
+		info->is_exit++;
 	if (nb > 1)
 		return (ft_putstr_error("Error\nToo much players on the map\n"));
+	if (info->is_exit > 1)
+		return (ft_putstr_error("Error\nToo much exit on the map\n"));
 	return (0);
 }
 
