@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:21:16 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/24 18:21:54 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 15:16:18 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int	ft_fill_minimap(t_info *info, int x, int y, int pos[2])
 		{
 			if ((y == 10 && i == 0) || (x == info->w - 190 && j == 0)
 				|| (x == info->w - 30 && j == 19) || (y == 170 && i == 19))
-				my_mlx_pixel_put(&info->img, x + j, y + i,
+				my_mlx_pixel_put(&info->img[info->cur_i], x + j, y + i,
 					create_trgb(100, 0, 0, 0));
 			else
-				my_mlx_pixel_put(&info->img, x + j, y + i,
+				my_mlx_pixel_put(&info->img[info->cur_i], x + j, y + i,
 					create_trgb(100, rgb[0], rgb[1], rgb[2]));
 		}
 	}

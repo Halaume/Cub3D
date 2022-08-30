@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:10:49 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/26 15:58:32 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 13:20:09 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_open_img(t_info *info, t_texture *text)
 				&text->width, &text->height);
 		if (!text->img.img)
 		{
-			ft_putstr_error("Error\nImpossible d'ouvrir la texture: ");
+			ft_putstr_error("Error\nError while opening the texture: ");
 			ft_putstr_error(text->path);
 			return (ft_putstr_error("\n"));
 		}
@@ -29,7 +29,7 @@ int	ft_open_img(t_info *info, t_texture *text)
 				&text->img.endian);
 		if (!text->img.addr)
 		{
-			ft_putstr_error("Error\nImpossible d'ouvrir la texture: ");
+			ft_putstr_error("Error\nError while opening the texture: ");
 			ft_putstr_error(text->path);
 			return (ft_putstr_error("\n"));
 		}

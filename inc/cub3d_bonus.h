@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 14:48:17 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:30:32 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 # include <math.h>
 # include <fcntl.h>
 # include <dirent.h>
+# include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/time.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define NB_IMG 12
 
 typedef struct s_map {
 	char			*line;
@@ -87,7 +89,7 @@ typedef struct s_info {
 	struct timeval	start;
 	t_player	player;
 	t_hooking	hook;
-	t_data		img;
+	t_data		img[NB_IMG];
 	t_texture	*texture_n;
 	t_texture	*texture_s;
 	t_texture	*texture_w;
@@ -99,6 +101,8 @@ typedef struct s_info {
 	char		**map;
 	void		*mlx;
 	void		*window;
+	int			nb_i;
+	int			cur_i;
 	int			h;
 	int			w;
 	int			fd;
@@ -238,7 +242,7 @@ void				ft_spriteadd_back(t_texture **sprite, t_texture *new);
 int					ft_sprite_new(t_texture **text, char *path, int i);
 int					ft_text_new(t_info *info, t_texture **text, char *path);
 int					ft_fill_sprite(t_texture **text, char *path, int nb);
-int					ft_init_sprite(t_info *info, t_texture **text, char *path);
+int					ft_init_sprite(t_info *info, t_texture **text, char *path, DIR *fd);
 int					ft_fill_text(t_texture *text, char *buf);
 int					ft_add_text(t_info *info, char *buf, int err);
 int					ft_check_fill(char *buf);

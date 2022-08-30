@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:30:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/18 17:18:16 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 13:18:46 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_getmap(t_info *info)
 	i = 0;
 	tmp = info->mapping;
 	if (!info->mapping)
-		return (ft_putstr_error("Error\nCarte non detectee dans le fichier\n"));
+		return (ft_putstr_error("Error\nNo map detected\n"));
 	len = ft_longest(info->mapping);
 	info->map = ft_calloc(sizeof(char *), ft_maplen(info->mapping) + 1);
 	if (!info->map)

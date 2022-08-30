@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:24:09 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/24 11:47:06 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 13:25:20 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,18 @@ int	ft_count_walldo(char **map, int y, int x, int *i)
 	if (map[y][x + 1] == '1')
 		(*i)++;
 	if (*i > 2)
-		return (ft_poserr(y, x, "Carte invalide: trop de murs autour de\
- la porte en "));
-	if (*i < 1)
-		return (ft_poserr(y, x, "Carte invalide: pas assez de murs\
- autour de la porte en "));
+		return (ft_poserr(y, x, "Invalid map: too much wall around the door "));
+	if (*i < 2)
+		return (ft_poserr(y, x, "Invalid map: not enought wall around the door \
+"));
 	if (map[y - 1][x] == '1')
 		if (map[y + 1][x] != '1')
-			return (ft_poserr(y, x, "Carte invalide: les murs autour de\
- la porte ne sont pas en face en "));
+			return (ft_poserr(y, x, "Invalid map: wall around the door\
+ are not facing "));
 	if (map[y][x - 1] == '1')
 		if (map[y][x + 1] != '1')
-			return (ft_poserr(y, x, "Carte invalide: les murs autour de\
- la porte ne sont pas en face en "));
+			return (ft_poserr(y, x, "Invalid map: wall around the door\
+ are not facing "));
 	return (0);
 }
 
@@ -46,6 +45,10 @@ int	ft_check_doors(char **map, int y, int x)
 	int	i;
 
 	i = 0;
+	if (map[y - 1][x] == '2' || map[y + 1][x] == '2'
+		|| map[y][x - 1] == '2' || map[y][x + 1] == '2')
+		return (ft_poserr(y, x, "Where wanna you go with those doors? There: \
+"));
 	if (ft_count_walldo(map, y, x, &i))
 		return (1);
 	if (ft_check_around(map, y - 1, x))
