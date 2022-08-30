@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/26 17:02:51 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/26 18:46:20 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int argc, char **argv)
 		return (ft_putstr_error("Error\nInitialisation de la MLX echouee\n"));
 	if (get_texture(&info))
 	{
+		printf("hello\n");
 		ft_closewin(&info, 1);
 		exit (1);
 	}
