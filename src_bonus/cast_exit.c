@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 12:12:32 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/29 18:15:53 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:55:36 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	put_the_wall_exit(t_info *info, t_casting *cast, int y)
 	double			current;
 
 	put_col_exit(info, cast, &i, y, &current);
-	while (i <= cast->end_px_ex && i < info->h)
+	while (i < cast->end_px_ex && i < info->h)
 	{
 		percent_y = (int)current;
 		if (percent_y == cast->texture_ex.height)
@@ -112,13 +112,16 @@ void	x_coords(t_info *info, t_casting *cast, double coords[2], double *current_d
 }
 
 
-int	pls_help_exit(t_info *info, t_casting *cast, int i)
+int	pls_help_exit(t_info *info, t_casting *cast)
 {
 	double	coords[2];
 	double	current_dist;
 
 	x_coords(info, cast, coords, &current_dist);
-	cast->percent_ex = distance(cast->exit_ends[0], cast->exit_ends[1], coords[0], coords[1]);
+	if (distance(coords[0], coords[1], cast->exit_mid[0], cast->exit_mid[1]) > 0.5)
+		return (1);
+	cast->do_exit = 1;
+	cast->percent_ex = distance(cast->exit_ends[2], cast->exit_ends[3], coords[0], coords[1]);
 	if (cast->percent_ex >= 1)
 		cast->percent_ex = 0.9999;
 	cast->percent_ex = floor(cast->percent_ex * (double)cast->texture_ex.width);
@@ -128,14 +131,13 @@ int	pls_help_exit(t_info *info, t_casting *cast, int i)
 	cast->end_px_ex = cast->start_px_ex + cast->ex_height - 1;
 	cast->step_ex = ((double)1 / (double)cast->ex_height) * \
 		(double)(cast->texture_ex.height);
-	put_the_wall_exit(info, cast, i);
 	return (0);
 }
 
-void	get_the_exit(t_info *info, t_casting *cast, int i)
+void	get_the_exit(t_info *info, t_casting *cast)
 {
 	if (cast->exit[0] == 0 || cast->exit[1] == 0)
 		return ;
 	init_exit(info, cast);
-	pls_help_exit(info, cast, i);
+	pls_help_exit(info, cast);
 }

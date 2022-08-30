@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/29 16:04:42 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:59:22 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void	brice_casting(t_info *info)
 	cast.side = 0;
 	while (++i < info->w)
 	{
+		cast.do_exit = 0;
 		cast.exit[0] = 0;
 		cast.exit[1] = 0;
 		casting2(info, &cast, i);
@@ -169,7 +170,9 @@ void	brice_casting(t_info *info)
 				cast_angle(info, &cast);
 		}
 		get_the_wall(info, &cast, i);
-		get_the_exit(info, &cast, i);
+		get_the_exit(info, &cast);
+		if (cast.do_exit == 1)
+			put_the_wall_exit(info, &cast, i);
 	}
 	ft_mapping(info);
 	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);

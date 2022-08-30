@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/29 16:45:23 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:48:17 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct s_casting {
 	double		current;
 	double		exit[2];
 	double		exit_dist;
+	int			do_exit;
 	int			exit_state;
 	int			percent_y;
 	int			proj_dist;
@@ -250,11 +251,12 @@ void				choose_texture(t_info *info, t_casting *cast);
 void				do_it_pls(t_info *info, t_casting *cast, int i);
 void				get_the_wall(t_info *info, t_casting *cast, int i);
 void				check_angle(t_info *info, t_casting *cast);
-void				get_the_exit(t_info *info, t_casting *cast, int i);
+void				get_the_exit(t_info *info, t_casting *cast);
 void				cast_droit(t_info *info, t_casting *cast);
 void				cast_angle(t_info *info, t_casting *cast);
 void				casting2(t_info *info, t_casting *cast, int i);
 void				brice_casting(t_info *info);
+void				put_the_wall_exit(t_info *info, t_casting *cast, int y);
 
 //			Player Mouvement
 
