@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:55:48 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/22 15:23:45 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/31 10:40:43 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	hook_mouse(int keycode, int x, int y, t_info *info)
 {
 	(void)x;
 	(void)y;
+	printf("x = %d && y = %d\n", x, y);
 	if (keycode == 1)
 		info->hook.mouse_hold = 1;
 	looping_hook(info);

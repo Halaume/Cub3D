@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:43:10 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 14:19:39 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/31 10:51:15 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	is_wall(t_info *info, double y, double x)
 
 void	turn_right(t_info *info)
 {
-	info->player.angle -= ((5 * M_PI) / 180);
+	info->player.angle -= (5 * M_PI) / 180;
 	if (info->player.angle == 2 * M_PI)
 		info->player.angle = 0;
 }
