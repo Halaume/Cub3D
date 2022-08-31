@@ -1,11 +1,11 @@
-     NO textures/colorstone.xpm
-     SO textures/bluestone.xpm
-WE textures/barney
-EA textures/purplestone.xpm
+     NO textures/death
+     SO textures/scream
+WE textures/rainbow
+EA textures/barney
 
-DO textures/eagle.xpm
+DO textures/sprite
 
-EX textures/nyan
+EX textures/sprite
 
 F 192,192,192
 C 100,100,255
