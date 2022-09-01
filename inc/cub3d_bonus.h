@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/01 11:23:26 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 12:22:55 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,12 @@ typedef struct s_casting {
 	char		*origin;
 }	t_casting;
 
-
 //	TEST
 
-int						check_north_corner(t_info *info, t_casting *cast);
-int						check_south_corner(t_info *info, t_casting *cast);
-int						check_west_corner(t_info *info, t_casting *cast);
-int						check_east_corner(t_info *info, t_casting *cast);
+int					check_north_corner(t_info *info, t_casting *cast);
+int					check_south_corner(t_info *info, t_casting *cast);
+int					check_west_corner(t_info *info, t_casting *cast);
+int					check_east_corner(t_info *info, t_casting *cast);
 
 //	Main
 

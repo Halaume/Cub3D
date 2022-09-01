@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:48:39 by nflan             #+#    #+#             */
-/*   Updated: 2022/09/01 11:22:53 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 12:20:19 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_fill_sprite(t_texture **text, char *path, int nb)
 		if (!tmp)
 			return (ft_putstr_error("Error\nMalloc error\n"));
 		if (ft_sprite_new(text, tmp, i))
-			return (ft_putstr_error("Error\nMalloc error\n"));
+			return (free(tmp), ft_putstr_error("Error\nMalloc error\n"));
 		free(tmp);
 		tmp = NULL;
 	}
