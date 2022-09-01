@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:21:07 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 15:16:49 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:15:08 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	ft_print_map(t_info *info, int x, int y, int rgb[3])
 				my_mlx_pixel_put(&info->img[info->cur_i], x + j, y + i,
 					create_trgb(100, 0, 0, 0));
 			else
-				my_mlx_pixel_put(&info->img[info->cur_i], x + j, y + i, create_trgb(100,
-						rgb[0], rgb[1], rgb[2]));
+				my_mlx_pixel_put(&info->img[info->cur_i], x + j, y + i,
+					create_trgb(100, rgb[0], rgb[1], rgb[2]));
 		}
 	}
 	return (0);

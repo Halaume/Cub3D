@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:19:06 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 13:22:08 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:29:12 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	ft_play(t_info *info, char *buf)
 	if (ft_check_fill(buf))
 	{
 		if (ft_check_fill(buf) == 2)
-			return (ft_putstr_error("Error\nInvalide information\n"));
+			return (ft_putstr_error("Error\nInvalid information (wrong texture \
+or color)\n"));
 		while (*buf == ' ')
 			buf++;
 		if (ft_add_text(info, buf, 0))
@@ -58,7 +59,7 @@ int	ft_parsarg(t_info *info)
 
 	buf = get_next_line(info->fd);
 	if (!buf)
-		return (ft_putstr_error("Error\nMalloc error\n"));
+		return (ft_putstr_error("Error\nCan't read this file\n"));
 	while (buf)
 	{
 		if (ft_play(info, buf))

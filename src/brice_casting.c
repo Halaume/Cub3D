@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 17:07:11 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:34:09 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ void	brice_casting(t_info *info)
 		}
 		get_the_wall(info, &cast, i);
 	}
-	mlx_put_image_to_window(info->mlx, info->window, info->img.img, 0, 0);
+	mlx_put_image_to_window(info->mlx, info->window,
+		info->img[info->cur_i].img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 11:11:31 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:54:08 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ int	ft_closewin(t_info *info, int err)
 {
 	if (info->window)
 	{
-		if (info->img.img)
-			mlx_destroy_image(info->mlx, info->img.img);
+		while (--info->nb_i >= 0)
+		{
+			if (info->img[info->nb_i].img)
+				mlx_destroy_image(info->mlx, info->img[info->nb_i].img);
+		}
 		mlx_clear_window(info->mlx, info->window);
 		mlx_destroy_window(info->mlx, info->window);
 	}
@@ -28,7 +31,9 @@ int	ft_closewin(t_info *info, int err)
 		mlx_destroy_display(info->mlx);
 		free(info->mlx);
 	}
-	return (err);
+	if (err != 1)
+		exit (0);
+	exit (err);
 }
 
 int	ft_init_window(t_info *info)
@@ -39,13 +44,22 @@ int	ft_init_window(t_info *info)
 	info->window = mlx_new_window(info->mlx, info->w, info->h, "Cub3D");
 	if (!info->window)
 		return (ft_closewin(info, 1));
-	info->img.img = mlx_new_image(info->mlx, info->w, info->h);
-	if (!info->img.img)
-		return (ft_closewin(info, 1));
-	info->img.addr = mlx_get_data_addr(info->img.img, &info->img.bits_per_pixel,
-			&info->img.line_length, &info->img.endian);
-	if (!info->img.addr)
-		return (ft_closewin(info, 1));
+	while (info->nb_i < NB_IMG)
+	{
+		info->nb_i++;
+		info->img[info->nb_i - 1].img = NULL;
+		info->img[info->nb_i - 1].addr = NULL;
+		info->img[info->nb_i - 1].img = mlx_new_image(info->mlx, info->w,
+				info->h);
+		if (!info->img[info->nb_i - 1].img)
+			return (ft_closewin(info, 1));
+		info->img[info->nb_i - 1].addr = mlx_get_data_addr(info->img[info->nb_i
+				- 1].img, &info->img[info->nb_i - 1].bits_per_pixel,
+				&info->img[info->nb_i - 1].line_length,
+				&info->img[info->nb_i - 1].endian);
+		if (!info->img[info->nb_i - 1].addr)
+			return (ft_closewin(info, 1));
+	}
 	return (0);
 }
 
@@ -54,23 +68,17 @@ int	main(int argc, char **argv)
 	t_info	info;
 
 	if (argc != 2)
-		return (ft_putstr_error("Error\nNombre d'arguments invalide\n"));
+		return (ft_putstr_error("Error\nInvalid number of args\n"));
 	init_info(&info, argv[1]);
 	if (ft_init_window(&info))
-		return (ft_putstr_error("Error\nInitialisation de la MLX echouee\n"));
+		return (ft_putstr_error("Error\nMLX initialization error\n"));
 	if (get_texture(&info))
-	{
 		ft_closewin(&info, 1);
-		exit (1);
-	}
 	brice_casting(&info);
 	mlx_do_key_autorepeatoff(info.mlx);
-	mlx_hook(info.window, 17, 0, closewin, &info);
+	mlx_hook(info.window, 17, 0, ft_closewin, &info);
 	mlx_hook(info.window, 2, 1L << 0, hook, &info);
 	mlx_hook(info.window, 3, 1L << 1, hook_release, &info);
-	mlx_hook(info.window, 4, 1L << 2, hook_mouse, &info);
-	mlx_hook(info.window, 5, 1L << 3, hook_mouse_release, &info);
-	mlx_hook(info.window, 6, 1L << 6, hook_mouse_mouv, &info);
 	mlx_loop_hook(info.mlx, looping_hook, &info);
 	mlx_loop(info.mlx);
 	return (0);

@@ -6,7 +6,6 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 14:11:08 by ghanquer          #+#    #+#              #
-#    Updated: 2022/08/26 12:58:16 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +47,7 @@ MLX = minilibx-linux/libmlx_Linux.a
 SRC_FT = affiche brice_casting cub3d_basic cub3d_basic2 ft_gnl hook liberation \
 		 main map moove moove_for moove_back moove_left moove_right texture \
 		 casting_tools ft_tools ft_colors ft_coloring ft_parse ft_check_map \
-		 ft_check_map_tools ft_partext ft_player ft_print hook_mouse check_edge
+		 ft_check_map_tools ft_partext ft_player ft_print check_edge
 
 SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus door_bonus \
 		  cub3d_basic2_bonus cub3d_basic_bonus ft_check_map_bonus \
@@ -58,7 +57,8 @@ SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus door_bonus \
 		  ft_print_map_bonus ft_tools_bonus hook_bonus hook_mouse_bonus \
 		  liberation_bonus main map_bonus moove_back_bonus moove_bonus \
 		  moove_for_bonus moove_left_bonus moove_right_bonus texture_bonus \
-		  liberation2_bonus auto_close_bonus check_edge_bonus cast_exit
+		  liberation2_bonus auto_close_bonus check_edge_bonus cast_exit \
+		  ft_sprite_tools_bonus
 
 
 LIBFT = libft/libft.a

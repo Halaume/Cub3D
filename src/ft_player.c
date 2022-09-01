@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:14:50 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/05 16:36:19 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 18:02:04 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_nb_player(char **map)
 		y++;
 	}
 	if (nb > 1)
-		return (ft_putstr_error("Error\nTrop de joueurs sur la carte\n"));
+		return (ft_putstr_error("Error\nToo much players on the map\n"));
 	return (0);
 }
 
@@ -68,7 +68,7 @@ int	new_init_player(t_info *info)
 		y++;
 	}
 	if (!tab[y])
-		return (free_func(info), ft_putstr_error("Error\nJoueur introuvable\n"));
+		return (ft_free(info), ft_putstr_error("Error\nCan't find player\n"));
 	info->player.x = x + 0.5;
 	info->player.y = y + 0.5;
 	ft_init_player_angle(info, y, x);

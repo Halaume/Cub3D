@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/24 12:14:55 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:32:21 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	hook(int keycode, t_info *info)
 	if (keycode == 115)
 		info->hook.backward = 1;
 	if (keycode == 65307)
-		closewin(info);
+		ft_closewin(info, 0);
 	looping_hook(info);
 	return (0);
 }
@@ -58,21 +58,8 @@ int	hook_release(int keycode, t_info *info)
 	return (0);
 }
 
-void	mouse_loop(t_info *info)
-{
-	if (info->hook.mouse_hold == 1)
-	{
-		if (info->hook.mouse_prev_pos - info->hook.mouse_pos > 0)
-			turn_left(info);
-		else if (info->hook.mouse_prev_pos - info->hook.mouse_pos < 0)
-			turn_right(info);
-	}
-	info->hook.mouse_prev_pos = info->hook.mouse_pos;
-}
-
 int	looping_hook(t_info *info)
 {
-	mouse_loop(info);
 	if (info->hook.cam_left && !info->hook.cam_right)
 		turn_left(info);
 	if (info->hook.cam_right && !info->hook.cam_left)

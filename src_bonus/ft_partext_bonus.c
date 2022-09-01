@@ -6,42 +6,11 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:48:39 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 13:25:43 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:22:53 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d_bonus.h"
-
-void	ft_spriteadd_back(t_texture **sprite, t_texture *new)
-{
-	t_texture	*tmp;
-
-	tmp = *sprite;
-	if (sprite && new)
-	{
-		if (*sprite == NULL)
-			*sprite = new;
-		else
-		{
-			while (tmp->next)
-				tmp = tmp->next;
-			tmp->next = new;
-		}
-	}
-}
-
-int	ft_sprite_new(t_texture **text, char *path, int i)
-{
-	t_texture	*new;
-
-	new = ft_calloc(sizeof(t_texture), 1);
-	if (!new)
-		return (ft_putstr_error("Error\nMalloc error"));
-	new->path = ft_strdup(path);
-	new->index = i;
-	ft_spriteadd_back(text, new);
-	return (0);
-}
 
 int	ft_fill_sprite(t_texture **text, char *path, int nb)
 {
@@ -65,13 +34,12 @@ int	ft_fill_sprite(t_texture **text, char *path, int nb)
 	return (0);
 }
 
-int	ft_init_sprite(t_info *info, t_texture **text, char *path, DIR *fd)
+int	ft_init_sprite(t_texture **text, char *path, DIR *fd)
 {
 	int				i;
 	struct dirent	*dir;
 	t_texture		*tmp;
 
-	(void) info;
 	i = 0;
 	while (1)
 	{
@@ -92,7 +60,7 @@ int	ft_init_sprite(t_info *info, t_texture **text, char *path, DIR *fd)
 	return (0);
 }
 
-int	ft_text_new(t_info *info, t_texture **text, char *buf)
+int	ft_text_new(t_texture **text, char *buf)
 {
 	char		*path;
 	DIR			*fd;
@@ -110,12 +78,13 @@ int	ft_text_new(t_info *info, t_texture **text, char *buf)
 		fd = opendir(path);
 		if (!fd)
 			return (ft_perror("Error\nTexture: ", path), free(path), 1);
-		ft_init_sprite(info, text, path, fd);
+		if (ft_init_sprite(text, path, fd))
+			return (free(path), closedir(fd), 1);
 		closedir(fd);
 	}
 	else
 		if (ft_sprite_new(text, path, 0))
-			return (ft_putstr_error("Error\nMalloc error\n"));
+			return (free(path), ft_putstr_error("Error\nMalloc error\n"));
 	free(path);
 	return (0);
 }
@@ -123,17 +92,17 @@ int	ft_text_new(t_info *info, t_texture **text, char *buf)
 int	ft_add_text(t_info *info, char *buf, int err)
 {
 	if (!strncmp(buf, "NO ", 3))
-		err = ft_text_new(info, &info->texture_n, buf + 2);
+		err = ft_text_new(&info->texture_n, buf + 2);
 	else if (!strncmp(buf, "SO ", 3))
-		err = ft_text_new(info, &info->texture_s, buf + 2);
+		err = ft_text_new(&info->texture_s, buf + 2);
 	else if (!strncmp(buf, "WE ", 3))
-		err = ft_text_new(info, &info->texture_w, buf + 2);
+		err = ft_text_new(&info->texture_w, buf + 2);
 	else if (!strncmp(buf, "EA ", 3))
-		err = ft_text_new(info, &info->texture_e, buf + 2);
+		err = ft_text_new(&info->texture_e, buf + 2);
 	else if (!strncmp(buf, "DO ", 3))
-		err = ft_text_new(info, &info->texture_d, buf + 2);
+		err = ft_text_new(&info->texture_d, buf + 2);
 	else if (!strncmp(buf, "EX ", 3))
-		err = ft_text_new(info, &info->texture_ex, buf + 2);
+		err = ft_text_new(&info->texture_ex, buf + 2);
 	else if (!strncmp(buf, "F ", 2))
 		err = ft_fill_color(&info->color_floor, buf + 1);
 	else if (!strncmp(buf, "C ", 2))

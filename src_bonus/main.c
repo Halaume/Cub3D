@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:31:27 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 16:56:00 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/31 16:23:02 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_closewin(t_info *info, int err)
 		mlx_destroy_display(info->mlx);
 		free(info->mlx);
 	}
+	if (err != 1)
+		exit (0);
 	exit (err);
 }
 
@@ -44,16 +46,19 @@ int	ft_init_window(t_info *info)
 		return (ft_closewin(info, 1));
 	while (info->nb_i < NB_IMG)
 	{
-		info->img[info->nb_i].img = NULL;
-		info->img[info->nb_i].addr = NULL;
-		info->img[info->nb_i].img = mlx_new_image(info->mlx, info->w, info->h);
-		if (!info->img[info->nb_i].img)
-			return (ft_closewin(info, 1));
-		info->img[info->nb_i].addr = mlx_get_data_addr(info->img[info->nb_i].img, &info->img[info->nb_i].bits_per_pixel,
-				&info->img[info->nb_i].line_length, &info->img[info->nb_i].endian);
-		if (!info->img[info->nb_i].addr)
-			return (ft_closewin(info, 1));
 		info->nb_i++;
+		info->img[info->nb_i - 1].img = NULL;
+		info->img[info->nb_i - 1].addr = NULL;
+		info->img[info->nb_i - 1].img = mlx_new_image(info->mlx, info->w,
+				info->h);
+		if (!info->img[info->nb_i - 1].img)
+			return (ft_closewin(info, 1));
+		info->img[info->nb_i - 1].addr = mlx_get_data_addr(info->img[info->nb_i
+				- 1].img, &info->img[info->nb_i - 1].bits_per_pixel,
+				&info->img[info->nb_i - 1].line_length,
+				&info->img[info->nb_i - 1].endian);
+		if (!info->img[info->nb_i - 1].addr)
+			return (ft_closewin(info, 1));
 	}
 	return (0);
 }
@@ -68,10 +73,7 @@ int	main(int argc, char **argv)
 	if (ft_init_window(&info))
 		return (ft_putstr_error("Error\nMLX initialization error\n"));
 	if (get_texture(&info))
-	{
 		ft_closewin(&info, 1);
-		exit (1);
-	}
 	brice_casting(&info);
 	mlx_do_key_autorepeatoff(info.mlx);
 	mlx_hook(info.window, 17, 0, ft_closewin, &info);

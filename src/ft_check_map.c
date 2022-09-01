@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:51:30 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/23 14:45:28 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 17:59:06 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ int	ft_charcheck(char **map, int y, int x)
 	static int	nb = 0;
 
 	if (ft_valid_elems(map[y][x]))
-		return (ft_poserr(y, x, "Carte invalide (caractere invalide): "));
+		return (ft_poserr(y, x, "Invalid map (invalid information): "));
 	else if (map[y][x] == 'W' || map[y][x] == 'N' || map[y][x] == 'S'
 		|| map[y][x] == 'E')
 	{
 		if (ft_check_zero(map, y, x))
-			return (ft_poserr(y, x, "Carte invalide (caractere invalide autour \
-du joueur): "));
+			return (ft_poserr(y, x, "Invalid map (invalid information around \
+player): "));
 		nb++;
 	}
 	else if (map[y][x] == '0')
 	{
 		if (ft_check_zero(map, y, x))
-			return (ft_poserr(y, x, "Carte invalide (caractere invalide autour \
-d'un '0'): "));
+			return (ft_poserr(y, x, "Invalid map (invalid information around \
+'0'): "));
 	}
 	if (nb > 1)
-		return (ft_putstr_error("Error\nTrop de joueurs sur la carte\n"));
+		return (ft_putstr_error("Error\nToo much players on the map\n"));
 	return (0);
 }
 

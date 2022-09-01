@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 16:55:47 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:23:26 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # include <sys/types.h>
 # include <sys/time.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
-# define NB_IMG 12
+# define WIDTH	1920
+# define HEIGHT	1080
+# define NB_IMG	12
 
 typedef struct s_map {
 	char			*line;
@@ -87,32 +87,32 @@ typedef struct s_fold {
 
 typedef struct s_info {
 	struct timeval	start;
-	t_player	player;
-	t_hooking	hook;
-	t_data		img[NB_IMG];
-	t_texture	*texture_n;
-	t_texture	*texture_s;
-	t_texture	*texture_w;
-	t_texture	*texture_e;
-	t_texture	*texture_d;
-	t_texture	*texture_ex;
-	t_map		*mapping;
-	t_door		*door;
-	char		**map;
-	void		*mlx;
-	void		*window;
-	int			nb_i;
-	int			cur_i;
-	int			h;
-	int			w;
-	int			fd;
-	int			color_sky;
-	int			color_floor;
-	int			nb_line;
-	int			nb_col;
-	int			s_m;
-	int			print_map;
-	int			is_exit;
+	t_player		player;
+	t_hooking		hook;
+	t_data			img[NB_IMG];
+	t_texture		*texture_n;
+	t_texture		*texture_s;
+	t_texture		*texture_w;
+	t_texture		*texture_e;
+	t_texture		*texture_d;
+	t_texture		*texture_ex;
+	t_map			*mapping;
+	t_door			*door;
+	char			**map;
+	void			*mlx;
+	void			*window;
+	int				nb_i;
+	int				cur_i;
+	int				h;
+	int				w;
+	int				fd;
+	int				color_sky;
+	int				color_floor;
+	int				nb_line;
+	int				nb_col;
+	int				s_m;
+	int				print_map;
+	int				is_exit;
 }	t_info;
 
 typedef struct s_casting {
@@ -225,14 +225,15 @@ int					ft_check_zero(char **map, int y, int x);
 int					ft_checkside(char c);
 int					ft_sides(char **map);
 //			Textures (partext)
-void				ft_spriteadd_back(t_texture **sprite, t_texture *new);
-int					ft_sprite_new(t_texture **text, char *path, int i);
-int					ft_text_new(t_info *info, t_texture **text, char *path);
+int					ft_text_new(t_texture **text, char *path);
 int					ft_fill_sprite(t_texture **text, char *path, int nb);
-int					ft_init_sprite(t_info *info, t_texture **text, char *path, DIR *fd);
+int					ft_init_sprite(t_texture **text, char *path, DIR *fd);
 int					ft_fill_text(t_texture *text, char *buf);
 int					ft_add_text(t_info *info, char *buf, int err);
 int					ft_check_fill(char *buf);
+//			Sprite_tools
+void				ft_spriteadd_back(t_texture **sprite, t_texture *new);
+int					ft_sprite_new(t_texture **text, char *path, int i);
 
 //			Casting
 
@@ -289,13 +290,16 @@ void				ft_map(t_info *info);
 
 //			Liberation
 
-void				free_char_char(char **str);
+void				ft_free_map(t_map *map);
+void				ft_free_texture(t_info *info, t_texture *text);
 void				ft_free(t_info *info);
-//void				free_func(t_info *info);
+int					ft_count_ind(t_texture *text);
+void				free_texture(t_info *info, t_texture *texture);
+void				free_sprite(t_texture *tmp, t_info *info);
 void				ft_free_doors(t_door *doors);
 
 //			GNL
-	
+
 unsigned int		ft_test_line(char *str);
 char				*ft_fill_str(char *str, char *buf);
 char				*get_line(char *str, int fd);

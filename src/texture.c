@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:10:49 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/05 16:34:42 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 18:00:43 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	get_texture(t_info *info)
 			&info->texture_w.height);
 	if (!info->texture_n.img.img || !info->texture_s.img.img
 		|| !info->texture_e.img.img || !info->texture_w.img.img)
-		return (ft_putstr_error("Error\nImpossible d'ouvrir une texture\n"));
+		return (ft_putstr_error("Error\nError while opening a texture\n"));
 	get_address(info);
 	if (!info->texture_n.img.addr || !info->texture_s.img.addr
 		|| !info->texture_e.img.addr || !info->texture_w.img.addr)
-		return (ft_putstr_error("Error\nImpossible d'ouvrir une texture\n"));
+		return (ft_putstr_error("Error\nError while opening a texture\n"));
 	return (0);
 }

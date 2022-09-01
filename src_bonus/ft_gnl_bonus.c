@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:51:26 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/02 17:51:28 by nflan            ###   ########.fr       */
+/*   Updated: 2022/08/30 17:53:12 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ char	*get_line(char *str, int fd)
 		if (!buf)
 			return (NULL);
 		ret = read(fd, buf, 1);
-		buf[ret] = 0;
 		if ((ret == 0 || !*buf) && !str)
 		{
 			free(buf);
 			return (NULL);
 		}
+		buf[ret] = '\0';
 		str = ft_fill_str(str, buf);
 		free(buf);
 		if (!str)

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 15:11:46 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:59:16 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,27 @@ int	hook_release(int keycode, t_info *info)
 	return (0);
 }
 
-void	mouse_loop(t_info *info)
+void	mouse_move(t_info *info)
 {
 	if (info->hook.mouse_hold == 1)
 	{
-		if (info->hook.mouse_prev_pos - info->hook.mouse_pos > 0)
-			turn_left(info);
-		else if (info->hook.mouse_prev_pos - info->hook.mouse_pos < 0)
-			turn_right(info);
+		if (info->hook.mouse_prev_pos != info->hook.mouse_pos)
+		{
+			info->player.angle -= ((double)(info->hook.mouse_prev_pos
+						- info->hook.mouse_pos) * ((double)M_PI / 2)) / (double)info->w;
+			if (info->player.angle - (2 * M_PI) < 0.001
+				&& info->player.angle - (2 * M_PI) > -0.001)
+				info->player.angle = 0;
+			info->hook.mouse_prev_pos = info->hook.mouse_pos;
+		}
 	}
-	info->hook.mouse_prev_pos = info->hook.mouse_pos;
 }
 
 int	looping_hook(t_info *info)
 {
 	if (info->map[(int)info->player.y][(int)info->player.x] == 'X')
-		closewin(info);
-	mouse_loop(info);
+		ft_closewin(info, 0);
+	mouse_move(info);
 	if (info->hook.cam_left && !info->hook.cam_right)
 		turn_left(info);
 	if (info->hook.cam_right && !info->hook.cam_left)

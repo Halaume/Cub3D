@@ -6,38 +6,11 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:44:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 11:10:15 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:20:22 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d_bonus.h"
-
-void	free_char_char(char **str)
-{
-	int	i;
-
-	i = 0;
-	if (!str || !*str)
-		return ;
-	while (str[i])
-	{
-		free(str[i]);
-		str[i] = NULL;
-		i++;
-	}
-	free(str);
-	str = NULL;
-}
-
-void	free_texture(t_info *info, t_texture *texture)
-{
-	if (texture->img.img)
-		mlx_destroy_image(info->mlx, texture->img.img);
-	texture->img.img = NULL;
-	if (texture->path)
-		free(texture->path);
-	texture->path = NULL;
-}
 
 void	ft_free_map(t_map *map)
 {
@@ -54,32 +27,6 @@ void	ft_free_map(t_map *map)
 		free(tmp);
 		tmp = NULL;
 	}
-}
-
-void	free_sprite(t_texture *tmp, t_info *info)
-{
-	free(tmp->path);
-	tmp->path = NULL;
-	if (tmp->img.img)
-		free_texture(info, tmp);
-}
-
-int	ft_count_ind(t_texture *text)
-{
-	int	i;
-
-	i = 0;
-	if (!text)
-		return (i);
-	if (!text->next)
-		return (1);
-	while (text)
-	{
-		if (text->next->index == 0)
-			return (text->index);
-		text = text->next;
-	}
-	return (0);
 }
 
 void	ft_free_texture(t_info *info, t_texture *text)
