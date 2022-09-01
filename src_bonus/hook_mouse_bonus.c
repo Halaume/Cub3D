@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:55:48 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/01 11:45:18 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 13:07:21 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	hook_mouse(int keycode, int x, int y, t_info *info)
 {
-	(void)x;
 	(void)y;
 	if (keycode == 1)
 	{

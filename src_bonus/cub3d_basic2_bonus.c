@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:03:26 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/01 12:56:38 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 13:05:18 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	ft_next_texture(t_info *info)
 
 void	tracing_again(t_info *info)
 {
-	info->cur_i++;
-	if (info->cur_i >= NB_IMG)
-		info->cur_i = 0;
 	brice_casting(info);
 	door_closed(info);
 	ft_next_texture(info);
+	info->cur_i++;
+	if (info->cur_i >= NB_IMG)
+		info->cur_i = 0;
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -49,14 +49,3 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 		*(unsigned int *)dst = color;
 	}
 }
-
-/*int	closewin(t_info *info)
-{
-	mlx_destroy_image(info->mlx, info->img[info->cur_i].img);
-	mlx_destroy_window(info->mlx, info->window);
-	ft_free(info);
-	mlx_do_key_autorepeaton(info->mlx);
-	mlx_destroy_display(info->mlx);
-	free(info->mlx);
-	exit (0);
-}*/
