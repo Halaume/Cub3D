@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:31:25 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/25 12:53:05 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:05:21 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ void	get_the_wall(t_info *info, t_casting *cast, int i)
 	else
 		cast->distance1 = hypot(fabs(cast->ray[0]), fabs(cast->ray[1]));
 	cast->wall_ratio = cast->distance1 / cast->distance0;
-	cast->wall_height = (int)round(cast->wall_ratio * ((double)info->w / 2));
+	cast->wall_height = (int)round(cast->wall_ratio * (double)(info->w / 2));
 	do_it_pls(info, cast, i);
 }

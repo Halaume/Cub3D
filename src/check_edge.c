@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:28:11 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/23 17:08:26 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:22:25 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ void	check_north(t_info *info, t_casting *cast)
 	if (info->map[(int)(cast->curr[1] + 1)][(int)cast->curr[0]] == '1')
 	{
 		cast->is_wall = 2;
-		if ((cast->ray[0] <= 0 && info->map[(int)(cast->curr[1] + 1)] \
-					[(int)cast->curr[0]] == '1') || (cast->ray[0] >= 0 && \
-					info->map[(int)(cast->curr[1] - 1)][(int)cast->curr[0]] \
-					== '1'))
+		if ((cast->ray[0] <= 0 && info->map[(int)(cast->curr[1] + 1)]
+			[(int)cast->curr[0]] == '1') || (cast->ray[0] >= 0
+			&& info->map[(int)(cast->curr[1] - 1)][(int)cast->curr[0]] == '1'))
 		{
 			cast->is_wall = 1;
 			if (cast->ray[0] <= 0)
@@ -37,10 +36,9 @@ void	check_south(t_info *info, t_casting *cast)
 	if (info->map[(int)(cast->curr[1] - 1)][(int)cast->curr[0]] == '1')
 	{
 		cast->is_wall = 2;
-		if ((cast->ray[0] <= 0 && info->map[(int)(cast->curr[1] + 1)] \
-					[(int)cast->curr[0]] == '1') || (cast->ray[0] >= 0 && \
-					info->map[(int)(cast->curr[1] - 1)][(int)cast->curr[0]] \
-					== '1'))
+		if ((cast->ray[0] >= 0 && info->map[(int)(cast->curr[1] + 1)]
+			[(int)cast->curr[0]] == '1') || (cast->ray[0] <= 0
+			&& info->map[(int)(cast->curr[1] - 1)][(int)cast->curr[0]] == '1'))
 		{
 			cast->is_wall = 1;
 			if (cast->ray[0] <= 0)
@@ -57,10 +55,9 @@ void	check_east(t_info *info, t_casting *cast)
 	if (info->map[(int)cast->curr[1]][(int)(cast->curr[0] - 1)] == '1')
 	{
 		cast->is_wall = 1;
-		if ((cast->ray[1] <= 0 && info->map[(int)(cast->curr[1] + 1)] \
-					[(int)cast->curr[0]] == '1') || \
-				(info->map[(int)(cast->curr[1] - 1)] \
-				[(int)cast->curr[0]] == '1' && cast->ray[1] >= 0))
+		if ((cast->ray[1] <= 0 && info->map[(int)(cast->curr[1] + 1)]
+			[(int)cast->curr[0]] == '1') || (cast->ray[1] >= 0
+			&& info->map[(int)(cast->curr[1] - 1)][(int)cast->curr[0]] == '1'))
 		{
 			cast->is_wall = 2;
 			if (cast->ray[1] <= 0)
@@ -77,10 +74,9 @@ void	check_west(t_info *info, t_casting *cast)
 	if (info->map[(int)cast->curr[1]][(int)(cast->curr[0] + 1)] == '1')
 	{
 		cast->is_wall = 1;
-		if ((cast->ray[1] <= 0 && info->map[(int)(cast->curr[1] + 1)] \
-					[(int)cast->curr[0]] == '1') || (cast->ray[1] >= 0 && \
-					info->map[(int)(cast->curr[1] - 1)][(int)cast->curr[0]] \
-					== '1'))
+		if ((cast->ray[1] <= 0 && info->map[(int)(cast->curr[1] + 1)]
+			[(int)cast->curr[0]] == '1') || (cast->ray[1] >= 0
+			&& info->map[(int)(cast->curr[1] - 1)][(int)cast->curr[0]] == '1'))
 		{
 			cast->is_wall = 2;
 			if (cast->ray[1] <= 0)
