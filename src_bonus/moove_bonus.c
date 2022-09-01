@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:43:10 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/31 16:36:42 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:15:38 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	is_wall(t_info *info, double y, double x)
 		return (1);
 	if (info->map[(int)y][(int)x] == '1')
 		return (1);
-	if (info->map[(int)y][(int)x] == '2' && is_door_open(info, (int)y, (int)x) == 1)
+	if (info->map[(int)y][(int)x] == '2'
+			&& is_door_open(info, (int)y, (int)x) == 1)
 		return (1);
 	return (0);
 }

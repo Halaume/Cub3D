@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:19:06 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 17:56:58 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:28:25 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	ft_play(t_info *info, char *buf)
 	if (id < 6 && ft_check_fill(buf))
 	{
 		if (ft_check_fill(buf) == 2)
-			return (ft_putstr_error("Error\nInvalide information\n"));
+			return (ft_putstr_error("Error\nInvalid information (wrong texture \
+or color)\n"));
 		while (*buf == ' ')
 			buf++;
 		if (ft_add_text(info, buf))

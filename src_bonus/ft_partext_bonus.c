@@ -6,42 +6,11 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:48:39 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 18:25:01 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 11:22:53 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d_bonus.h"
-
-void	ft_spriteadd_back(t_texture **sprite, t_texture *new)
-{
-	t_texture	*tmp;
-
-	tmp = *sprite;
-	if (sprite && new)
-	{
-		if (*sprite == NULL)
-			*sprite = new;
-		else
-		{
-			while (tmp->next)
-				tmp = tmp->next;
-			tmp->next = new;
-		}
-	}
-}
-
-int	ft_sprite_new(t_texture **text, char *path, int i)
-{
-	t_texture	*new;
-
-	new = ft_calloc(sizeof(t_texture), 1);
-	if (!new)
-		return (ft_putstr_error("Error\nMalloc error"));
-	new->path = ft_strdup(path);
-	new->index = i;
-	ft_spriteadd_back(text, new);
-	return (0);
-}
 
 int	ft_fill_sprite(t_texture **text, char *path, int nb)
 {
