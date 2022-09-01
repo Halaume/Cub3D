@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:46 by nflan             #+#    #+#             */
-/*   Updated: 2022/09/01 12:15:47 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/01 12:55:21 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define NB_IMG 12
+# define NB_IMG 16
 
 typedef struct s_map {
 	char			*line;
