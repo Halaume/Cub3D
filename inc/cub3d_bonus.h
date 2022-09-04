@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/31 11:34:28 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/04 14:19:21 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,7 @@ void				cast_angle(t_info *info, t_casting *cast);
 void				casting2(t_info *info, t_casting *cast, int i);
 void				brice_casting(t_info *info);
 void				put_the_wall_exit(t_info *info, t_casting *cast, int y);
+int					is_on_door(t_info *info, t_casting *cast);
 
 //			Player Mouvement
 
