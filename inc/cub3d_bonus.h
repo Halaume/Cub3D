@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 16:21:55 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 16:52:56 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,8 @@ int					ft_sprite_new(t_texture **text, char *path, int i);
 
 //			Casting
 
+int					is_in_corner(t_info *i, double c[2], double r[2], int hit);
+int					is_on_door(t_info *info, t_casting *cast);
 void				get_proj_screen(t_info *info, t_casting *cast);
 void				next_curr(t_casting *cast, int side);
 void				choose_texture(t_info *info, t_casting *cast);
@@ -267,8 +269,10 @@ void				norme_angle1(t_info *info, t_casting *cast);
 void				norme_angle2(t_info *info, t_casting *cast);
 void				norme_droit1(t_info *info, t_casting *cast, t_door *door);
 void				norme_droit2(t_info *info, t_casting *cast, t_door *door);
-int					is_in_corner(t_info *i, double c[2], double r[2], int hit);
-int					is_on_door(t_info *info, t_casting *cast);
+void				init_exit(t_info *info, t_casting *cast);
+void				casting_next(t_info *info, t_casting *cast);
+double				distance(double x0, double y0, double x1, double y1);
+double				vector_angle(double v0[2], double v1[2]);
 
 //			Check Edge
 
