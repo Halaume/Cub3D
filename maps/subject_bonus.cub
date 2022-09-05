@@ -1,10 +1,6 @@
      NO textures/colorstone.xpm
      SO textures/bluestone.xpm
-<<<<<<< HEAD
-WE textures/bluewall.xpm
-=======
-WE textures/barney
->>>>>>> le_guigz
+WE textures/barrel.xpm
 EA textures/purplestone.xpm
 
 DO textures/eagle.xpm
