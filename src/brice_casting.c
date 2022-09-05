@@ -6,11 +6,40 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/01 15:57:26 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 12:18:13 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+int	is_in_corner(t_info *info, double curr[2], double ray[2], int hit)
+{
+	int	c[2];
+
+	c[0] = (int)curr[0];
+	c[1] = (int)curr[1];
+	if (hit == 1)
+	{
+		if (ray[1] < 0 && info->map[(c[1] + 1)][c[0]] == '1'
+			&& ((ray[0] <= 0 && info->map[c[1]][(c[0] + 1)] == '1')
+				|| (ray[0] >= 0 && info->map[c[1]][(c[0] - 1)] == '1')))
+			return (1);
+		else if (ray[1] > 0 && info->map[(c[1] - 1)][c[0]] == '1'
+			&& ((ray[0] <= 0 && info->map[c[1]][(c[0] + 1)] == '1')
+				|| (ray[0] >= 0 && info->map[c[1]][(c[0] - 1)] == '1')))
+			return (1);
+		return (0);
+	}
+	if (ray[0] < 0 && info->map[c[1]][(c[0] + 1)] == '1'
+		&& ((ray[1] <= 0 && info->map[(c[1] + 1)][c[0]] == '1')
+			|| (ray[1] >= 0 && info->map[(c[1] - 1)][c[0]] == '1')))
+		return (1);
+	else if (ray[0] > 0 && info->map[c[1]][(c[0] - 1)] == '1'
+		&& ((ray[1] <= 0 && info->map[(c[1] + 1)][c[0]] == '1')
+			|| (ray[1] >= 0 && info->map[(c[1] - 1)][c[0]] == '1')))
+		return (1);
+	return (0);
+}
 
 void	cast_droit(t_info *info, t_casting *cast)
 {
@@ -45,14 +74,16 @@ void	cast_angle(t_info *info, t_casting *cast)
 	{
 		cast->curr[1] = cast->delta[0] * cast->ray[1] + cast->prev_y;
 		cast->side = 0;
-		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1'
+				|| is_in_corner(info, cast->curr, cast->ray, 2))
 			cast->is_wall = 2;
 	}
 	else
 	{
 		cast->curr[0] = cast->delta[1] * cast->ray[0] + cast->prev_x;
 		cast->side = 1;
-		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1'
+				|| is_in_corner(info, cast->curr, cast->ray, 1))
 			cast->is_wall = 1;
 	}
 	if (cast->is_wall == 0)

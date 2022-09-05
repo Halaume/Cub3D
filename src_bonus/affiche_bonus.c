@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:08:55 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/01 11:15:21 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 13:59:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	put_col(t_info *info, t_casting *cast, int y)
 		* (info->img[info->cur_i].bits_per_pixel / 8);
 	cast->origin = cast->texture.img.addr + (int)cast->percent * \
 				(cast->texture.img.bits_per_pixel / 8);
-	cast->step = ((double)1 / (double)cast->wall_height) * \
-		(double)(cast->texture.height);
+	cast->step = (double)(1 / cast->wall_height)
+		* (double)(cast->texture.height);
 	i = 0;
 	while (i < cast->start_px)
 	{

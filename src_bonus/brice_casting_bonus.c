@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 11:25:42 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/05 12:17:45 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ void	cast_angle(t_info *info, t_casting *cast)
 			cast->exit_ray[1] = cast->ray[1];
 			cast->exit_state = 4;
 		}
-		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1' || is_in_corner(info, cast->curr, cast->ray, 2))
+		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1'
+				|| is_in_corner(info, cast->curr, cast->ray, 2))
 			cast->is_wall = 2;
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
 				&& door && door->is_op == 0)

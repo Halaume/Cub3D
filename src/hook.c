@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 18:32:21 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 12:19:38 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	hook(int keycode, t_info *info)
 		info->hook.backward = 1;
 	if (keycode == 65307)
 		ft_closewin(info, 0);
-	looping_hook(info);
 	return (0);
 }
 
@@ -54,7 +53,6 @@ int	hook_release(int keycode, t_info *info)
 		info->hook.forward = 0;
 	if (keycode == 115)
 		info->hook.backward = 0;
-	looping_hook(info);
 	return (0);
 }
 

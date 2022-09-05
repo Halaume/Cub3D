@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_edge_corner_bonus.c                          :+:      :+:    :+:   */
+/*   check_edge_corner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:07:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 12:09:27 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/05 12:10:37 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d_bonus.h"
+#include "../inc/cub3d.h"
 
 int	is_on_door(t_info *info, t_casting *cast)
 {
@@ -35,15 +35,11 @@ int	check_north_corner(t_info *info, t_casting *cast, double tmp[2])
 	{
 		cast->curr[1] = tmp[1];
 		cast->curr[0] = floor(tmp[0] + 1);
-		if (is_on_door(info, cast))
-			return (3);
 	}
 	else
 	{
 		cast->curr[1] = tmp[1];
 		cast->curr[0] = floor(tmp[0]) - 0.0001;
-		if (is_on_door(info, cast))
-			return (3);
 	}
 	return (0);
 }
@@ -64,15 +60,11 @@ int	check_south_corner(t_info *info, t_casting *cast, double tmp[2])
 	{
 		cast->curr[0] = floor(tmp[0] + 1);
 		cast->curr[1] = tmp[1];
-		if (is_on_door(info, cast))
-			return (3);
 	}
 	else
 	{
 		cast->curr[0] = floor(tmp[0]) - 0.0001;
 		cast->curr[1] = tmp[1];
-		if (is_on_door(info, cast))
-			return (3);
 	}
 	return (0);
 }
@@ -93,15 +85,11 @@ int	check_west_corner(t_info *info, t_casting *cast, double tmp[2])
 	{
 		cast->curr[0] = tmp[0];
 		cast->curr[1] = floor(tmp[1] + 1);
-		if (is_on_door(info, cast))
-			return (4);
 	}
 	else
 	{
 		cast->curr[0] = tmp[0];
 		cast->curr[1] = floor(tmp[1]) - 0.0001;
-		if (is_on_door(info, cast))
-			return (4);
 	}
 	return (0);
 }
@@ -122,15 +110,11 @@ int	check_east_corner(t_info *info, t_casting *cast, double tmp[2])
 	{
 		cast->curr[0] = tmp[0];
 		cast->curr[1] = floor(tmp[1] + 1);
-		if (is_on_door(info, cast))
-			return (4);
 	}
 	else
 	{
 		cast->curr[0] = tmp[0];
 		cast->curr[1] = floor(tmp[1]) - 0.0001;
-		if (is_on_door(info, cast))
-			return (4);
 	}
 	return (0);
 }
