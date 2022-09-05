@@ -136,6 +136,7 @@ void			tracing_again(t_info *info);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				closewin(t_info *info);
 
+void				ft_mapping(t_info *info);
 //			Hooking
 
 //hook.c

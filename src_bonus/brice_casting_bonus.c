@@ -80,7 +80,7 @@ void	cast_droit(t_info *info, t_casting *cast)
 		}
 		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1')
 			cast->is_wall = 2;
-		if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
+		else if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
 				&& door && door->is_op == 0)
 			cast->is_wall = 4;
 		else
