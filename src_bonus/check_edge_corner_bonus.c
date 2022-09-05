@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:07:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 16:14:56 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 18:03:27 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	is_on_door(t_info *info, t_casting *cast)
 {
-	if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+	t_door	*door;
+
+	door = get_this_door(info->door, (int)cast->curr[0], (int)cast->curr[1]);
+	if (door && !door->is_op)
 		return (1);
 	return (0);
 }
