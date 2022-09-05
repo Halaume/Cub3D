@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:07:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 12:10:37 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:01:14 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	is_on_door(t_info *info, t_casting *cast)
 
 int	check_north_corner(t_info *info, t_casting *cast, double tmp[2])
 {
-	if ((cast->ray[0] <= 0 && info->map[(int)(tmp[1])][(int)(tmp[0] + 1)] == '1')
-		|| (cast->ray[0] >= 0
+	if ((cast->ray[0] <= 0 && info->map[(int)(tmp[1])]
+		[(int)(tmp[0] + 1)] == '1') || (cast->ray[0] >= 0
 			&& info->map[(int)(tmp[1])][(int)(tmp[0] - 1)] == '1'))
 	{
 		cast->curr[0] = 0.9999;
@@ -46,8 +46,8 @@ int	check_north_corner(t_info *info, t_casting *cast, double tmp[2])
 
 int	check_south_corner(t_info *info, t_casting *cast, double tmp[2])
 {
-	if ((cast->ray[0] <= 0 && info->map[(int)(tmp[1])][(int)(tmp[0] + 1)] == '1')
-		|| (cast->ray[0] >= 0
+	if ((cast->ray[0] <= 0 && info->map[(int)(tmp[1])]
+		[(int)(tmp[0] + 1)] == '1') || (cast->ray[0] >= 0
 			&& info->map[(int)(tmp[1])][(int)(tmp[0] - 1)] == '1'))
 	{
 		cast->curr[0] = 0.9999;
@@ -71,8 +71,8 @@ int	check_south_corner(t_info *info, t_casting *cast, double tmp[2])
 
 int	check_west_corner(t_info *info, t_casting *cast, double tmp[2])
 {
-	if ((cast->ray[1] <= 0 && info->map[(int)(tmp[1] + 1)][(int)(tmp[0])] == '1')
-		|| (cast->ray[1] >= 0
+	if ((cast->ray[1] <= 0 && info->map[(int)(tmp[1] + 1)]
+		[(int)(tmp[0])] == '1') || (cast->ray[1] >= 0
 			&& info->map[(int)(tmp[1] - 1)][(int)(tmp[0])] == '1'))
 	{
 		cast->curr[1] = 0.9999;
@@ -96,8 +96,8 @@ int	check_west_corner(t_info *info, t_casting *cast, double tmp[2])
 
 int	check_east_corner(t_info *info, t_casting *cast, double tmp[2])
 {
-	if ((cast->ray[1] <= 0 && info->map[(int)(tmp[1] + 1)][(int)(tmp[0])] == '1')
-		|| (cast->ray[1] >= 0
+	if ((cast->ray[1] <= 0 && info->map[(int)(tmp[1] + 1)]
+		[(int)(tmp[0])] == '1') || (cast->ray[1] >= 0
 			&& info->map[(int)(tmp[1] - 1)][(int)(tmp[0])] == '1'))
 	{
 		cast->curr[1] = 0.9999;

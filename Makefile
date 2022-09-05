@@ -48,7 +48,7 @@ SRC_FT = affiche brice_casting cub3d_basic cub3d_basic2 ft_gnl hook liberation \
 		 main map moove moove_for moove_back moove_left moove_right texture \
 		 casting_tools ft_tools ft_colors ft_coloring ft_parse ft_check_map \
 		 ft_check_map_tools ft_partext ft_player ft_print check_edge \
-		 check_edge_corner
+		 check_edge_corner check_edge_tools
 
 
 SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus door_bonus \

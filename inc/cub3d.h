@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:46 by nflan             #+#    #+#             */
-/*   Updated: 2022/09/05 16:22:27 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 17:01:41 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ typedef struct s_casting {
 	char		*origin;
 }	t_casting;
 
-int				check_north_corner(t_info *info, t_casting *cast, double tmp[2]);
-int				check_south_corner(t_info *info, t_casting *cast, double tmp[2]);
-int				check_west_corner(t_info *info, t_casting *cast, double tmp[2]);
-int				check_east_corner(t_info *info, t_casting *cast, double tmp[2]);
+int				check_north_corner(t_info *info, t_casting *cast, double t[2]);
+int				check_south_corner(t_info *info, t_casting *cast, double t[2]);
+int				check_west_corner(t_info *info, t_casting *cast, double t[2]);
+int				check_east_corner(t_info *info, t_casting *cast, double t[2]);
 
 //			Main
 
@@ -192,6 +192,13 @@ void			choose_texture(t_info *info, t_casting *cast);
 void			do_it_pls(t_info *info, t_casting *cast, int i);
 void			get_the_wall(t_info *info, t_casting *cast, int i);
 void			check_angle(t_info *info, t_casting *cast);
+
+//			Check Edge
+
+int				check_north(t_info *info, t_casting *cast);
+int				check_south(t_info *info, t_casting *cast);
+int				check_east(t_info *info, t_casting *cast);
+int				check_west(t_info *info, t_casting *cast);
 
 //			Brice Casting
 
