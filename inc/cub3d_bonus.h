@@ -117,11 +117,16 @@ typedef struct s_info {
 
 typedef struct s_casting {
 	t_texture	texture;
+	t_texture	texture_ex;
 	double		delta[2];
 	double		ray[2];
+	double		exit_ray[2];
+	double		exit_mid[2];
+	double		exit_ends[4];
 	double		curr[2];
 	double		proj_screen[4];
 	double		wall_height;
+	double		ex_height;
 	double		dir_v_x;
 	double		dir_v_y;
 	double		prev_x;
@@ -130,13 +135,21 @@ typedef struct s_casting {
 	double		distance1;
 	double		wall_ratio;
 	double		percent;
+	double		percent_ex;
 	double		step;
+	double		step_ex;
 	double		current;
+	double		exit[2];
+	double		exit_dist;
+	int			do_exit;
+	int			exit_state;
 	int			percent_y;
 	int			proj_dist;
 	int			is_wall;
 	int			start_px;
 	int			end_px;
+	int			start_px_ex;
+	int			end_px_ex;
 	int			side;
 	char		*dist;
 	char		*origin;
@@ -242,11 +255,13 @@ void				choose_texture(t_info *info, t_casting *cast);
 void				do_it_pls(t_info *info, t_casting *cast, int i);
 void				get_the_wall(t_info *info, t_casting *cast, int i);
 void				check_angle(t_info *info, t_casting *cast);
-void				get_the_exit(t_info *info, t_casting *cast, int i);
+void				get_the_exit(t_info *info, t_casting *cast);
 void				cast_droit(t_info *info, t_casting *cast);
 void				cast_angle(t_info *info, t_casting *cast);
 void				casting2(t_info *info, t_casting *cast, int i);
 void				brice_casting(t_info *info);
+void				put_the_wall_exit(t_info *info, t_casting *cast, int y);
+int					is_on_door(t_info *info, t_casting *cast);
 
 //			Player Mouvement
 
