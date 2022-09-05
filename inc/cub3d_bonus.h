@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:33:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 14:02:33 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 16:21:55 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,10 +157,10 @@ typedef struct s_casting {
 
 //	TEST
 
-int					check_north_corner(t_info *info, t_casting *cast, double tmp[2]);
-int					check_south_corner(t_info *info, t_casting *cast, double tmp[2]);
-int					check_west_corner(t_info *info, t_casting *cast, double tmp[2]);
-int					check_east_corner(t_info *info, t_casting *cast, double tmp[2]);
+int					check_north_corner(t_info *info, t_casting *c, double t[2]);
+int					check_south_corner(t_info *info, t_casting *c, double t[2]);
+int					check_west_corner(t_info *info, t_casting *c, double t[2]);
+int					check_east_corner(t_info *info, t_casting *c, double t[2]);
 
 //	Main
 
@@ -180,6 +180,7 @@ int					closewin(t_info *info);
 
 //			Door
 
+void				check_door_text(t_info *info, t_casting *cast);
 t_door				*get_this_door(t_door *list, int x, int y);
 void				open_door(t_info *info);
 void				door_closed(t_info *info);
@@ -262,6 +263,14 @@ void				casting2(t_info *info, t_casting *cast, int i);
 void				brice_casting(t_info *info);
 void				put_the_wall_exit(t_info *info, t_casting *cast, int y);
 int					is_on_door(t_info *info, t_casting *cast);
+
+//			Check Edge
+
+int					check_north(t_info *info, t_casting *cast);
+int					check_south(t_info *info, t_casting *cast);
+int					check_east(t_info *info, t_casting *cast);
+int					check_west(t_info *info, t_casting *cast);
+void				check_angle(t_info *info, t_casting *cast);
 
 //			Player Mouvement
 

@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:46 by nflan             #+#    #+#             */
-/*   Updated: 2022/09/05 15:31:53 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 16:22:27 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ void			tracing_again(t_info *info);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				closewin(t_info *info);
 
-void				ft_mapping(t_info *info);
 //			Hooking
 
 //hook.c

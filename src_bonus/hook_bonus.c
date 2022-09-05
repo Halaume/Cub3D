@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:40:59 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/01 13:07:17 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 16:15:15 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	mouse_move(t_info *info)
 		if (info->hook.mouse_prev_pos != info->hook.mouse_pos)
 		{
 			info->player.angle -= ((double)(info->hook.mouse_prev_pos
-						- info->hook.mouse_pos) * ((double)M_PI / 2)) / (double)info->w;
+						- info->hook.mouse_pos) * ((double)M_PI / 2))
+				/ (double)info->w;
 			if (info->player.angle - (2 * M_PI) < 0.001
 				&& info->player.angle - (2 * M_PI) > -0.001)
 				info->player.angle = 0;

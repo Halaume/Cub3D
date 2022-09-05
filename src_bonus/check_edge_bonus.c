@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:28:11 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/04 15:16:02 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:20:25 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	check_north(t_info *info, t_casting *cast)
 			return (check_north_corner(info, cast, tmp));
 		return (set_curr(cast, tmp[0], ceil(tmp[1])), 2);
 	}
-	else if (fabs(ceil(tmp[0]) - tmp[0]) < 0.0002 || fabs(floor(tmp[0]) - tmp[0]) < 0.0001)
+	else if (fabs(ceil(tmp[0]) - tmp[0]) < 0.0002
+		|| fabs(floor(tmp[0]) - tmp[0]) < 0.0001)
 	{
 		set_curr(cast, tmp[0], ceil(tmp[1]));
 		if (is_on_door(info, cast))
@@ -57,7 +58,8 @@ int	check_south(t_info *info, t_casting *cast)
 			return (check_south_corner(info, cast, tmp));
 		return (set_curr(cast, tmp[0], (floor(tmp[1]) - 0.0001)), 2);
 	}
-	else if (fabs(ceil(tmp[0]) - tmp[0]) < 0.0002 || fabs(floor(tmp[0]) - tmp[0]) < 0.0001)
+	else if (fabs(ceil(tmp[0]) - tmp[0]) < 0.0002
+		|| fabs(floor(tmp[0]) - tmp[0]) < 0.0001)
 	{
 		set_curr(cast, tmp[0], (floor(tmp[1]) - 0.0001));
 		if (is_on_door(info, cast))
@@ -84,7 +86,8 @@ int	check_east(t_info *info, t_casting *cast)
 			return (check_east_corner(info, cast, tmp));
 		return (set_curr(cast, (floor(tmp[0]) - 0.0001), tmp[1]), 1);
 	}
-	else if (fabs(ceil(tmp[1]) - tmp[1]) < 0.0002 || fabs(floor(tmp[1]) - tmp[1]) < 0.0001)
+	else if (fabs(ceil(tmp[1]) - tmp[1]) < 0.0002
+		|| fabs(floor(tmp[1]) - tmp[1]) < 0.0001)
 	{
 		set_curr(cast, (floor(tmp[0]) - 0.0001), tmp[1]);
 		if (is_on_door(info, cast))
@@ -111,7 +114,8 @@ int	check_west(t_info *info, t_casting *cast)
 			return (check_west_corner(info, cast, tmp));
 		return (set_curr(cast, ceil(tmp[0]), tmp[1]), 1);
 	}
-	else if (fabs(ceil(tmp[1]) - tmp[1]) < 0.0002 || fabs(floor(tmp[1]) - tmp[1]) < 0.0001)
+	else if (fabs(ceil(tmp[1]) - tmp[1]) < 0.0002
+		|| fabs(floor(tmp[1]) - tmp[1]) < 0.0001)
 	{
 		set_curr(cast, ceil(tmp[0]), tmp[1]);
 		if (is_on_door(info, cast))
@@ -124,22 +128,4 @@ int	check_west(t_info *info, t_casting *cast)
 	if (is_on_door(info, cast))
 		return (4);
 	return (set_curr(cast, tmp[0], tmp[1]), 2);
-}
-
-void	check_angle(t_info *info, t_casting *cast)
-{
-	if (cast->is_wall == 1 || cast->is_wall == 3)
-	{
-		if (cast->ray[1] < 0)
-			cast->is_wall = check_north(info, cast);
-		else
-			cast->is_wall = check_south(info, cast);
-	}
-	else
-	{
-		if (cast->ray[0] < 0)
-			cast->is_wall = check_west(info, cast);
-		else
-			cast->is_wall = check_east(info, cast);
-	}
 }

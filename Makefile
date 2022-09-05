@@ -21,7 +21,7 @@ INCB =			inc/cub3d_bonus.h
 OBJ_DIR =		obj
 OBJB_DIR =		obj_bonus
 SRC_DIR =		src
-SRCB_DIR =		testos
+SRCB_DIR =		src_bonus
 LIB_DIR =		libft/
 
 SRC =			$(SRC_FT:%=$(SRC_DIR)/%.c)
@@ -58,7 +58,7 @@ SRCB_FT = affiche_bonus brice_casting_bonus casting_tools_bonus door_bonus \
 		  liberation_bonus main map_bonus moove_back_bonus moove_bonus \
 		  moove_for_bonus moove_left_bonus moove_right_bonus texture_bonus \
 		  liberation2_bonus auto_close_bonus check_edge_bonus cast_exit \
-		  ft_sprite_tools_bonus check_edge_corner_bonus
+		  ft_sprite_tools_bonus check_edge_corner_bonus check_edge_tools_bonus
 
 
 LIBFT = libft/libft.a
