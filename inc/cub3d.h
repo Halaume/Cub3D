@@ -115,6 +115,11 @@ typedef struct s_casting {
 	char		*origin;
 }	t_casting;
 
+int				check_north_corner(t_info *info, t_casting *cast, double tmp[2]);
+int				check_south_corner(t_info *info, t_casting *cast, double tmp[2]);
+int				check_west_corner(t_info *info, t_casting *cast, double tmp[2]);
+int				check_east_corner(t_info *info, t_casting *cast, double tmp[2]);
+
 //			Main
 
 int				ft_closewin(t_info *info, int err);

@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:21:16 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 15:16:18 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 16:45:41 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,6 @@ void	ft_mapping(t_info *info)
 		ft_launch_minimap(info);
 	else if (info->print_map)
 		ft_draw_map(info);
+	mlx_put_image_to_window(info->mlx, info->window,
+		info->img[info->cur_i].img, 0, 0);
 }

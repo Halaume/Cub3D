@@ -122,4 +122,7 @@ void	get_the_wall(t_info *info, t_casting *cast, int i)
 	cast->wall_ratio = cast->distance1 / cast->distance0;
 	cast->wall_height = (int)round(cast->wall_ratio * ((double)info->w / 2));
 	do_it_pls(info, cast, i);
+	get_the_exit(info, cast);
+	if (cast->do_exit == 1)
+		put_the_wall_exit(info, cast, i);
 }
