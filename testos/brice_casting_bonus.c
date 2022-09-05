@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 15:45:34 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 15:44:04 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void	cast_droit(t_info *info, t_casting *cast)
 			cast->is_wall = 2;
 		else if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
 				&& door && door->is_op == 0)
+		{
+			printf("je suis le probleme\n");
 			cast->is_wall = 4;
+		}
 		else
 		{
 			cast->curr[0] += 1;
