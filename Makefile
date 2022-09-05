@@ -21,7 +21,7 @@ INCB =			inc/cub3d_bonus.h
 OBJ_DIR =		obj
 OBJB_DIR =		obj_bonus
 SRC_DIR =		src
-SRCB_DIR =		testos
+SRCB_DIR =		src_bonus
 LIB_DIR =		libft/
 
 SRC =			$(SRC_FT:%=$(SRC_DIR)/%.c)

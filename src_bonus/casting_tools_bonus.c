@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:31:25 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/08/30 18:16:09 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:18:25 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,4 +140,7 @@ void	get_the_wall(t_info *info, t_casting *cast, int i)
 	cast->wall_ratio = cast->distance1 / cast->distance0;
 	cast->wall_height = (int)round(cast->wall_ratio * ((double)info->w / 2));
 	do_it_pls(info, cast, i);
+	get_the_exit(info, cast);
+	if (cast->do_exit == 1)
+		put_the_wall_exit(info, cast, i);
 }
