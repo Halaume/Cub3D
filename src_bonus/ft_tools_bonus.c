@@ -6,7 +6,7 @@
 /*   By: nflan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:41:52 by nflan             #+#    #+#             */
-/*   Updated: 2022/08/30 12:54:46 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/05 18:07:55 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	ft_poserr(int y, int x, char *str)
 	ft_putstr_error(str);
 	pos = ft_itoa(x);
 	if (!pos)
-		return (1);
+		return (ft_putstr_error("\nError\nMalloc error\n"));
 	ft_putstr_error("column ");
 	ft_putstr_error(pos);
 	free(pos);
 	ft_putstr_error(" line ");
 	pos = ft_itoa(y);
 	if (!pos)
-		return (1);
+		return (ft_putstr_error("\nError\nMalloc error\n"));
 	ft_putstr_error(pos);
 	free(pos);
 	ft_putstr_error("\n");
