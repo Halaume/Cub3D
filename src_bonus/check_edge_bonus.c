@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:28:11 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 16:20:25 by nflan            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:42:44 by nflan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_north(t_info *info, t_casting *cast)
 	}
 	if (is_on_door(info, cast))
 		return (3);
-	return (set_curr(cast, tmp[0], tmp[1]), 1);
+	return (set_curr(cast, tmp[0], tmp[1]), cast->is_wall);
 }
 
 int	check_south(t_info *info, t_casting *cast)
@@ -71,7 +71,7 @@ int	check_south(t_info *info, t_casting *cast)
 	}
 	if (is_on_door(info, cast))
 		return (3);
-	return (set_curr(cast, tmp[0], tmp[1]), 1);
+	return (set_curr(cast, tmp[0], tmp[1]), cast->is_wall);
 }
 
 int	check_east(t_info *info, t_casting *cast)
@@ -99,7 +99,7 @@ int	check_east(t_info *info, t_casting *cast)
 	}
 	if (is_on_door(info, cast))
 		return (4);
-	return (set_curr(cast, tmp[0], tmp[1]), 2);
+	return (set_curr(cast, tmp[0], tmp[1]), cast->is_wall);
 }
 
 int	check_west(t_info *info, t_casting *cast)
@@ -127,5 +127,5 @@ int	check_west(t_info *info, t_casting *cast)
 	}
 	if (is_on_door(info, cast))
 		return (4);
-	return (set_curr(cast, tmp[0], tmp[1]), 2);
+	return (set_curr(cast, tmp[0], tmp[1]), cast->is_wall);
 }
