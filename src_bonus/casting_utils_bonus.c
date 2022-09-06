@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 16:32:49 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 16:34:19 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/06 12:34:25 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	norme_angle1(t_info *info, t_casting *cast)
 	if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1'
 			|| is_in_corner(info, cast->curr, cast->ray, 2))
 		cast->is_wall = 2;
-	if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
-			&& door && door->is_op == 0)
+	if ((info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+			&& door && !door->is_op)
 		cast->is_wall = 4;
 }
 
@@ -64,8 +64,8 @@ void	norme_angle2(t_info *info, t_casting *cast)
 	if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '1' \
 			|| is_in_corner(info, cast->curr, cast->ray, 1))
 		cast->is_wall = 1;
-	if (info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2' \
-			&& door && door->is_op == 0)
+	if ((info->map[(int)cast->curr[1]][(int)cast->curr[0]] == '2')
+			&& door && !door->is_op)
 		cast->is_wall = 3;
 }
 

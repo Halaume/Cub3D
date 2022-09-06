@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:37:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/09/05 16:34:41 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/09/06 12:33:18 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_in_corner(t_info *info, double curr[2], double ray[2], int hit)
 {
-	int	c[2];
+	int		c[2];
 
 	c[0] = (int)curr[0];
 	c[1] = (int)curr[1];
